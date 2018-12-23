@@ -11,6 +11,7 @@ import { KriptovalutaComponent } from './components/kriptovaluta/kriptovaluta.co
 import { PorukaUspesnostiComponent } from './components/poruka-uspesnosti/poruka-uspesnosti.component';
 import {PlacanjeService} from './service/placanje.service';
 import { BankaComponent } from './components/banka/banka.component';
+import { PaypalComponent } from './components/paypal/paypal.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { BankaComponent } from './components/banka/banka.component';
     PorukaUspesnostiComponent,
 
     KriptovalutaComponent,
-    PorukaUspesnostiComponent, BankaComponent,
+    PorukaUspesnostiComponent, BankaComponent, PaypalComponent,
 
   ],
   imports: [
