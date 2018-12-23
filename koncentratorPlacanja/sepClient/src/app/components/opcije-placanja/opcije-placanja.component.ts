@@ -11,12 +11,12 @@ export class OpcijePlacanjaComponent implements OnInit {
   
   public payPalConfig?: PayPalConfig;
   private secret = 'Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9';
-  private subtotal= 10000.00;
-  private tax= 3.00;
+  private subtotal= 3.00;
+  private tax= 0.05;
   private shipping= 0.00;
   private handling_fee= 0.00;
   private shipping_discount= 0.00;
-  private insurance= 2.00;
+  private insurance= 0.10;
   private total = this.subtotal + this.tax + this.shipping + this.handling_fee + this.shipping_discount + this.insurance;
 
   constructor(private router: Router) { }
@@ -46,6 +46,7 @@ export class OpcijePlacanjaComponent implements OnInit {
         onPaymentComplete: (data, actions) => {
           console.log('OnPaymentComplete');
           //this.router.navigate(['https://www.google.rs/']);
+          this.router.navigate(['uspesno']);
         },
         onCancel: (data, actions) => {
           console.log('OnCancel');
