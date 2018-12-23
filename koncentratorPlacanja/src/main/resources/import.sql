@@ -1,0 +1,1 @@
+INSERT INTO transakcija  (id, error_url, faild_url, kolicina, lozinka_prodavca, prodavac, prodavac_transakcija_id, prodavac_vreme_transakcije, success_url, token) VALUES (1, 'sa', 'saas', 12, 'sa', 'sad', 12, 12, 'qwe', 'qweqweqwe');
