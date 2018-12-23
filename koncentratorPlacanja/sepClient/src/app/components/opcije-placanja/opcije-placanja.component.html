@@ -1,0 +1,13 @@
+<h1>Izaberite opciju placanja</h1>
+<div class ="opcijePlacanja">
+    <div class="opcija">
+        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+    <div class="opcija">
+        <app-kriptovaluta></app-kriptovaluta>
+    </div>
+    <div class="opcija">
+        <app-banka></app-banka>>
+    </div>
+</div>
+<!--Napraviti kontroler sa dodeljenim vrenostima  cene i valute i proslediti na ovaj url -->
