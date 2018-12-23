@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PlacanjeService} from '../../service/placanje.service';
 
 @Component({
   selector: 'app-kriptovaluta',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KriptovalutaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private placanjeService: PlacanjeService) { }
 
   ngOnInit() {
+
+
+    this.placanjeService.obradaKriptovalute()
+      .subscribe(
+        (response: any) => {
+
+          window.location.href = response;
+
+        },
+        (error) => console.log(error) );
   }
+  
 
 }
