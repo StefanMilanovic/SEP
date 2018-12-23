@@ -98,8 +98,9 @@ export class OpcijePlacanjaComponent implements OnInit {
                 postal_code: '95131',
                 phone: '011862212345678',
                 state: 'CA'
-              },
+        
             },
+          },
           }
         ],
         note_to_payer: 'Contact us if you have troubles processing payment'
