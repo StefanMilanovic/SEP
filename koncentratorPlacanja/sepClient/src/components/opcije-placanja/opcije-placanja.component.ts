@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-opcije-placanja',
@@ -9,7 +10,16 @@ import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-payp
 export class OpcijePlacanjaComponent implements OnInit {
   
   public payPalConfig?: PayPalConfig;
-  constructor() { }
+  private secret = 'Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9';
+  private subtotal= 10000.00;
+  private tax= 3.00;
+  private shipping= 0.00;
+  private handling_fee= 0.00;
+  private shipping_discount= 0.00;
+  private insurance= 2.00;
+  private total = this.subtotal + this.tax + this.shipping + this.handling_fee + this.shipping_discount + this.insurance;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.initConfig();
@@ -22,10 +32,8 @@ export class OpcijePlacanjaComponent implements OnInit {
       {
         commit: true,
         client: {
-          sandbox:
-             //'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R'
-             //'AFswfly.YIN965eEkMLCIj4Nbu3zA4cO3qfflMIKQa7THSVczFK3SlpP'
-             'Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9'
+          sandbox:           
+             this.secret
         },
         button: {
           label: 'paypal',
@@ -37,9 +45,12 @@ export class OpcijePlacanjaComponent implements OnInit {
         },
         onPaymentComplete: (data, actions) => {
           console.log('OnPaymentComplete');
+          //this.router.navigate(['https://www.google.rs/']);
         },
         onCancel: (data, actions) => {
           console.log('OnCancel');
+         // this.router.navigate(['http://www.google.rs/']);
+         // window.location.href = 'http://www.google.rs/';
         },
         onError: err => {
           console.log('OnError');
@@ -57,49 +68,58 @@ export class OpcijePlacanjaComponent implements OnInit {
         transactions: [
           {
             amount: {
-              total: 30.11,
+              //total: 30.11,
+              total: this.total,
               currency: 'USD',
+              // details: {
+              //   subtotal: 30.00,
+              //   tax: 0.07,
+              //   shipping: 0.03,
+              //   handling_fee: 1.00,
+              //   shipping_discount: -1.00,
+              //   insurance: 0.01
+              // }
               details: {
-                subtotal: 30.00,
-                tax: 0.07,
-                shipping: 0.03,
-                handling_fee: 1.00,
-                shipping_discount: -1.00,
-                insurance: 0.01
+                subtotal: this.subtotal,
+                tax: this.tax,
+                shipping: this.shipping,
+                handling_fee: this.handling_fee,
+                shipping_discount: this.shipping_discount,
+                insurance: this.insurance
               }
             },
             custom: 'Custom value',
-            item_list: {
-              items: [
-                {
-                  name: 'hat',
-                  description: 'Brown hat.',
-                  quantity: 5,
-                  price: 3,
-                  tax: 0.01,
-                  sku: '1',
-                  currency: 'USD'
-                },
-                {
-                  name: 'handbag',
-                  description: 'Black handbag.',
-                  quantity: 1,
-                  price: 15,
-                  tax: 0.02,
-                  sku: 'product34',
-                  currency: 'USD'
-                }],
-              shipping_address: {
-                recipient_name: 'Brian Robinson',
-                line1: '4th Floor',
-                line2: 'Unit #34',
-                city: 'San Jose',
-                country_code: 'US',
-                postal_code: '95131',
-                phone: '011862212345678',
-                state: 'CA'
-              },
-            },
+            // item_list: {
+            //   items: [
+            //     {
+            //       name: 'hat',
+            //       description: 'Brown hat.',
+            //       quantity: 5,
+            //       price: 3,
+            //       tax: 0.01,
+            //       sku: '1',
+            //       currency: 'USD'
+            //     },
+            //     {
+            //       name: 'handbag',
+            //       description: 'Black handbag.',
+            //       quantity: 1,
+            //       price: 15,
+            //       tax: 0.02,
+            //       sku: 'product34',
+            //       currency: 'USD'
+            //     }],
+            //   shipping_address: {
+            //     recipient_name: 'Brian Robinson',
+            //     line1: '4th Floor',
+            //     line2: 'Unit #34',
+            //     city: 'San Jose',
+            //     country_code: 'US',
+            //     postal_code: '95131',
+            //     phone: '011862212345678',
+            //     state: 'CA'
+            //   },
+            // },
           }
         ],
         note_to_payer: 'Contact us if you have troubles processing payment'
