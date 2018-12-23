@@ -9,13 +9,14 @@ import { OpcijePlacanjaComponent } from './components/opcije-placanja/opcije-pla
 import { NgxPayPalModule } from 'ngx-paypal';
 import { KriptovalutaComponent } from './components/kriptovaluta/kriptovaluta.component';
 import { PorukaUspesnostiComponent } from './components/poruka-uspesnosti/poruka-uspesnosti.component';
+import { BankaComponent } from './components/banka/banka.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OpcijePlacanjaComponent,
     KriptovalutaComponent,    
-    PorukaUspesnostiComponent,
+    PorukaUspesnostiComponent, BankaComponent,
   ],
   imports: [
     BrowserModule,
