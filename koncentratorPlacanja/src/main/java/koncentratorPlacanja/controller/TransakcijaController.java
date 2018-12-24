@@ -20,7 +20,7 @@ public class TransakcijaController {
 
     @Autowired
     private TransakcijaService transakcijaService;
-
+    private Transakcija trenutnaTransakcija = new Transakcija();
 
 
     @RequestMapping(

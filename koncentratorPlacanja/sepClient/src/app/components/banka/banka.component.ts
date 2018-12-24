@@ -12,4 +12,9 @@ export class BankaComponent implements OnInit {
   ngOnInit() {
   }
 
+  setuj(){
+    console.log("Setujem");
+    localStorage.setItem('1','Ovo je setovana vrednost');
+  }
+
 }

@@ -1,3 +1,29 @@
-<p>
-  forma works!
-</p>
+<form>
+  <div>
+    <label> PAN: </label>
+    <input type="text" placeholder="PAN">
+  </div>
+
+  <div>
+    <label> PIN: </label>
+    <input type="password" placeholder="PIN">
+  </div>
+
+  <div>
+    <label> Vlasnik kartice: </label>
+    <input type="text" placeholder="Vlasnik kartice">
+  </div>
+
+  <div>
+    <label> Datum isteka: </label>
+    <input type="text" placeholder="Datum isteka">
+  </div>
+
+  <br/>
+  <br/>
+
+  <div>
+    <button (click)="potvrdi($event)">Potvrdi</button>
+    <button	 type="reset" (click)="ponisti()">Ponisti</button>
+  </div>
+</form>
