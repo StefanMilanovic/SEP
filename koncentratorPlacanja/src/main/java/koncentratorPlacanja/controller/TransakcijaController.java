@@ -29,16 +29,8 @@ public class TransakcijaController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<?> startTransaction(@RequestBody @Valid Transakcija transakcija) {
-        Transakcija tt  = new Transakcija(); //PRIVREMENO ZA TESTIRANJE
-        tt.setError_url("www.google.com");
-        tt.setFaild_url("www.google.com");
-        tt.setSuccess_url("www.google.com");
-        tt.setKolicina(12);
-        tt.setLozinkaProdavca("aa");
-        tt.setProdavac("aa");
-        tt.setProdavacTransakcijaId(12);
-        tt.setProdavacVremeTransakcije(12L);
-        Transakcija t = transakcijaService.save(tt);
+
+        Transakcija t = transakcijaService.findOne(1L);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location",
