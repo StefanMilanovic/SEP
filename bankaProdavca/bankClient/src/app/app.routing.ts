@@ -7,6 +7,6 @@ import { ProveraComponent } from './components/provera/provera.component';
 const appRoutes: Routes =
 [
     {path: '', component: FormaComponent},
-    {path: 'provera', component: ProveraComponent}
+    {path: 'provera/:id', component: ProveraComponent}
 ];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes)

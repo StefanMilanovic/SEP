@@ -33,4 +33,9 @@ public class KlijentServiceImpl implements KlijentService {
     public void delete(Long id) {
         klijentRepository.delete(id);
     }
+
+    @Override
+    public Klijent findByBankId(String prodavac_bank_id){
+        return klijentRepository.findByprodavacBankId(prodavac_bank_id);
+    }
 }

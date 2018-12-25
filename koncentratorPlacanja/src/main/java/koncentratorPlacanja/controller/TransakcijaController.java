@@ -1,7 +1,9 @@
 package koncentratorPlacanja.controller;
 
 
+import koncentratorPlacanja.model.NaucnaCentralaData;
 import koncentratorPlacanja.model.Transakcija;
+import koncentratorPlacanja.service.KlijentService;
 import koncentratorPlacanja.service.TransakcijaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.BasicJsonParser;
@@ -20,68 +22,83 @@ public class TransakcijaController {
 
     @Autowired
     private TransakcijaService transakcijaService;
-    private Transakcija trenutnaTransakcija = new Transakcija();
 
+    @Autowired
+    private KlijentService klijentService;
+
+
+//    @RequestMapping(
+//            value = "/kreirajTransakciju",
+//            method = RequestMethod.POST,
+//            produces = MediaType.APPLICATION_JSON_VALUE
+//    )
+//    public ResponseEntity<?> startTransaction(@RequestBody @Valid Transakcija transakcija) {
+//
+//        Transakcija t = transakcijaService.findOne(1L);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Location",
+//                "http://localhost:4200/#/tt/" + t.getToken());
+//        return new ResponseEntity<>(headers, HttpStatus.FOUND);
+//    }
+//
+//
+//    @RequestMapping(
+//            value = "/kriptovaluta",
+//            method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_JSON_VALUE
+//    )
+//    public ResponseEntity<?> getUser(/*@PathVariable String token*/) {
+//
+//        String token = "qweqweqwe"; //PRIVREMENO !!!
+//        System.out.println("\nTransakcija kontroler \n");
+//        Transakcija transakcija = transakcijaService.findOne(1L);
+//
+//
+//        String testAdress = "https://sandbox.coingate.com/pay/TestTest";
+//        RestTemplate restClient = new RestTemplate();
+//
+//
+//        try {
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.set("Content-Type", "application/x-www-form-urlencoded");
+//            headers.set("Authorization", "Token qweqweqwe");
+//
+//            MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+//            map.add("order_id", transakcija.getId() + "");
+//            map.add("price_amount", transakcija.getKolicina() + "");
+//            map.add("price_currency", "USD");
+//            map.add("receive_currency", "USD");
+//            map.add("title", token);
+//
+//            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+//            ResponseEntity<String> response = restClient.postForEntity(testAdress, request, String.class);
+//
+//            JsonParser basicJsonParser = new BasicJsonParser();
+//            String paymentUrl = (String)basicJsonParser.parseMap(response.getBody()).get("payment_url");
+//
+//            return new ResponseEntity<String>(paymentUrl, HttpStatus.OK);
+//
+//        }catch (Exception ex) {
+//
+//            ex.printStackTrace();
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//
+//
+//    }
 
     @RequestMapping(
-            value = "/kreirajTransakciju",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE
+           value = "/kreirajTransakciju",
+           method = RequestMethod.POST,
+           produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<?> startTransaction(@RequestBody @Valid Transakcija transakcija) {
+    public ResponseEntity<Transakcija> createTransaction(@RequestBody @Valid NaucnaCentralaData naucnaCentralaData) {
 
-        Transakcija t = transakcijaService.findOne(1L);
+        Transakcija t = new Transakcija(naucnaCentralaData.getKolicina(), klijentService.findByBankId(naucnaCentralaData.getProdavacBankId()), naucnaCentralaData.getDatum());
+        transakcijaService.save(t);
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location",
-                "http://localhost:4200/#/tt/" + t.getToken());
-        return new ResponseEntity<>(headers, HttpStatus.FOUND);
-    }
-
-
-    @RequestMapping(
-            value = "/kriptovaluta",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public ResponseEntity<?> getUser(/*@PathVariable String token*/) {
-
-        String token = "qweqweqwe"; //PRIVREMENO !!!
-        System.out.println("\nTransakcija kontroler \n");
-        Transakcija transakcija = transakcijaService.findOne(1L);
-
-
-        String testAdress = "https://sandbox.coingate.com/pay/TestTest";
-        RestTemplate restClient = new RestTemplate();
-
-
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Content-Type", "application/x-www-form-urlencoded");
-            headers.set("Authorization", "Token qweqweqwe");
-
-            MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
-            map.add("order_id", transakcija.getId() + "");
-            map.add("price_amount", transakcija.getKolicina() + "");
-            map.add("price_currency", "USD");
-            map.add("receive_currency", "USD");
-            map.add("title", token);
-
-            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
-            ResponseEntity<String> response = restClient.postForEntity(testAdress, request, String.class);
-
-            JsonParser basicJsonParser = new BasicJsonParser();
-            String paymentUrl = (String)basicJsonParser.parseMap(response.getBody()).get("payment_url");
-
-            return new ResponseEntity<String>(paymentUrl, HttpStatus.OK);
-
-        }catch (Exception ex) {
-
-            ex.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-
+        return new ResponseEntity<Transakcija>(HttpStatus.OK);
     }
 
 

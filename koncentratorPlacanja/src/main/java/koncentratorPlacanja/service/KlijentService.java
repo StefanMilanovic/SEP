@@ -10,6 +10,8 @@ public interface KlijentService {
 
     Klijent save(Klijent user);
 
+    Klijent findByBankId(String prodavac_bank_id);
+
     void delete(Long id);
 
     List<Klijent> findAll();

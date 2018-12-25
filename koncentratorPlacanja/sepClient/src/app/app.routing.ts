@@ -8,7 +8,12 @@ import {KriptovalutaComponent} from './components/kriptovaluta/kriptovaluta.comp
 const appRoutes: Routes =
     [
         {
-            path: '', component: OpcijePlacanjaComponent,
+            path: '',
+            redirectTo: '/opcije/11111',
+            pathMatch: 'full'
+        },
+        {
+            path: 'opcije/:id', component: OpcijePlacanjaComponent,
         },
         { path: 'uspesno', component: PorukaUspesnostiComponent },
         {

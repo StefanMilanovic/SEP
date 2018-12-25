@@ -15,22 +15,22 @@ import javax.validation.Valid;
 @RequestMapping("/primiPodatke")
 public class primiPodatkeController {
 
-    private BankData tempData
-
-    @RequestMapping(
-            value = "/kreirajTransakciju",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public ResponseEntity<?> startTransaction(@RequestBody @Valid Transakcija transakcija) {
-
-        Transakcija t = transakcijaService.findOne(1L);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location",
-                "http://localhost:4200/#/tt/" + t.getToken());
-        return new ResponseEntity<>(headers, HttpStatus.FOUND);
-    }
+//    private BankData tempData;
+//
+//    @RequestMapping(
+//            value = "/kreirajTransakciju",
+//            method = RequestMethod.POST,
+//            produces = MediaType.APPLICATION_JSON_VALUE
+//    )
+//    public ResponseEntity<?> startTransaction(@RequestBody @Valid Transakcija transakcija) {
+//
+//        Transakcija t = transakcijaService.findOne(1L);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Location",
+//                "http://localhost:4200/#/tt/" + t.getToken());
+//        return new ResponseEntity<>(headers, HttpStatus.FOUND);
+//    }
 
 
 }

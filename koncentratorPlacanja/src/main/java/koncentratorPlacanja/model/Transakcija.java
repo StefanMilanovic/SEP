@@ -32,20 +32,19 @@ public class Transakcija {
     private Klijent klijent;
 
     @Column(nullable = false)
-    private Date prodavac_vreme_transakcije;
+    private Date prodavacVremeTransakcije;
 
 
 
     public Transakcija() {}
 
-    public Transakcija(Long id, String token, double kolicina,
-                       Klijent klijent_id, Date prodavac_vreme_transakcije) {
-        this.id = id;
-        this.token = token;
+    public Transakcija(double kolicina, Klijent klijent_id, Date prodavac_vreme_transakcije) {
         this.kolicina = kolicina;
         this.klijent = klijent_id;
-//        this.prodavac_vreme_transakcije = prodavac_vreme_transakcije;
+        this.prodavacVremeTransakcije = prodavac_vreme_transakcije;
     }
+
+
 
     public Long getId() {
         return id;
@@ -64,7 +63,7 @@ public class Transakcija {
     }
 
     public Date getProdavac_vreme_transakcije() {
-        return prodavac_vreme_transakcije;
+        return prodavacVremeTransakcije;
     }
 
     public void setId(Long id) {
@@ -84,6 +83,6 @@ public class Transakcija {
     }
 
     public void setProdavac_vreme_transakcije(Date prodavac_vreme_transakcije) {
-        this.prodavac_vreme_transakcije = prodavac_vreme_transakcije;
+        this.prodavacVremeTransakcije = prodavac_vreme_transakcije;
     }
 }

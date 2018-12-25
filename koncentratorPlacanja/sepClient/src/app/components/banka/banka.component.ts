@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PlacanjeService } from 'src/app/service/placanje.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-banka',
@@ -7,14 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BankaComponent implements OnInit {
 
-  constructor() { }
+  private id: string;
+  private bankData: any;
+  private redirectLink = 'http://localhost:5000/provera/1';
+
+  constructor(private placanjeService: PlacanjeService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
+    this.id = this.activatedRoute.snapshot.params['id'];  
+    //console.log("Id transakcije je(pisem iz banke) ::::: " + this.id)  
+    
   }
 
-  setuj(){
-    console.log("Setujem");
-    localStorage.setItem('1','Ovo je setovana vrednost');
+  placanjeBankom(){
+    this. placanjeService.pripremiPodatkeZaBanku(this.id)
+    .subscribe( data => {
+      this.bankData = data;
+      console.log("ISPISUJEM PODATKE")
+      console.log(this.bankData);
+    });
   }
 
 }
