@@ -12,8 +12,7 @@ export class FormaComponent implements OnInit {
   ngOnInit() {
   }
 
-  ponisti(){
-    console.log("aaaa")
+  ponisti() {
     window.location.href = 'http://localhost:4200/';
   }
 }
