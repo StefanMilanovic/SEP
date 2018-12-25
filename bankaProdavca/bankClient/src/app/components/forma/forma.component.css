@@ -8,7 +8,7 @@ form {
 	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
 	/* overflow: scroll;
 	overflow-x: hidden; */
-	
+
 }
 
 input[type=text], select, textarea {
@@ -19,7 +19,7 @@ input[type=text], select, textarea {
     resize: vertical;
 }
 
-input[type=password], select, textarea {
+input[type=number], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -44,6 +44,26 @@ button {
     border-right: 2px;
 }
 
+#potvrdi {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  /* border: none; */
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  border-right: 2px;
+}
+
 button:hover {
     background-color: #45a049;
+}
+
+
+#potvrdi:hover {
+  background-color: #45a049;
+}
+
+#PIN {
+  -webkit-text-security: disc;
 }

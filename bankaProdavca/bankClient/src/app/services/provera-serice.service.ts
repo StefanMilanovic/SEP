@@ -8,7 +8,11 @@ export class ProveraSericeService {
 
   constructor(private http: HttpClient) { }
 
-  uzmiPodatke(){
-    return this.http.get("http://localhost:8181/api/transakcija/kriptovaluta");
+  uzmiPodatke() {
+    return this.http.get('http://localhost:8181/api/transakcija/kriptovaluta');
+  }
+
+  posaljiPodatkeKupca(unetiPodaci) {
+    return this.http.post('http://localhost:8182/api//', unetiPodaci); // DOPUNI
   }
 }

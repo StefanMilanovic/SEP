@@ -1,29 +1,39 @@
-<form>
+<form  [formGroup] = "form"
+       (ngSubmit) = "onSubmit(form.value)">
   <div>
     <label> PAN: </label>
-    <input type="text" placeholder="PAN"  formControlName="PAN">
+    <input value="" type="number" name="PAN" id = "PAN"
+           formControlName="PAN" placeholder="PAN" maxlength="4" min = "0" max = "9"  onKeyPress="if(this.value.length==4) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
+
   </div>
 
   <div>
     <label> PIN: </label>
-    <input type="password" placeholder="PIN"  formControlName="PIN">
+    <input  value="" type="number" name="PIN" id = "PIN"
+           formControlName="PIN" placeholder="PIN" maxlength="4" min = "0" max = "9"  onKeyPress="if(this.value.length==4) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
   </div>
 
   <div>
     <label> Vlasnik kartice: </label>
-    <input type="text" placeholder="Vlasnik kartice" formControlName="vlasnikKartice">
+    <input id ="vlasnikKartice" type="text" placeholder="Vlasnik kartice" formControlName="vlasnikKartice" maxlength="30">
   </div>
+
+  <br/>
 
   <div>
     <label> Datum isteka: </label>
-    <input type="text" placeholder="Datum isteka" formControlName="datumIsteka">
+    <input id ="datumIsteka" required="required"  name="datumIsteka"  formControlName="datumIsteka"  type="date"  (ngModelChange)="datumIsteka = $event" >
+
   </div>
+
 
   <br/>
   <br/>
 
   <div>
-    <button (click)="potvrdi($event)">Potvrdi</button>
+    <!--<button (click)="potvrdi($event)">Potvrdi</button>-->
+    <input id="potvrdi" type = "submit" [disabled]="!form.valid" (click)="posalji()" value ="Potvrdi">
+
     <button	 type="reset" (click)="ponisti()">Ponisti</button>
   </div>
 </form>
