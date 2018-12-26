@@ -1,16 +1,37 @@
 package bankaProdavca.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class BankData {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column()
     private String prodavacBankId;
+
+    @Column()
     private String prodavacBankLozinka;
+
+    @Column()
     private String successUrl;
+
+    @Column()
     private String failedUrl;
+
+    @Column()
     private String errorUrl;
+
+    @Column()
     private double kolicina;
+
+    @Column()
     private Date prodavac_vreme_transakcije;
+
+    @Column()
     private String token;
 
     public BankData(String prodavac_bank_id, String prodavac_bank_lozinka, String success_url, String failed_url,
