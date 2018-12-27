@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { FormaComponent } from './components/forma/forma.component';
 import { ProveraComponent } from './components/provera/provera.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ProveraSericeService } from './services/provera-serice.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppRoutingModule,
     routing,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProveraSericeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,7 +9,7 @@ const appRoutes: Routes =
     [
         {
             path: '',
-            redirectTo: '/opcije/11111',
+            redirectTo: '/opcije/1',
             pathMatch: 'full'
         },
         {

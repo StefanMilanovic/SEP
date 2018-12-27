@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpXsrfTokenExtractor} from '@angular/common/http';
 import {Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
@@ -17,5 +17,9 @@ export class PlacanjeService {
   pripremiPodatkeZaBanku(id){
     console.log("Pripremaju se podaci za banku.");
     return this.http.post("http://localhost:8181/api/banka/uzmiPodatke", id);
+  }
+
+  posaljiBanciPodatke(data){
+    return this.http.post("http://localhost:8182/api/primiPodatke/primi", data)
   }
 }
