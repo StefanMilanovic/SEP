@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,13 +11,21 @@ export class PlacanjeService {
   constructor(private http: HttpClient) { }
 
 
-  obradaKriptovalute(){
+  obradaKriptovalute(podaciKriptovaluta){
     console.log('Obrada Kriptovalute');
-    return this.http.get("http://localhost:8181/api/transakcija/kriptovaluta");
+    return this.http.post("http://localhost:8181/api/transakcija/kriptovaluta", podaciKriptovaluta);
   }
 
   pripremiPodatkeZaBanku(id){
     console.log("Pripremaju se podaci za banku.");
     return this.http.post("http://localhost:8181/api/banka/uzmiPodatke", id);
+  }
+
+
+  obradaKriptovalute2() {
+    return this.http.get("http://localhost:8181/api/transakcija/kriptovaluta2").pipe(map((response : Response) => {
+      const data = response.text();
+      return data;
+    }));
   }
 }
