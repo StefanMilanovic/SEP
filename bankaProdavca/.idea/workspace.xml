@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8fe8c34-0842-4d39-8df2-e4b5c751454f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bankClient/src/app/app.module.ts" afterPath="$PROJECT_DIR$/bankClient/src/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/bankClient/src/app/components/forma/forma.component.css" afterPath="$PROJECT_DIR$/bankClient/src/app/components/forma/forma.component.css" />
-      <change beforePath="$PROJECT_DIR$/bankClient/src/app/components/forma/forma.component.html" afterPath="$PROJECT_DIR$/bankClient/src/app/components/forma/forma.component.html" />
-      <change beforePath="$PROJECT_DIR$/bankClient/src/app/components/forma/forma.component.ts" afterPath="$PROJECT_DIR$/bankClient/src/app/components/forma/forma.component.ts" />
-      <change beforePath="$PROJECT_DIR$/bankClient/src/app/services/provera-serice.service.ts" afterPath="$PROJECT_DIR$/bankClient/src/app/services/provera-serice.service.ts" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/BankaProdavca.iml" afterPath="$PROJECT_DIR$/BankaProdavca.iml" />
+      <change beforePath="$PROJECT_DIR$/../koncentratorPlacanja/sepClient/src/app/components/kriptovaluta/kriptovaluta.component.html" afterPath="$PROJECT_DIR$/../koncentratorPlacanja/sepClient/src/app/components/kriptovaluta/kriptovaluta.component.html" />
+      <change beforePath="$PROJECT_DIR$/../koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/TransakcijaController.java" afterPath="$PROJECT_DIR$/../koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/TransakcijaController.java" />
+      <change beforePath="$PROJECT_DIR$/../koncentratorPlacanja/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/../koncentratorPlacanja/src/main/resources/application.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -222,7 +222,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545402893972" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bankClient" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../koncentratorPlacanja" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -286,12 +286,12 @@
       <option name="presentableId" value="Default" />
       <updated>1545402307633</updated>
       <workItem from="1545662692438" duration="1977000" />
-      <workItem from="1545735751520" duration="4023000" />
+      <workItem from="1545735751520" duration="4575000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6000000" />
+    <option name="totallyTimeSpent" value="6552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
