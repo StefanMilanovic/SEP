@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PlacanjeService} from '../../service/placanje.service';
+import {PodaciKriptovaluta} from '../../model';
 
 @Component({
   selector: 'app-kriptovaluta',
@@ -7,21 +8,36 @@ import {PlacanjeService} from '../../service/placanje.service';
   styleUrls: ['./kriptovaluta.component.css']
 })
 export class KriptovalutaComponent implements OnInit {
+  podaciKriptovaluta: PodaciKriptovaluta;
+  constructor(private placanjeService: PlacanjeService) {
+    this.podaciKriptovaluta = new PodaciKriptovaluta();
+    this.podaciKriptovaluta.kolicina = '12';
+    this.podaciKriptovaluta.naziv = "test";
 
-  constructor(private placanjeService: PlacanjeService) { }
+  }
 
   ngOnInit() {
 
 
-    this.placanjeService.obradaKriptovalute()
-      .subscribe(
-        (response: any) => {
+  //   this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta)
+  //     .subscribe(
+  //       (response: any) => {
+  //
+  //         window.location.href = response;
+  //
+  //       },
+  //       (error) => console.log(error) );
+  // }
 
-          window.location.href = response;
+  this.placanjeService.obradaKriptovalute2()
+.subscribe(
+(response: any) => {
 
-        },
-        (error) => console.log(error) );
-  }
-  
+  window.location.href = response;
+
+},
+(error) => console.log(error) );
+}
+
 
 }
