@@ -12,6 +12,9 @@ import { PorukaUspesnostiComponent } from './components/poruka-uspesnosti/poruka
 import {PlacanjeService} from './service/placanje.service';
 import { BankaComponent } from './components/banka/banka.component';
 import { PaypalComponent } from './components/paypal/paypal.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 @NgModule({
@@ -23,7 +26,7 @@ import { PaypalComponent } from './components/paypal/paypal.component';
     PorukaUspesnostiComponent,
 
     KriptovalutaComponent,
-    PorukaUspesnostiComponent, BankaComponent, PaypalComponent,
+    PorukaUspesnostiComponent, BankaComponent, PaypalComponent, RegisterComponent, HomepageComponent,
 
   ],
   imports: [
@@ -31,7 +34,8 @@ import { PaypalComponent } from './components/paypal/paypal.component';
     AppRoutingModule,
     NgxPayPalModule,
     HttpClientModule,
-    routing
+    routing,
+    AngularFontAwesomeModule
   ],
   providers: [PlacanjeService],
   bootstrap: [AppComponent]
