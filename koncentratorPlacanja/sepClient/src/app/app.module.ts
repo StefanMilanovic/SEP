@@ -9,12 +9,13 @@ import { OpcijePlacanjaComponent } from './components/opcije-placanja/opcije-pla
 import { NgxPayPalModule } from 'ngx-paypal';
 import { KriptovalutaComponent } from './components/kriptovaluta/kriptovaluta.component';
 import { PorukaUspesnostiComponent } from './components/poruka-uspesnosti/poruka-uspesnosti.component';
-import {PlacanjeService} from './service/placanje.service';
+import { PlacanjeService } from './service/placanje.service';
 import { BankaComponent } from './components/banka/banka.component';
 import { PaypalComponent } from './components/paypal/paypal.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {NgxPageScrollModule} from 'ngx-page-scroll';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     NgxPayPalModule,
     HttpClientModule,
     routing,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    NgxPageScrollModule
   ],
   providers: [PlacanjeService],
   bootstrap: [AppComponent]
