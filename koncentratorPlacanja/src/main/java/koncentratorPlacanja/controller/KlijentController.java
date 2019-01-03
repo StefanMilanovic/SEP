@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/klijent")
 public class KlijentController {
     @Autowired
@@ -75,6 +76,19 @@ public class KlijentController {
     public ResponseEntity<?> getUsers() {
         List<Klijent> listaAdminaFanZone = klijentService.findAll();
         return new ResponseEntity<>(listaAdminaFanZone, HttpStatus.OK);     // "200 OK"
+    }
+
+    @RequestMapping(
+            value="/registruj",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Klijent> registrujKlijenta(@RequestBody Klijent data){
+        Klijent noviKlijent = new Klijent(data.getCompanyName(), data.getEmail(), data.getPassword(), data.getBankId(),
+                data.getBankPass(), data.getSuccessUrl(), data.getFailedUrl(), data.getErrorUrl(), data.getPaypalSecret(),
+                data.getBitcoinSecret());
+        klijentService.save(noviKlijent);
+        return new ResponseEntity<Klijent>(noviKlijent, HttpStatus.OK);
     }
 
 }

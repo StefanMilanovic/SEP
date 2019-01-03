@@ -5,44 +5,44 @@
               <img src="../../../assets/images/signup-img.jpg" alt="">
           </div>
           <div class="signup-form">
-              <form class="register-form" id="register-form">
+              <form [formGroup]="form" class="register-form" id="register-form">
                   <h2>company registration</h2>                  
                   <div class="form-group">
                     <label for="name">Company Name :</label>
-                    <input type="text" name="companyName" id="companyName" required />
+                    <input type="text" formControlName="companyName" id="companyName" />
                     <span class="tooltiptext">Your company's name.</span>
                   </div>
                   
                   <div class="form-group">
                     <label for="email">Email :</label>
-                    <input type="email" name="email" id="email" required />
+                    <input type="email" formControlName="email" id="email" />
                     <span class="tooltiptext">Your company's business e-mail.</span>
                   </div>
 
                   <div class="form-row">
                     <div class="form-group">
                         <label for="name">Passowrd :</label>
-                        <input type="text" name="password" id="password" required/>
+                        <input type="password" formControlName="password" id="password"/>
                     </div>
                     <div class="form-group">
                         <label for="father_name">Confirm Password :</label>
-                        <input type="text" name="password2" id="password2"/>
+                        <input type="password" formControlName="password2" id="password2"/>
                     </div>
                   </div>
                   
                   <div class="form-group">
                       <label for="address">Success URL :</label>
-                      <input type="text" name="success_url" id="success_url" required/>
+                      <input type="text" formControlName="success_url" id="success_url"/>
                       <span class="tooltiptext">URL that users will be redirected to after successful transaction.</span>
                   </div>
                   <div class="form-group">
                     <label for="address">Failed URL :</label>
-                    <input type="text" name="failed_url" id="failed_url" required />
+                    <input type="text" formControlName="failed_url" id="failed_url" />
                     <span class="tooltiptext">URL that users will be redirected to if transaction fails.</span>
                   </div>
                   <div class="form-group">
                     <label for="address">Error URL :</label>
-                    <input type="text" name="error_url" id="error_url" required/>
+                    <input type="text" formControlName="error_url" id="error_url"/>
                     <span class="tooltiptext">URL that users will be redirected to if there's an error in transaction.</span>
                   </div>                                                               
                   <div class="form-radio">
@@ -61,7 +61,7 @@
 
                   <div class="form-group" [hidden]="payPalHidden">
                     <label for="address">PayPal Secret :</label>
-                    <input type="text" name="paypalSecret" id="paypalSecret"/>
+                    <input type="text" formControlName="paypalSecret" id="paypalSecret"/>
                     <span class="tooltiptext">Secret you recieved after registering a PayPal account.</span>
                   </div>  
 
@@ -81,7 +81,7 @@
 
                   <div class="form-group" [hidden]="bitcoinHidden">
                       <label for="address">Bitcoin Secret :</label>
-                      <input type="text" name="bitcoinSecret" id="bitcoinSecret"/>
+                      <input type="text" formControlName="bitcoinSecret" id="bitcoinSecret"/>
                       <span class="tooltiptext">Secret for your Bitcoin wallet.</span>
                     </div>  
 
@@ -101,20 +101,20 @@
                   
                   <div class="form-group" [hidden] = "bankHidden">
                     <label for="address">Bank ID :</label>
-                    <input type="text" name="bank_id" id="bank_id"/>
+                    <input type="text" formControlName="bank_id" id="bank_id"/>
                     <span class="tooltiptext">ID you recieved after registering a bank account.</span>
                   </div>  
 
                   <div class="form-group" [hidden] = "bankHidden">
                     <label for="address">Bank PASS :</label>
-                    <input type="text" name="bank_pass" id="bank_pass"/>
+                    <input type="text" formControlName="bank_pass" id="bank_pass"/>
                     <span class="tooltiptext">Password you recieved after registering a bank account.</span>
                   </div>  
 
                   <div class="form-submit">
                       <!-- <input type="button" value="Reset All" class="submit" name="reset" id="reset" /> -->
                       <button class="submit" (click)="cancelClicked()" name="reset" id="reset">Cancel</button>
-                      <input type="submit" value="Submit Form" class="submit" name="submit" id="submit" />
+                      <button class="submit" [disabled]="!form.valid" (click)="submit($event)" name="submit" id="submit">Submit</button>
                   </div>
                 </form>
           </div>

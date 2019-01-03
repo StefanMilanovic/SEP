@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { Router } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
@@ -37,7 +38,9 @@ import {NgxPageScrollModule} from 'ngx-page-scroll';
     HttpClientModule,
     routing,
     AngularFontAwesomeModule,
-    NgxPageScrollModule
+    NgxPageScrollModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [PlacanjeService],
   bootstrap: [AppComponent]
