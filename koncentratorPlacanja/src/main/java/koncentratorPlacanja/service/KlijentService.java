@@ -12,6 +12,8 @@ public interface KlijentService {
 
     Klijent findByBankId(String prodavac_bank_id);
 
+    Klijent findByemail (String email);
+
     void delete(Long id);
 
     List<Klijent> findAll();

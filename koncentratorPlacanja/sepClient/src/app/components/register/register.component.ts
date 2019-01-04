@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.registrujKorisnika(this.noviKorisnik).subscribe(data => {  
       console.log("Korisnik uspesno registrovan");
-      this.router.navigate(['']);
+      this.router.navigate(['/login']);
     });
 
 

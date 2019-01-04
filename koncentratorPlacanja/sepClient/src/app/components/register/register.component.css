@@ -437,7 +437,7 @@ input[type=radio] {
     cursor: pointer; }
   
   #reset {
-    background: #f8f8f8;
+    background: rgb(170, 166, 166)27;
     color: #999;
     margin-right: 8px; }
     #reset:hover {

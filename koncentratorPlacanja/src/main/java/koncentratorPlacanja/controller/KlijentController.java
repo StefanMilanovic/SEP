@@ -1,5 +1,6 @@
 package koncentratorPlacanja.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import koncentratorPlacanja.model.Klijent;
 import koncentratorPlacanja.service.KlijentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +90,31 @@ public class KlijentController {
                 data.getBitcoinSecret());
         klijentService.save(noviKlijent);
         return new ResponseEntity<Klijent>(noviKlijent, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            value="/ulogojKlijenta",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public Boolean ulogujKlijenta(@RequestBody Klijent data){
+        Klijent ulogovanKlijent = klijentService.findByemail(data.getEmail());
+        if(ulogovanKlijent == null){
+            return null;
+        }
+        else if(ulogovanKlijent.getPassword().equals(data.getPassword())){
+            return true;
+        }
+        return false;
+    }
+
+    @RequestMapping(
+            value="/nadjiKlijenta",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Klijent> nadjiKorisnika(@RequestBody String email){
+        return new ResponseEntity<Klijent>(klijentService.findByemail(email), HttpStatus.OK );
     }
 
 }

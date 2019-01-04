@@ -12,4 +12,9 @@ export class RegisterServiceService {
     console.log(noviKorisnik);
     return this.httpClient.post("http://localhost:8181/api/klijent/registruj", noviKorisnik)
   }
+
+  logujKorisnika(korisnik){
+    console.log(korisnik);
+    return this.httpClient.post("http://localhost:8181/api/klijent/ulogojKlijenta", korisnik);
+  }
 }

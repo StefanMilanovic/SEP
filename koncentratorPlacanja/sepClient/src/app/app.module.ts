@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './app.routing';
 import { Router } from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {NgxPageScrollModule} from 'ngx-page-scroll';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -28,7 +31,7 @@ import {NgxPageScrollModule} from 'ngx-page-scroll';
     PorukaUspesnostiComponent,
 
     KriptovalutaComponent,
-    PorukaUspesnostiComponent, BankaComponent, PaypalComponent, RegisterComponent, HomepageComponent,
+    PorukaUspesnostiComponent, BankaComponent, PaypalComponent, RegisterComponent, HomepageComponent, LoginComponent, ProfileComponent,
 
   ],
   imports: [
@@ -40,7 +43,8 @@ import {NgxPageScrollModule} from 'ngx-page-scroll';
     AngularFontAwesomeModule,
     NgxPageScrollModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [PlacanjeService],
   bootstrap: [AppComponent]
