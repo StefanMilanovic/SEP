@@ -40,11 +40,22 @@ public class Klijent {
     @Column(length = 80)
     private String bitcoinSecret;
 
+    @Column(nullable = false)
+    private boolean paypalEnabled;
+
+    @Column(nullable = false)
+    private boolean bitcoinEnabled;
+
+    @Column(nullable = false)
+    private boolean bankEnabled;
+
+
     @OneToMany(mappedBy = "klijent", cascade = CascadeType.ALL)
     private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 
     public Klijent(String imeKompanije, String email, String password, String bankId, String bankPass, String successUrl,
-                   String failedUrl, String errorUrl, String paypalSecret, String bitcoinSecret) {
+                   String failedUrl, String errorUrl, String paypalSecret, String bitcoinSecret,
+                   boolean paypalEnabled, boolean bitcoinEnabled, boolean bankEnabled) {
         this.imeKompanije = imeKompanije;
         this.email = email;
         this.password = password;
@@ -55,9 +66,44 @@ public class Klijent {
         this.errorUrl = errorUrl;
         this.paypalSecret = paypalSecret;
         this.bitcoinSecret = bitcoinSecret;
+        this.paypalEnabled = paypalEnabled;
+        this.bitcoinEnabled = bitcoinEnabled;
+        this.bankEnabled = bankEnabled;
     }
 
     public Klijent() {}
+
+    public String getImeKompanije() {
+        return imeKompanije;
+    }
+
+    public void setImeKompanije(String imeKompanije) {
+        this.imeKompanije = imeKompanije;
+    }
+
+    public boolean isPaypalEnabled() {
+        return paypalEnabled;
+    }
+
+    public void setPaypalEnabled(boolean paypalEnabled) {
+        this.paypalEnabled = paypalEnabled;
+    }
+
+    public boolean isBitcoinEnabled() {
+        return bitcoinEnabled;
+    }
+
+    public void setBitcoinEnabled(boolean bitcoinEnabled) {
+        this.bitcoinEnabled = bitcoinEnabled;
+    }
+
+    public boolean isBankEnabled() {
+        return bankEnabled;
+    }
+
+    public void setBankEnabled(boolean bankEnabled) {
+        this.bankEnabled = bankEnabled;
+    }
 
     public Long getId() {
         return id;
@@ -65,14 +111,6 @@ public class Klijent {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCompanyName() {
-        return imeKompanije;
-    }
-
-    public void setCompanyName(String imeKompanije) {
-        this.imeKompanije = imeKompanije;
     }
 
     public String getEmail() {

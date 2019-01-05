@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     this.registerService.logujKorisnika(this.logKorisnik).subscribe(data => {
       console.log(data);
       if(data == true){
+        localStorage.setItem('profileId', this.logKorisnik.email);
         this.router.navigate(['/profile']);
       }
       else {

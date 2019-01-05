@@ -87,7 +87,9 @@ export class RegisterComponent implements OnInit {
     this.noviKorisnik.bitcoinSecret = this.form.value.bitcoinSecret;
     this.noviKorisnik.bankId = this.form.value.bank_id;
     this.noviKorisnik.bankPass = this.form.value.bank_pass;
-    // console.log(this.noviKorisnik);
+    this.noviKorisnik.paypalEnabled = !this.payPalHidden;
+    this.noviKorisnik.bitcoinEnabled = !this.bitcoinHidden;
+    this.noviKorisnik.bankEnabled = !this.bankHidden;
 
     this.registerService.registrujKorisnika(this.noviKorisnik).subscribe(data => {  
       console.log("Korisnik uspesno registrovan");

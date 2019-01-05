@@ -85,9 +85,9 @@ public class KlijentController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Klijent> registrujKlijenta(@RequestBody Klijent data){
-        Klijent noviKlijent = new Klijent(data.getCompanyName(), data.getEmail(), data.getPassword(), data.getBankId(),
+        Klijent noviKlijent = new Klijent(data.getImeKompanije(), data.getEmail(), data.getPassword(), data.getBankId(),
                 data.getBankPass(), data.getSuccessUrl(), data.getFailedUrl(), data.getErrorUrl(), data.getPaypalSecret(),
-                data.getBitcoinSecret());
+                data.getBitcoinSecret(), data.isPaypalEnabled(), data.isBitcoinEnabled(), data.isBankEnabled());
         klijentService.save(noviKlijent);
         return new ResponseEntity<Klijent>(noviKlijent, HttpStatus.OK);
     }
@@ -109,12 +109,27 @@ public class KlijentController {
     }
 
     @RequestMapping(
-            value="/nadjiKlijenta",
+            value="/nadjiKlijenta/{email}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Klijent> nadjiKorisnika(@RequestBody String email){
+    public ResponseEntity<Klijent> nadjiKlijenta(@PathVariable  String email){
         return new ResponseEntity<Klijent>(klijentService.findByemail(email), HttpStatus.OK );
+    }
+
+    @RequestMapping(
+            value="/izmeniKlijenta",
+            method = RequestMethod.PUT,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<Klijent> izmeniKlijenta(@RequestBody Klijent data){
+        Klijent menjaniKlijent = klijentService.findByemail(data.getEmail());
+        menjaniKlijent.setPaypalEnabled(data.isPaypalEnabled());
+        menjaniKlijent.setBitcoinEnabled(data.isBitcoinEnabled());
+        menjaniKlijent.setBankEnabled(data.isBankEnabled());
+
+        klijentService.save(menjaniKlijent);
+        return new ResponseEntity<Klijent>(menjaniKlijent, HttpStatus.OK);
     }
 
 }

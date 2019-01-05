@@ -17,4 +17,12 @@ export class RegisterServiceService {
     console.log(korisnik);
     return this.httpClient.post("http://localhost:8181/api/klijent/ulogojKlijenta", korisnik);
   }
+
+  nadjiKlijenta(email){
+    return this.httpClient.get("http://localhost:8181/api/klijent/nadjiKlijenta/" + email);
+  }
+
+  sacuvajIzmene(klijent){
+    return this.httpClient.put("http://localhost:8181/api/klijent/izmeniKlijenta", klijent);
+  }
 }
