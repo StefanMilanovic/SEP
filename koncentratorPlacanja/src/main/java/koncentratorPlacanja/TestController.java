@@ -14,7 +14,7 @@ public class TestController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<?> getUser() {
-        return new ResponseEntity<>("Test", HttpStatus.OK);     // "200 OK"
+        return new ResponseEntity<>("Test", HttpStatus.OK);
     }
 
 
