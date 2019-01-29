@@ -31,6 +31,7 @@ public class Transakcija {
     @ManyToOne
     private Klijent klijent;
 
+
     @Column(nullable = false)
     private Date prodavacVremeTransakcije;
 

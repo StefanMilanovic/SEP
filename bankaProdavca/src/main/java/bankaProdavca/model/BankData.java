@@ -16,6 +16,7 @@ public class BankData {
     @Column()
     private String prodavacBankLozinka;
 
+
     @Column()
     private String successUrl;
 
@@ -33,6 +34,7 @@ public class BankData {
 
     @Column()
     private String token;
+
 
     public BankData(String prodavac_bank_id, String prodavac_bank_lozinka, String success_url, String failed_url,
                     String error_url, double kolicina, Date prodavac_vreme_transakcije, String token) {

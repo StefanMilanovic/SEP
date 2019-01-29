@@ -21,28 +21,18 @@ public class BankKlijent {
     @Column()
     private String imeKlijenta;
 
-    @Column()
-    private double stanjeNaRacunu;
 
     @OneToMany(mappedBy = "vlasnik", cascade = CascadeType.ALL)
     private List<Kartica> kartice = new ArrayList<Kartica>();
 
-    public BankKlijent(String klijentId, String klijentLozinka, String imeKlijenta, double stanjeNaRacunu) {
+    public BankKlijent(String klijentId, String klijentLozinka, String imeKlijenta) {
         this.klijentId = klijentId;
         this.klijentLozinka = klijentLozinka;
         this.imeKlijenta = imeKlijenta;
-        this.stanjeNaRacunu = stanjeNaRacunu;
+
     }
 
     public BankKlijent(){}
-
-    public double getStanjeNaRacunu() {
-        return stanjeNaRacunu;
-    }
-
-    public void setStanjeNaRacunu(double stanjeNaRacunu) {
-        this.stanjeNaRacunu = stanjeNaRacunu;
-    }
 
     public String getImeKlijenta() {
         return imeKlijenta;

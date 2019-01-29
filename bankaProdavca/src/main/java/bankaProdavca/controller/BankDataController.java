@@ -34,6 +34,7 @@ public class BankDataController {
         BankData b = bankDataService.findByToken(token);
         BankKlijent klijent = bankKlijentService.findByKlijentId(b.getProdavac_bank_id());
         if(klijent != null){
+            System.out.println("Token je: " + token);
             if(klijent.getKlijentLozinka().equals(b.getProdavac_bank_lozinka())){
                 return new ResponseEntity<BankKlijent>(klijent, HttpStatus.OK);
             }

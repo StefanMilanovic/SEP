@@ -12,11 +12,13 @@ import {KupacUnos} from '../../model';
 export class FormaComponent implements OnInit {
   formGroup: FormGroup;
   kupacUnos: KupacUnos;
-  private id: string;
+  private token: string;
+  private odgovorUplate: any;
 
   form = new FormGroup({
     PAN: new FormControl('', Validators.compose ([Validators.required])),
-    PIN: new FormControl('', Validators.compose ([Validators.required])),
+    CSC: new FormControl('', Validators.compose ([Validators.required])),
+    brojKartice: new FormControl('', Validators.compose ([Validators.required])),
     vlasnikKartice: new FormControl('', Validators.compose ([Validators.required])),
     datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
 
@@ -27,7 +29,7 @@ export class FormaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params['user'];
+    this.token = this.activatedRoute.snapshot.params['user'];
   }
 
   ponisti() {
@@ -73,7 +75,14 @@ export class FormaComponent implements OnInit {
   }
 
   onSubmit = function (unetiPodaci) {
-      this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.id);
+    console.log('Saljem token :' + this.token);
+      this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.token).subscribe(data => {
+        this.odgovorUplate = data;
+      
+        setTimeout(() => {
+          window.location.href = 'http://localhost:5000/paymentForm/' + this.token;
+        }, 3000); //5s
+      });
   };
 
 }

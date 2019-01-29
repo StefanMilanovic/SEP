@@ -20,10 +20,13 @@ public class Kartica {
     private Long id;
 
     @Column(nullable = false)
+    private String brojKartice;
+
+    @Column(nullable = false)
     private int PAN;
 
     @Column(nullable = false)
-    private int PIN;
+    private int CSC; // card security code
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -41,13 +44,14 @@ public class Kartica {
 
     public Kartica(){}
 
-    public Kartica(int PAN, int PIN, BankKlijent vlasnik, String vlasnikKartice, Date datumIsteka, double stanjeNaKartici) {
+    public Kartica(int PAN, int CSC, BankKlijent vlasnik, String vlasnikKartice, Date datumIsteka, double stanjeNaKartici, String brojKartice) {
         this.PAN = PAN;
-        this.PIN = PIN;
+        this.CSC = CSC;
         this.vlasnik = vlasnik;
         this.vlasnikKartice = vlasnikKartice;
         this.datumIsteka = datumIsteka;
         this.stanjeNaKartici = stanjeNaKartici;
+        this.brojKartice = brojKartice;
     }
 
     public Long getId() {
@@ -66,12 +70,12 @@ public class Kartica {
         this.PAN = PAN;
     }
 
-    public int getPIN() {
-        return PIN;
+    public int getCSC() {
+        return CSC;
     }
 
-    public void setPIN(int PIN) {
-        this.PIN = PIN;
+    public void setCSC(int CSC) {
+        this.CSC = CSC;
     }
 
     public BankKlijent getVlasnik() {
@@ -104,5 +108,13 @@ public class Kartica {
 
     public void setStanjeNaKartici(double stanjeNaKartici) {
         this.stanjeNaKartici = stanjeNaKartici;
+    }
+
+    public String getBrojKartice() {
+        return brojKartice;
+    }
+
+    public void setBrojKartice(String brojKartice) {
+        this.brojKartice = brojKartice;
     }
 }

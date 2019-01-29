@@ -1,6 +1,9 @@
 package bankaProdavca.service;
 
-public interface KarticaService {
+import bankaProdavca.model.Kartica;
 
-  //  BankKlijent findByKlijentId(String bank_id);
+public interface KarticaService {
+    Kartica findById(Long id);
+    Kartica findByBrojKartice(String brojKartice);
+    Kartica save(Kartica kartica);
 }

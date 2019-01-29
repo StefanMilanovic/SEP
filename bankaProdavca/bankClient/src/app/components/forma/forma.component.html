@@ -1,16 +1,22 @@
 <form  [formGroup] = "form"
        (ngSubmit) = "onSubmit(form.value)">
-  
+
   <div>
-    <label> PAN: </label>
-    <input value="" type="number" name="PAN" id = "PAN"
-           formControlName="PAN" placeholder="PAN" maxlength="4" min = "0" max = "9"  onKeyPress="if(this.value.length==4) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
+    <label> Broj kartice: </label>
+    <input  value="" type="number" name="brojKartice" id = "brojKartice"
+            formControlName="brojKartice" placeholder="Broj kartice" maxlength="13" min = "0" max = "99"  onKeyPress="if(this.value.length==13) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
   </div>
 
   <div>
-    <label> PIN: </label>
-    <input  value="" type="number" name="PIN" id = "PIN"
-           formControlName="PIN" placeholder="PIN" maxlength="4" min = "0" max = "9"  onKeyPress="if(this.value.length==4) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
+    <label> PAN: </label>
+    <input value="" type="number" name="PAN" id = "PAN"
+           formControlName="PAN" placeholder="PAN" maxlength="4" min = "0" max = "9999"  onKeyPress="if(this.value.length==4) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
+  </div>
+
+  <div>
+    <label> CSC: </label>
+    <input  value="" type="number" name="CSC" id = "CSC"
+           formControlName="CSC" placeholder="CSC" maxlength="3" min = "0" max = "999"  onKeyPress="if(this.value.length==3) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
   </div>
 
   <div>
@@ -30,10 +36,10 @@
     <label> PIN: </label>
     <input  value="" type="number" name="PIN" id = "PIN">
   </div>
-  
+
   <div>
     <!--<button (click)="potvrdi($event)">Potvrdi</button>-->
-    <input id="potvrdi" type = "submit" [disabled]="!form.valid" (click)="posalji()" value ="Potvrdi">
+    <input id="potvrdi" type = "submit" [disabled]="!form.valid"  value ="Potvrdi">
 
     <button	 type="reset" (click)="ponisti()">Ponisti</button>
   </div>
