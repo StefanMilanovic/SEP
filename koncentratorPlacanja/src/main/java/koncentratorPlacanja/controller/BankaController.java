@@ -31,8 +31,8 @@ public class BankaController {
     public ResponseEntity<BankData> uzmiPodatke(@RequestBody @Valid String id) {
 
         Transakcija t = transakcijaService.findOne(Long.parseLong(id));
-        BankData data = new BankData(t.getKlijent_id().getProdavac_bank_id(), t.getKlijent_id().getProdavac_bank_lozinka(),
-                t.getKlijent_id().getSuccess_url(), t.getKlijent_id().getFaild_url(), t.getKlijent_id().getError_url(),
+        BankData data = new BankData(t.getKlijent_id().getBankId(), t.getKlijent_id().getBankPass(),
+                t.getKlijent_id().getSuccessUrl(), t.getKlijent_id().getFailedUrl(), t.getKlijent_id().getErrorUrl(),
                 t.getKolicina(), t.getProdavac_vreme_transakcije(), t.getToken());
 
         System.out.println("Saljem podatke na front end");

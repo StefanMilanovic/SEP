@@ -1,0 +1,12 @@
+<div class="container">
+  <mat-slide-toggle color='primary' (change)="payPalChanged($event)" [checked]="payPalChecked">PayPal</mat-slide-toggle>
+  <mat-slide-toggle color='primary' (change)="bitCoinChanged($event)" [checked]="bitCoinChecked">Bitcoin</mat-slide-toggle>
+  <mat-slide-toggle color='primary' (change)="bankChanged($event)" [checked]="bankChecked">CreditCard</mat-slide-toggle>
+</div>
+<div>
+  <button (click)="saveChanges()">Save</button>
+  <button (click)="logout()">LogOut</button>
+</div>
+<div [hidden]="isTextHidden">
+  <p id="text">Changes saved successfully.</p>
+</div>

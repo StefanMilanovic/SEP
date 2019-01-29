@@ -36,6 +36,11 @@ public class KlijentServiceImpl implements KlijentService {
 
     @Override
     public Klijent findByBankId(String prodavac_bank_id){
-        return klijentRepository.findByprodavacBankId(prodavac_bank_id);
+        return klijentRepository.findBybankId(prodavac_bank_id);
+    }
+
+    @Override
+    public Klijent findByemail(String email) {
+        return klijentRepository.findByemail(email);
     }
 }
