@@ -19,25 +19,24 @@ export class KriptovalutaComponent implements OnInit {
   ngOnInit() {
 
 
-  //   this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta)
-  //     .subscribe(
-  //       (response: any) => {
-  //
-  //         window.location.href = response;
-  //
-  //       },
-  //       (error) => console.log(error) );
-  // }
+    this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta)
 
-  this.placanjeService.obradaKriptovalute2()
-.subscribe(
-(response: any) => {
+      .subscribe(
+        (response: any) => {
 
-  window.location.href = response;
+          window.location.href = response;
 
-},
-(error) => console.log(error) );
-}
+        },
+        (error) => console.log(error) );
+  }
+
+//   this.placanjeService.obradaKriptovalute2().subscribe((response:any) => {
+//   console.log(response);
+//   window.location.href = response;
+//
+// },
+// (error) => console.log(error) );
+// }
 
 
 }

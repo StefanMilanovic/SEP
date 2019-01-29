@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
 import {ProveraSericeService} from '../../services/provera-serice.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {KupacUnos} from '../../model';
 
 @Component({
@@ -12,6 +12,7 @@ import {KupacUnos} from '../../model';
 export class FormaComponent implements OnInit {
   formGroup: FormGroup;
   kupacUnos: KupacUnos;
+  private id: string;
 
   form = new FormGroup({
     PAN: new FormControl('', Validators.compose ([Validators.required])),
@@ -20,13 +21,13 @@ export class FormaComponent implements OnInit {
     datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
 
   });
-  constructor(private router: Router, private proveraService: ProveraSericeService) {
+  constructor(private router: Router, private proveraService: ProveraSericeService, private activatedRoute: ActivatedRoute) {
 
     this.kupacUnos = new KupacUnos;
   }
 
   ngOnInit() {
-    
+    this.id = this.activatedRoute.snapshot.params['user'];
   }
 
   ponisti() {
@@ -72,7 +73,7 @@ export class FormaComponent implements OnInit {
   }
 
   onSubmit = function (unetiPodaci) {
-      this.proveraService.posaljiPodatkeKupca(unetiPodaci);
+      this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.id);
   };
 
 }

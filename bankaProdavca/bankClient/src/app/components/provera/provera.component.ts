@@ -8,9 +8,9 @@ import { ProveraSericeService } from 'src/app/services/provera-serice.service';
   styleUrls: ['./provera.component.css']
 })
 export class ProveraComponent implements OnInit {
-  private id:string;
-  private data:any;
-  constructor(private activatedRoute:ActivatedRoute, private proveraService:ProveraSericeService) { }
+  private id: string;
+  private data: any;
+  constructor(private activatedRoute: ActivatedRoute, private proveraService:ProveraSericeService) { }
 
   ngOnInit() {
       this.id = this.activatedRoute.snapshot.params['id'];
@@ -21,8 +21,9 @@ export class ProveraComponent implements OnInit {
 
         setTimeout(() => {
           window.location.href = "http://localhost:5000/paymentForm/" + this.data.id;
-        }, 3000);  //5s        
+        }, 3000);  //5s
       });
   }
+
 
 }

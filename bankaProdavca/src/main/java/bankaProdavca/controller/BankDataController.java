@@ -2,6 +2,7 @@ package bankaProdavca.controller;
 
 import bankaProdavca.model.BankData;
 import bankaProdavca.model.BankKlijent;
+import bankaProdavca.model.Kartica;
 import bankaProdavca.service.BankDataService;
 import bankaProdavca.service.BankKlijentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,10 @@ public class BankDataController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
-    public ResponseEntity<BankKlijent> uzmiPodatke(@RequestBody @Valid String id){
-        System.out.println("ID JE: " + id);
-        BankData b = bankDataService.findByToken(id);
-        BankKlijent klijent = bankKlijentService.findByBankId(b.getProdavac_bank_id());
+    public ResponseEntity<BankKlijent> uzmiPodatke(@RequestBody @Valid String token){
+        System.out.println("Token je: " + token);
+        BankData b = bankDataService.findByToken(token);
+        BankKlijent klijent = bankKlijentService.findByKlijentId(b.getProdavac_bank_id());
         if(klijent != null){
             if(klijent.getKlijentLozinka().equals(b.getProdavac_bank_lozinka())){
                 return new ResponseEntity<BankKlijent>(klijent, HttpStatus.OK);
@@ -39,4 +40,5 @@ public class BankDataController {
         }
         return null;
     }
+
 }

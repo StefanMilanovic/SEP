@@ -40,32 +40,31 @@ public class TransakcijaController {
     public ResponseEntity<?> bitcoin(@RequestBody BitcoinDTO b) {
         System.out.println("\nBitcoin...");
 
-        Map<String, Object> mapa = new HashMap<String,Object>();
-        mapa.put("order_id", UUID.randomUUID().toString());
-        mapa.put("price_amount",b.getKolicina() + "");
-        mapa.put("price_currency","USD");
-        mapa.put("receive_currency","USD");
-        mapa.put("title",b.getNaziv() + "");
-        mapa.put("description","desc");
-        mapa.put("callback_url","https://api-sandbox.coingate.com/account/orders");// https://api-sandbox.coingate.com/account/orders
-        mapa.put("success_url", "https://www.b92.net/");
+        Map<String, Object> m = new HashMap<String,Object>();
+        m.put("order_id", UUID.randomUUID().toString());
+        m.put("price_amount",b.getKolicina() + "");
+        m.put("price_currency","USD");
 
+        m.put("title",b.getNaziv() + "");
+        m.put("description","opis");
+        m.put("callback_url","https://api-sandbox.coingate.com/account/orders");// https://api-sandbox.coingate.com/account/orders
+        m.put("success_url", "http://localhost:4200/success");
+        m.put("receive_currency","USD");
         RestTemplate client = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
         headers.add("Authorization", "Token ESQ92WMKo9NWCWzYJWdGxu1sQTSwdexkUbz9KJSG");
 
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<Map<String,Object>>(mapa, headers);
+        HttpEntity<Map<String, Object>> httpe = new HttpEntity<Map<String,Object>>(m, headers);
 
-        BitcoinResponseDTO response = client.postForObject("https://api-sandbox.coingate.com/v2/orders", entity, BitcoinResponseDTO.class);
+        BitcoinResponseDTO response = client.postForObject("https://api-sandbox.coingate.com/v2/orders", httpe, BitcoinResponseDTO.class);
 
-        HttpHeaders noviHeaders = new HttpHeaders();
+        HttpHeaders h = new HttpHeaders();
 
-        noviHeaders.add("Authorization", "Token ESQ92WMKo9NWCWzYJWdGxu1sQTSwdexkUbz9KJSG ");
-
-        noviHeaders.add("Location", response.getPayment_url());
+        h.add("Authorization", "Token ESQ92WMKo9NWCWzYJWdGxu1sQTSwdexkUbz9KJSG ");
+        h.add("Location", response.getPayment_url());
         System.out.println("\nPaymentUrl -> " + response.getPayment_url());
-        HttpEntity<BitcoinResponseDTO> entity1 = new HttpEntity<BitcoinResponseDTO>(response, noviHeaders);
+        HttpEntity<BitcoinResponseDTO> entity1 = new HttpEntity<BitcoinResponseDTO>(response, h);
 
         System.out.println("\n Kraj Bitcoin...\n");
         return new ResponseEntity<>(response.getPayment_url(), HttpStatus.OK);

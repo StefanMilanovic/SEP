@@ -13,7 +13,13 @@ public class BankKlijentServiceImpl implements BankKlijentService {
     private BankKlijentRepository bankKlijentRepository;
 
     @Override
-    public BankKlijent findByBankId(String bank_id) {
-        return bankKlijentRepository.findByKlijentId(bank_id);
+    public BankKlijent findByKlijentId(String klijentId) {
+        return bankKlijentRepository.findByKlijentId(klijentId);
     }
+
+    @Override
+    public BankKlijent findById(Long id) {
+        return bankKlijentRepository.findById(id);
+    }
+
 }
