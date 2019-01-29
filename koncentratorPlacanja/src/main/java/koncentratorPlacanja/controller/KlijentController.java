@@ -109,11 +109,11 @@ public class KlijentController {
     }
 
     @RequestMapping(
-            value="/nadjiKlijenta/{email}",
-            method = RequestMethod.GET,
+            value="/nadjiKlijenta",
+            method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Klijent> nadjiKlijenta(@PathVariable  String email){
+    public ResponseEntity<Klijent> nadjiKlijenta(@RequestBody  String email){
         return new ResponseEntity<Klijent>(klijentService.findByemail(email), HttpStatus.OK );
     }
 
@@ -127,6 +127,13 @@ public class KlijentController {
         menjaniKlijent.setPaypalEnabled(data.isPaypalEnabled());
         menjaniKlijent.setBitcoinEnabled(data.isBitcoinEnabled());
         menjaniKlijent.setBankEnabled(data.isBankEnabled());
+        menjaniKlijent.setBankId(data.getBankId());
+        menjaniKlijent.setBankPass(data.getBankPass());
+        menjaniKlijent.setPaypalSecret(data.getPaypalSecret());
+        menjaniKlijent.setBitcoinSecret(data.getBitcoinSecret());
+        menjaniKlijent.setErrorUrl(data.getErrorUrl());
+        menjaniKlijent.setSuccessUrl(data.getSuccessUrl());
+        menjaniKlijent.setFailedUrl(data.getFailedUrl());
 
         klijentService.save(menjaniKlijent);
         return new ResponseEntity<Klijent>(menjaniKlijent, HttpStatus.OK);

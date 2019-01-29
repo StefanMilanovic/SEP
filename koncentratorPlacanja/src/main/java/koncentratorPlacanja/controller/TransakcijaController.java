@@ -40,7 +40,6 @@ public class TransakcijaController {
     public ResponseEntity<?> kriptovaluta(@RequestBody BitcoinDTO bitcoinDTO) {
         System.out.println("\nBitcoin...");
 
-
         Map<String, Object> map = new HashMap<String,Object>();
         map.put("order_id", UUID.randomUUID().toString());
         map.put("price_amount",bitcoinDTO.getKolicina() + "");
@@ -51,12 +50,10 @@ public class TransakcijaController {
         map.put("callback_url","https://api-sandbox.coingate.com/account/orders");// https://api-sandbox.coingate.com/account/orders
         map.put("success_url", "http://localhost:4200/kriptovaluta/success");
 
-
         RestTemplate client = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
         headers.add("Authorization", "Token ESQ92WMKo9NWCWzYJWdGxu1sQTSwdexkUbz9KJSG");
-
 
         HttpEntity<Map<String, Object>> httpe = new HttpEntity<Map<String,Object>>(map, headers);
 
@@ -70,6 +67,7 @@ public class TransakcijaController {
         HttpEntity<BitcoinResponseDTO> entity1 = new HttpEntity<BitcoinResponseDTO>(response, h);
 
         System.out.println("\n Kraj Bitcoin...\n");
+
         return new ResponseEntity<>(response.getPayment_url(), HttpStatus.OK);
     }
 

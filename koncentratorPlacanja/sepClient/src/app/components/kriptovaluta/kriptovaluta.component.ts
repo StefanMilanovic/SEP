@@ -19,7 +19,6 @@ export class KriptovalutaComponent implements OnInit {
   ngOnInit() {
 
 
-
     this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta)
 
       .subscribe(
@@ -38,7 +37,6 @@ export class KriptovalutaComponent implements OnInit {
 // },
 // (error) => console.log(error) );
 // }
-
 
 
 }

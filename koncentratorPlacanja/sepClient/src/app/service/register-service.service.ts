@@ -19,7 +19,7 @@ export class RegisterServiceService {
   }
 
   nadjiKlijenta(email){
-    return this.httpClient.get("http://localhost:8181/api/klijent/nadjiKlijenta/" + email);
+    return this.httpClient.post("http://localhost:8181/api/klijent/nadjiKlijenta/", email);
   }
 
   sacuvajIzmene(klijent){

@@ -33,12 +33,12 @@
     <div class="form-radio">
       <label for="paypal" class="radio-label">PayPal :</label>
         <div class="form-radio-item">
-            <input type="radio" (change)="payPalRadioChange($event)" name="paypal" id="paypalEnable">
+            <input type="radio" (change)="payPalRadioChange($event)" formControlName="paypal" [value]=true name="paypal" id="paypalEnable">
             <label for="paypalEnable">Enable</label>
             <span class="check"></span>
         </div>
         <div class="form-radio-item">
-            <input type="radio" (change)="payPalRadioChange($event)" name="paypal" id="paypalDisable" checked>
+            <input type="radio" (change)="payPalRadioChange($event)" formControlName="paypal" [value]=false name="paypal" id="paypalDisable" checked>
             <label for="paypalDisable">Disable</label>
             <span class="check"></span>
         </div>
@@ -53,12 +53,12 @@
     <div class="form-radio">
       <label for="bitcoin" class="radio-label">BitCoin :</label>
         <div class="form-radio-item">
-            <input type="radio" (change)="bitcoinRadioChange($event)" name="bitcoin" id="bitcoinEnable">
+            <input type="radio" (change)="bitcoinRadioChange($event)" formControlName="bitcoin" [value]=true name="bitcoin" id="bitcoinEnable">
             <label for="bitcoinEnable">Enable</label>
             <span class="check"></span>
         </div>
         <div class="form-radio-item">
-            <input type="radio" (change)="bitcoinRadioChange($event)" name="bitcoin" id="bitcoinDisable" checked>
+            <input type="radio" (change)="bitcoinRadioChange($event)" formControlName="bitcoin" [value]=false name="bitcoin" id="bitcoinDisable">
             <label for="bitcoinDisable">Disable</label>
             <span class="check"></span>
         </div>
@@ -73,12 +73,12 @@
     <div class="form-radio">
       <label for="bank" class="radio-label">Bank:</label>
         <div class="form-radio-item">
-            <input type="radio" (change)="bankRadioChange($event)" name="bank" id="bankEnable">
+            <input type="radio" (change)="bankRadioChange($event)" formControlName="bank" [value]=true name="bank" id="bankEnable">
             <label for="bankEnable">Enable</label>
             <span class="check"></span>
         </div>
         <div class="form-radio-item">
-            <input type="radio" (change)="bankRadioChange($event)" name="bank" id="bankDisable" checked>
+            <input type="radio" (change)="bankRadioChange($event)" formControlName="bank" [value]=false name="bank" id="bankDisable" checked>
             <label for="bankDisable">Disable</label>
             <span class="check"></span>
         </div>
@@ -98,8 +98,8 @@
   
     <div class="form-submit">
         <!-- <input type="button" value="Reset All" class="submit" name="reset" id="reset" /> -->
-        <button class="submit" (click)="cancelClicked()" name="reset" id="reset">Cancel</button>
-        <button class="submit" [disabled]="!form.valid" (click)="submit($event)" name="submit" id="submit">Submit</button>
+        <button class="submit" (click)="logout()" name="reset" id="reset">Logout</button>
+        <button class="submit" [disabled]="!form.valid" (click)="saveChanges($event)" name="submit" id="submit">Submit</button>
     </div>
   </form>
 </div>
