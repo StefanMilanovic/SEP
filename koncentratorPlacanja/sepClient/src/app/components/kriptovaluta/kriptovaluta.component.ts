@@ -29,9 +29,7 @@ export class KriptovalutaComponent implements OnInit {
   //       (error) => console.log(error) );
   // }
 
-  this.placanjeService.obradaKriptovalute()
-.subscribe(
-(response: any) => {
+this.placanjeService.obradaKriptovalute2().subscribe((response: any) => {
 
   window.location.href = response;
 

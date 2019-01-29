@@ -59,6 +59,9 @@ export class ProfileComponent implements OnInit {
     this.registerService.sacuvajIzmene(this.sacuvaneVrednosti).subscribe( data=> {
       if(data != null){
         this.isTextHidden = false;
+        setTimeout(() => {
+          window.location.reload();
+        },1000);
       }
     });
   }

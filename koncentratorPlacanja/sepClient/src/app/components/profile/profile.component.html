@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <mat-slide-toggle color='primary' (change)="payPalChanged($event)" [checked]="payPalChecked">PayPal</mat-slide-toggle>
   <mat-slide-toggle color='primary' (change)="bitCoinChanged($event)" [checked]="bitCoinChecked">Bitcoin</mat-slide-toggle>
   <mat-slide-toggle color='primary' (change)="bankChanged($event)" [checked]="bankChecked">CreditCard</mat-slide-toggle>
@@ -9,4 +9,97 @@
 </div>
 <div [hidden]="isTextHidden">
   <p id="text">Changes saved successfully.</p>
+</div> -->
+
+<div class="signup-form">
+  <form [formGroup]="form" class="register-form" id="register-form">
+    <h2>Change settings</h2>                  
+  
+    <div class="form-group">
+        <label for="address">Success URL :</label>
+        <input type="text" formControlName="success_url" id="success_url"/>
+        <span class="tooltiptext">URL that users will be redirected to after successful transaction.</span>
+    </div>
+    <div class="form-group">
+      <label for="address">Failed URL :</label>
+      <input type="text" formControlName="failed_url" id="failed_url" />
+      <span class="tooltiptext">URL that users will be redirected to if transaction fails.</span>
+    </div>
+    <div class="form-group">
+      <label for="address">Error URL :</label>
+      <input type="text" formControlName="error_url" id="error_url"/>
+      <span class="tooltiptext">URL that users will be redirected to if there's an error in transaction.</span>
+    </div>                                                               
+    <div class="form-radio">
+      <label for="paypal" class="radio-label">PayPal :</label>
+        <div class="form-radio-item">
+            <input type="radio" (change)="payPalRadioChange($event)" name="paypal" id="paypalEnable">
+            <label for="paypalEnable">Enable</label>
+            <span class="check"></span>
+        </div>
+        <div class="form-radio-item">
+            <input type="radio" (change)="payPalRadioChange($event)" name="paypal" id="paypalDisable" checked>
+            <label for="paypalDisable">Disable</label>
+            <span class="check"></span>
+        </div>
+    </div>
+  
+    <div class="form-group" [hidden]="payPalHidden">
+      <label for="address">PayPal Secret :</label>
+      <input type="text" formControlName="paypalSecret" id="paypalSecret"/>
+      <span class="tooltiptext">Secret you recieved after registering a PayPal account.</span>
+    </div>  
+  
+    <div class="form-radio">
+      <label for="bitcoin" class="radio-label">BitCoin :</label>
+        <div class="form-radio-item">
+            <input type="radio" (change)="bitcoinRadioChange($event)" name="bitcoin" id="bitcoinEnable">
+            <label for="bitcoinEnable">Enable</label>
+            <span class="check"></span>
+        </div>
+        <div class="form-radio-item">
+            <input type="radio" (change)="bitcoinRadioChange($event)" name="bitcoin" id="bitcoinDisable" checked>
+            <label for="bitcoinDisable">Disable</label>
+            <span class="check"></span>
+        </div>
+    </div>
+  
+    <div class="form-group" [hidden]="bitcoinHidden">
+        <label for="address">Bitcoin Secret :</label>
+        <input type="text" formControlName="bitcoinSecret" id="bitcoinSecret"/>
+        <span class="tooltiptext">Secret for your Bitcoin wallet.</span>
+      </div>  
+  
+    <div class="form-radio">
+      <label for="bank" class="radio-label">Bank:</label>
+        <div class="form-radio-item">
+            <input type="radio" (change)="bankRadioChange($event)" name="bank" id="bankEnable">
+            <label for="bankEnable">Enable</label>
+            <span class="check"></span>
+        </div>
+        <div class="form-radio-item">
+            <input type="radio" (change)="bankRadioChange($event)" name="bank" id="bankDisable" checked>
+            <label for="bankDisable">Disable</label>
+            <span class="check"></span>
+        </div>
+    </div>
+    
+    <div class="form-group" [hidden] = "bankHidden">
+      <label for="address">Bank ID :</label>
+      <input type="text" formControlName="bank_id" id="bank_id"/>
+      <span class="tooltiptext">ID you recieved after registering a bank account.</span>
+    </div>  
+  
+    <div class="form-group" [hidden] = "bankHidden">
+      <label for="address">Bank PASS :</label>
+      <input type="text" formControlName="bank_pass" id="bank_pass"/>
+      <span class="tooltiptext">Password you recieved after registering a bank account.</span>
+    </div>  
+  
+    <div class="form-submit">
+        <!-- <input type="button" value="Reset All" class="submit" name="reset" id="reset" /> -->
+        <button class="submit" (click)="cancelClicked()" name="reset" id="reset">Cancel</button>
+        <button class="submit" [disabled]="!form.valid" (click)="submit($event)" name="submit" id="submit">Submit</button>
+    </div>
+  </form>
 </div>
