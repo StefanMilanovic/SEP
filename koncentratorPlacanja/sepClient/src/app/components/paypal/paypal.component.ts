@@ -18,6 +18,9 @@ export class PaypalComponent implements OnInit {
   private shipping_discount= 0.00;
   private insurance= 0.10;
   private total = this.subtotal + this.tax + this.shipping + this.handling_fee + this.shipping_discount + this.insurance;
+  private success_url = "";
+  private failure_url = "";
+  private error_url = "";
 
 
   constructor(private router: Router) { }
@@ -45,16 +48,14 @@ export class PaypalComponent implements OnInit {
         },
         onPaymentComplete: (data, actions) => {
           console.log('OnPaymentComplete');
-          //this.router.navigate(['https://www.google.rs/']);
-          this.router.navigate(['uspesno']);
+          this.router.navigate([this.success_url]);
         },
         onCancel: (data, actions) => {
           console.log('OnCancel');
-         // this.router.navigate(['http://www.google.rs/']);
-         // window.location.href = 'http://www.google.rs/';
         },
         onError: err => {
           console.log('OnError');
+          this.router.navigate([this.error_url]);
         },
         onClick: () => {
           console.log('onClick');
@@ -69,17 +70,8 @@ export class PaypalComponent implements OnInit {
         transactions: [
           {
             amount: {
-              //total: 30.11,
               total: this.total,
               currency: 'USD',
-              // details: {
-              //   subtotal: 30.00,
-              //   tax: 0.07,
-              //   shipping: 0.03,
-              //   handling_fee: 1.00,
-              //   shipping_discount: -1.00,
-              //   insurance: 0.01
-              // }
               details: {
                 subtotal: this.subtotal,
                 tax: this.tax,

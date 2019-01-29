@@ -29,7 +29,7 @@ export class KriptovalutaComponent implements OnInit {
   //       (error) => console.log(error) );
   // }
 
-  this.placanjeService.obradaKriptovalute2()
+  this.placanjeService.obradaKriptovalute()
 .subscribe(
 (response: any) => {
 
