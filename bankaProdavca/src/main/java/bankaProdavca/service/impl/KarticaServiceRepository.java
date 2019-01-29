@@ -6,7 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class KarticaServiceRepository implements KarticaService {
-
-    @Autowired
-    private KarticaServiceRepository karticaServiceRepository;
+//MEtoda koja na osnovu vlasnika kartice trazi klijenta pa  iz klijenta njegov ID
 }

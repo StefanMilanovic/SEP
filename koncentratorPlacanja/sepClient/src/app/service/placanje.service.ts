@@ -14,6 +14,7 @@ export class PlacanjeService {
   obradaKriptovalute(podaciKriptovaluta){
     console.log('Obrada Kriptovalute');
     return this.http.post("http://localhost:8181/api/transakcija/kriptovaluta", podaciKriptovaluta);
+    
   }
 
   pripremiPodatkeZaBanku(id){

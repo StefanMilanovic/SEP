@@ -13,7 +13,9 @@ export class ProveraSericeService {
     return this.http.post('http://localhost:8182/api/bankController/proveriPodatke', token);
   }
 
-  posaljiPodatkeKupca(unetiPodaci) {
-    return this.http.post('http://localhost:8182/api//', unetiPodaci); // DOPUNI
+  posaljiPodatkeKupca(unetiPodaci, id: String) {
+    return this.http.post('http://localhost:8182/api/karticaController/proveraAzuriranjeStanja/' + id , unetiPodaci);
   }
+
+
 }

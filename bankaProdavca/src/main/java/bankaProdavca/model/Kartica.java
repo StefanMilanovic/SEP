@@ -9,16 +9,21 @@ import java.util.Date;
 
 @Entity
 public class Kartica {
+//    PAN: string;
+//    PIN: string;
+//    vlasnikKartice: string;
+//    datumIsteka: Date;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private int pan;
+    private int PAN;
 
     @Column(nullable = false)
-    private int pin;
+    private int PIN;
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -26,7 +31,7 @@ public class Kartica {
     private BankKlijent vlasnik;
 
     @Column()
-    private String imeVlasnika;
+    private String vlasnikKartice;
 
     @Column(nullable = false)
     private Date datumIsteka;
@@ -34,22 +39,39 @@ public class Kartica {
     @Column()
     private double stanjeNaKartici;
 
-    public Kartica(int pan, int pin, String imeVlasnika, Date datumIsteka, double stanjeNaKartici) {
-        this.id = id;
-        this.pan = pan;
-        this.pin = pin;
+    public Kartica(){}
+
+    public Kartica(int PAN, int PIN, BankKlijent vlasnik, String vlasnikKartice, Date datumIsteka, double stanjeNaKartici) {
+        this.PAN = PAN;
+        this.PIN = PIN;
+        this.vlasnik = vlasnik;
+        this.vlasnikKartice = vlasnikKartice;
         this.datumIsteka = datumIsteka;
-        this.imeVlasnika = imeVlasnika;
         this.stanjeNaKartici = stanjeNaKartici;
-
     }
 
-    public double getStanjeNaKartici() {
-        return stanjeNaKartici;
+    public Long getId() {
+        return id;
     }
 
-    public void setStanjeNaKartici(double stanjeNaKartici) {
-        this.stanjeNaKartici = stanjeNaKartici;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getPAN() {
+        return PAN;
+    }
+
+    public void setPAN(int PAN) {
+        this.PAN = PAN;
+    }
+
+    public int getPIN() {
+        return PIN;
+    }
+
+    public void setPIN(int PIN) {
+        this.PIN = PIN;
     }
 
     public BankKlijent getVlasnik() {
@@ -60,38 +82,12 @@ public class Kartica {
         this.vlasnik = vlasnik;
     }
 
-    public String getImeVlasnika() {
-        return imeVlasnika;
+    public String getVlasnikKartice() {
+        return vlasnikKartice;
     }
 
-    public void setImeVlasnika(String imeVlasnika) {
-        this.imeVlasnika = imeVlasnika;
-    }
-
-    public Kartica(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getPan() {
-        return pan;
-    }
-
-    public void setPan(int pan) {
-        this.pan = pan;
-    }
-
-    public int getPin() {
-        return pin;
-    }
-
-    public void setPin(int pin) {
-        this.pin = pin;
+    public void setVlasnikKartice(String vlasnikKartice) {
+        this.vlasnikKartice = vlasnikKartice;
     }
 
     public Date getDatumIsteka() {
@@ -100,5 +96,13 @@ public class Kartica {
 
     public void setDatumIsteka(Date datumIsteka) {
         this.datumIsteka = datumIsteka;
+    }
+
+    public double getStanjeNaKartici() {
+        return stanjeNaKartici;
+    }
+
+    public void setStanjeNaKartici(double stanjeNaKartici) {
+        this.stanjeNaKartici = stanjeNaKartici;
     }
 }
