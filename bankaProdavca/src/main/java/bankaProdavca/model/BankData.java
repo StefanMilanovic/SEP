@@ -16,6 +16,8 @@ public class BankData {
     @Column()
     private String prodavacBankLozinka;
 
+    @Column()
+    private String bankRacunProdavac;
 
     @Column()
     private String successUrl;
@@ -37,7 +39,7 @@ public class BankData {
 
 
     public BankData(String prodavac_bank_id, String prodavac_bank_lozinka, String success_url, String failed_url,
-                    String error_url, double kolicina, Date prodavac_vreme_transakcije, String token) {
+                    String error_url, double kolicina, Date prodavac_vreme_transakcije, String token, String bankRacunProdavac) {
         this.prodavacBankId = prodavac_bank_id;
         this.prodavacBankLozinka = prodavac_bank_lozinka;
         this.successUrl = success_url;
@@ -46,9 +48,18 @@ public class BankData {
         this.kolicina = kolicina;
         this.prodavac_vreme_transakcije = prodavac_vreme_transakcije;
         this.token = token;
+        this.bankRacunProdavac = bankRacunProdavac;
     }
 
     public BankData(){}
+
+    public String getBankRacunProdavac() {
+        return bankRacunProdavac;
+    }
+
+    public void setBankRacunProdavac(String bankRacunProdavac) {
+        this.bankRacunProdavac = bankRacunProdavac;
+    }
 
     public String getProdavac_bank_id() {
         return prodavacBankId;

@@ -118,7 +118,8 @@ public class TransakcijaController {
     )
     public ResponseEntity<Transakcija> createTransaction(@RequestBody @Valid NaucnaCentralaData naucnaCentralaData) {
 
-        Transakcija t = new Transakcija(naucnaCentralaData.getKolicina(), klijentService.findByBankId(naucnaCentralaData.getProdavacBankId()), naucnaCentralaData.getDatum());
+        Transakcija t = new Transakcija(naucnaCentralaData.getKolicina(), klijentService.findByBankId(naucnaCentralaData.getProdavacBankId()),
+                naucnaCentralaData.getDatum(), naucnaCentralaData.getBankRacunProdavca());
         transakcijaService.save(t);
 
         return new ResponseEntity<Transakcija>(HttpStatus.OK);

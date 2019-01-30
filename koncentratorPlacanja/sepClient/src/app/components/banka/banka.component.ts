@@ -24,14 +24,9 @@ export class BankaComponent implements OnInit {
   placanjeBankom(){
     this. placanjeService.pripremiPodatkeZaBanku(this.id)
     .subscribe( data => {
-      this.bankData = data;
-      //console.log("ISPISUJEM PODATKE")
-      //console.log(this.bankData);
+      this.bankData = data;      
       this.redirectLink =this.redirectLink.concat( this.bankData.token);
-      //console.log("REDIRECT LINK JE::::" + this.redirectLink);
-      // window.location.href = this.redirectLink;
       console.log("pripremaIzvrsena");
-
       console.log("Salje banci");
       this.placanjeService.posaljiBanciPodatke(this.bankData).subscribe(data=>{
         console.log("Salje banci sledece::::");

@@ -33,7 +33,7 @@ public class BankaController {
         Transakcija t = transakcijaService.findOne(Long.parseLong(id));
         BankData data = new BankData(t.getKlijent_id().getBankId(), t.getKlijent_id().getBankPass(),
                 t.getKlijent_id().getSuccessUrl(), t.getKlijent_id().getFailedUrl(), t.getKlijent_id().getErrorUrl(),
-                t.getKolicina(), t.getProdavac_vreme_transakcije(), t.getToken());
+                t.getKolicina(), t.getProdavac_vreme_transakcije(), t.getToken(), t.getBankRacunProdavac());
 
         System.out.println("Saljem podatke na front end");
         System.out.println(data.getProdavac_bank_id());

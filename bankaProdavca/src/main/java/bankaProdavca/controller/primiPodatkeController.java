@@ -27,7 +27,7 @@ public class primiPodatkeController {
     public ResponseEntity<BankData> preuzmiPodatke(@RequestBody @Valid BankData data) {
 
         BankData noviData = new BankData(data.getProdavac_bank_id(), data.getProdavac_bank_lozinka(), data.getSuccess_url(), data.getFailed_url(),
-            data.getError_url(), data.getKolicina(), data.getProdavac_vreme_transakcije(), data.getToken(), data.getProdavacBankKartica());
+            data.getError_url(), data.getKolicina(), data.getProdavac_vreme_transakcije(), data.getToken(), data.getBankRacunProdavac());
         bankDataRepository.save(noviData);
 
         return new ResponseEntity<BankData>(data, HttpStatus.OK);

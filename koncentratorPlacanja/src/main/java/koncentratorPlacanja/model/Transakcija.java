@@ -35,17 +35,27 @@ public class Transakcija {
     @Column(nullable = false)
     private Date prodavacVremeTransakcije;
 
+    @Column(nullable = false)
+    private String bankRacunProdavac;
+
 
 
     public Transakcija() {}
 
-    public Transakcija(double kolicina, Klijent klijent_id, Date prodavac_vreme_transakcije) {
+    public Transakcija(double kolicina, Klijent klijent_id, Date prodavac_vreme_transakcije, String bankRacunProdavac) {
         this.kolicina = kolicina;
         this.klijent = klijent_id;
         this.prodavacVremeTransakcije = prodavac_vreme_transakcije;
+        this.bankRacunProdavac = bankRacunProdavac;
     }
 
+    public String getBankRacunProdavac() {
+        return bankRacunProdavac;
+    }
 
+    public void setBankRacunProdavac(String bankRacunProdavac) {
+        this.bankRacunProdavac = bankRacunProdavac;
+    }
 
     public Long getId() {
         return id;
