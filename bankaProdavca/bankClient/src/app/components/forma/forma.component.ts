@@ -24,9 +24,10 @@ export class FormaComponent implements OnInit {
 
   });
   constructor(private router: Router, private proveraService: ProveraSericeService, private activatedRoute: ActivatedRoute) {
+   
     this.form = new FormGroup({
-      PAN: new FormControl('', Validators.compose ([Validators.required])),
-      CSC: new FormControl('', Validators.compose ([Validators.required])),
+      pan: new FormControl('', Validators.compose ([Validators.required])),
+      csc: new FormControl('', Validators.compose ([Validators.required])),
       brojKartice: new FormControl('', Validators.compose ([Validators.required])),
       vlasnikKartice: new FormControl('', Validators.compose ([Validators.required])),
       datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
@@ -82,6 +83,7 @@ export class FormaComponent implements OnInit {
   }
 
   onSubmit = function (unetiPodaci) {
+    console.log(unetiPodaci);
     console.log('Saljem token :' + this.token);
       this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.token).subscribe(data => {
         this.odgovorUplate = data;

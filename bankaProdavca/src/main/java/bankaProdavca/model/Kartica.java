@@ -54,6 +54,8 @@ public class Kartica {
         this.brojKartice = brojKartice;
     }
 
+
+
     public Long getId() {
         return id;
     }

@@ -52,7 +52,7 @@ public class KarticaController {
 
         //da li se pin i csc poklapaju
         System.out.println("\n Pan uneti:" + unetiPodaci.getPan() + "\n Pan kartica:" + karticaKupca.getPan() +"\n csc uneti:" + unetiPodaci.getCsc() +"\n csc kartica:" + karticaKupca.getCsc());
-        if(unetiPodaci.getPan() == karticaKupca.getPan() && unetiPodaci.getCsc() == karticaKupca.getCsc()){
+        if(unetiPodaci.getPan().equals(karticaKupca.getPan()) && unetiPodaci.getCsc().equals(karticaKupca.getCsc())) {
         //prvo proveris da li ima dovoljno raspolozivo
             if(karticaKupca.getStanjeNaKartici() >= bankData.getKolicina() ){
                 karticaKupca.setStanjeNaKartici(karticaKupca.getStanjeNaKartici() - bankData.getKolicina() );
