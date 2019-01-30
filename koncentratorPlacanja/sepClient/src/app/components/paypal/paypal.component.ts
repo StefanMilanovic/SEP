@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PlacanjeService } from 'src/app/service/placanje.service';
 
 @Component({
   selector: 'app-paypal',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class PaypalComponent implements OnInit {
 
   public payPalConfig?: PayPalConfig;
-  private secret = 'Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9';
+  //private secret: string;
+  private secret ='Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9';
   private subtotal= 3.00;
   private tax= 0.05;
   private shipping= 0.00;
@@ -22,11 +24,25 @@ export class PaypalComponent implements OnInit {
   private failure_url = "";
   private error_url = "";
 
+  private id: string;
+  private payPalData: any;
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router, private placanjeServcice: PlacanjeService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
+    this.id = this.activatedRoute.snapshot.params['id'];  
+    this.placanjeServcice.uzmiPodatkeZaPayPal(this.id).subscribe((data: any)=>{
+      console.log(data);
+      this.secret = data.secret;
+      this.subtotal = data.kolicina;
+      // this.success_url = data.successUrl;
+      // this.failure_url = data.failedUrl;
+      // this.error_url = data.errorUrl;
+      
+    });
     this.initConfig();
+    
   }
   private initConfig(): void {
     this.payPalConfig = new PayPalConfig(
