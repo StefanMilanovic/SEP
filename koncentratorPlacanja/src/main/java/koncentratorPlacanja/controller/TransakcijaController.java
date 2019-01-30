@@ -3,6 +3,7 @@ package koncentratorPlacanja.controller;
 
 import koncentratorPlacanja.DTO.BitcoinDTO;
 import koncentratorPlacanja.DTO.BitcoinResponseDTO;
+import koncentratorPlacanja.model.BankData;
 import koncentratorPlacanja.model.NaucnaCentralaData;
 import koncentratorPlacanja.model.Transakcija;
 import koncentratorPlacanja.service.KlijentService;
@@ -35,7 +36,9 @@ public class TransakcijaController {
     @CrossOrigin
     @RequestMapping(
             value = "/kriptovaluta",
-            method = RequestMethod.POST
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE
+
     )
     public ResponseEntity<?> kriptovaluta(@RequestBody BitcoinDTO bitcoinDTO) {
         System.out.println("\nBitcoin...");
@@ -67,8 +70,8 @@ public class TransakcijaController {
         HttpEntity<BitcoinResponseDTO> entity1 = new HttpEntity<BitcoinResponseDTO>(response, h);
 
         System.out.println("\n Kraj Bitcoin...\n");
-
-        return new ResponseEntity<>(response.getPayment_url(), HttpStatus.OK);
+        BankData b = new BankData();//response.getPayment_url()
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

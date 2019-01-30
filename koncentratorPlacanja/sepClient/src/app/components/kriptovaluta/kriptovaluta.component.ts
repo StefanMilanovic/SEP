@@ -9,6 +9,7 @@ import {PodaciKriptovaluta} from '../../model';
 })
 export class KriptovalutaComponent implements OnInit {
   podaciKriptovaluta: PodaciKriptovaluta;
+
   constructor(private placanjeService: PlacanjeService) {
     this.podaciKriptovaluta = new PodaciKriptovaluta();
     this.podaciKriptovaluta.kolicina = '12';
@@ -18,7 +19,7 @@ export class KriptovalutaComponent implements OnInit {
 
   ngOnInit() {
 
-
+/*
     this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta)
 
       .subscribe(
@@ -29,7 +30,17 @@ export class KriptovalutaComponent implements OnInit {
         },
         (error) =>
           console.log(error) );
+*/
+
+    this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta).subscribe(data=>{
+      console.log("Salje banci sledece::::");
+      console.log(data);
+      window.location.href = data.payment_url;
+
+    });
+
   }
+
 
 //   this.placanjeService.obradaKriptovalute2().subscribe((response:any) => {
 //   console.log(response);
