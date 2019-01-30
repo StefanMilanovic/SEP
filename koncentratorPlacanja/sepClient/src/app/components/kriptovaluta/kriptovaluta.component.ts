@@ -24,10 +24,11 @@ export class KriptovalutaComponent implements OnInit {
       .subscribe(
         (response: any) => {
 
-          window.location.href = response;
+          window.location.href = response.payment_url;
 
         },
-        (error) => console.log(error) );
+        (error) =>
+          console.log(error) );
   }
 
 //   this.placanjeService.obradaKriptovalute2().subscribe((response:any) => {

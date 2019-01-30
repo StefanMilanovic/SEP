@@ -34,7 +34,9 @@ public class KarticaController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<BankKlijent> proveraAzuriranjeStanja(@RequestBody @Valid Kartica unetiPodaci, @PathVariable String id){
+    public ResponseEntity<BankKlijent> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
+
+
        //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta
         BankKlijent bk = new BankKlijent();
         System.out.println("\nKartica kontroler...  " + id);
@@ -42,17 +44,23 @@ public class KarticaController {
         System.out.println("\n kolicina za skidanje :  " + bankData.getKolicina());
 
         Kartica karticaKupca = karticaService.findByBrojKartice(unetiPodaci.getBrojKartice());
+        Kartica karticaProdavac = karticaService.findByBrojKartice(bankData.getBankRacunProdavac());
+
         System.out.println("\n Vlasnik kartice kupca  :  " + karticaKupca.getVlasnikKartice());
         //provera pan
 
 
         //da li se pin i csc poklapaju
-        if(unetiPodaci.getPAN() == karticaKupca.getPAN() && unetiPodaci.getCSC() == karticaKupca.getCSC()){
+        System.out.println("\n Pan uneti:" + unetiPodaci.getPan() + "\n Pan kartica:" + karticaKupca.getPan() +"\n csc uneti:" + unetiPodaci.getCsc() +"\n csc kartica:" + karticaKupca.getCsc());
+        if(unetiPodaci.getPan() == karticaKupca.getPan() && unetiPodaci.getCsc() == karticaKupca.getCsc()){
         //prvo proveris da li ima dovoljno raspolozivo
             if(karticaKupca.getStanjeNaKartici() >= bankData.getKolicina() ){
                 karticaKupca.setStanjeNaKartici(karticaKupca.getStanjeNaKartici() - bankData.getKolicina() );
                 karticaService.save(karticaKupca);
-                System.out.println("Placeno!");
+
+                karticaProdavac.setStanjeNaKartici((karticaProdavac.getStanjeNaKartici() + bankData.getKolicina()));
+                karticaService.save(karticaProdavac);
+                System.out.println("Uspesno placanje !");
                 return new ResponseEntity<>(bk, HttpStatus.OK);
             }else{
                 System.out.println(" Upozorenje! Nema dovoljno na racunu !");
