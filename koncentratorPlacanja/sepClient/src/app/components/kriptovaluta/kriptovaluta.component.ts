@@ -32,10 +32,10 @@ export class KriptovalutaComponent implements OnInit {
           console.log(error) );
 */
 
-    this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta).subscribe(data=>{
+    this.placanjeService.obradaKriptovalute(this.podaciKriptovaluta).subscribe((response:any)=>{
       console.log("Salje banci sledece::::");
-      console.log(data);
-      window.location.href = data.payment_url;
+      console.log(response);
+      window.location.href = response.payment_url;
 
     });
 

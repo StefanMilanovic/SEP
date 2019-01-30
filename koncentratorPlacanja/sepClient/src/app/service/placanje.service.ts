@@ -19,7 +19,7 @@ export class PlacanjeService {
 
   pripremiPodatkeZaBanku(id){
     console.log("Pripremaju se podaci za banku.");
-    return this.http.post("http://localhost:8181/api/banka/uzmiPodatke", id);
+    return this.http.post("http://localhost:8181/api/banka/pripremiPodatke", id);
   }
 
   posaljiBanciPodatke(data){
@@ -31,5 +31,9 @@ export class PlacanjeService {
       const data = response.text();
       return data;
     }));
+  }
+
+  uzmiPodatkeZaPayPal(id){
+    return this.http.get("http://localhost:8181/api/payPal/uzmiPayPalPodatke/" + id);
   }
 }

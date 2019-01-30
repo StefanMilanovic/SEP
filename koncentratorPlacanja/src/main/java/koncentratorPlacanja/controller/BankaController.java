@@ -24,7 +24,7 @@ public class BankaController {
     private TransakcijaService transakcijaService;
 
     @RequestMapping(
-            value = "uzmiPodatke",
+            value = "pripremiPodatke",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )

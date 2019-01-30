@@ -128,6 +128,17 @@ public class TransakcijaController {
         return new ResponseEntity<Transakcija>(HttpStatus.OK);
     }
 
+    @RequestMapping(
+            value = "/nadjiTransakciju/{id}",
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<Transakcija> nadjiTransakciju(@PathVariable String id){
 
+        Transakcija retVal = this.transakcijaService.findOne(Long.parseLong(id));
+        if(retVal == null)
+            return null;
+        else
+            return new ResponseEntity<Transakcija>(retVal, HttpStatus.OK);
+    }
 
 }
