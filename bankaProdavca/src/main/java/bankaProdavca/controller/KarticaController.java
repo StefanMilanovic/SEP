@@ -1,4 +1,5 @@
 package bankaProdavca.controller;
+import bankaProdavca.DTO.ResponsePayment;
 import bankaProdavca.model.BankData;
 import bankaProdavca.model.BankKlijent;
 import bankaProdavca.model.Kartica;
@@ -34,11 +35,12 @@ public class KarticaController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<BankKlijent> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
+    public ResponseEntity<ResponsePayment> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
 
 
        //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta
-        BankKlijent bk = new BankKlijent();
+        ResponsePayment responsePayment = new ResponsePayment();
+        responsePayment.setToken(id);
         System.out.println("\nKartica kontroler...  " + id);
         BankData bankData = bankDataService.findByToken(id); // id = token
         System.out.println("\n kolicina za skidanje :  " + bankData.getKolicina());
@@ -60,17 +62,18 @@ public class KarticaController {
 
                 karticaProdavac.setStanjeNaKartici((karticaProdavac.getStanjeNaKartici() + bankData.getKolicina()));
                 karticaService.save(karticaProdavac);
+                responsePayment.setUrl(bankData.getSuccess_url());
                 System.out.println("Uspesno placanje !");
-                return new ResponseEntity<>(bk, HttpStatus.OK);
+                return new ResponseEntity<>(responsePayment, HttpStatus.OK);
             }else{
                 System.out.println(" Upozorenje! Nema dovoljno na racunu !");
-                //return bad request ?
-                return new ResponseEntity<>(bk,HttpStatus.BAD_REQUEST);
+                responsePayment.setUrl(bankData.getFailed_url());
+                return new ResponseEntity<>(responsePayment,HttpStatus.BAD_REQUEST);
             }
         }else{
             System.out.println(" Upozorenje! Pogresan PAN ili CSC !");
-            //return bad request ?
-            return new ResponseEntity<>(bk,HttpStatus.BAD_REQUEST);
+            responsePayment.setUrl(bankData.getFailed_url());
+            return new ResponseEntity<>(responsePayment,HttpStatus.BAD_REQUEST);
         }
         //dodaj na racun naucne centrale
 
