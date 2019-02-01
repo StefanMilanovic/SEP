@@ -9,7 +9,7 @@ import {PodaciKriptovaluta} from '../../model';
 })
 export class KriptovalutaComponent implements OnInit {
   podaciKriptovaluta: PodaciKriptovaluta;
-
+  data: any;
   constructor(private placanjeService: PlacanjeService) {
     this.podaciKriptovaluta = new PodaciKriptovaluta();
     this.podaciKriptovaluta.kolicina = '12';

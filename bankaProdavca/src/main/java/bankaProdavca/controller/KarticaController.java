@@ -1,4 +1,5 @@
 package bankaProdavca.controller;
+import bankaProdavca.DTO.ResponsePayment;
 import bankaProdavca.model.BankData;
 import bankaProdavca.model.BankKlijent;
 import bankaProdavca.model.Kartica;
@@ -36,9 +37,9 @@ public class KarticaController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<ResultData> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
-
-
-       //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta//
+       //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta
+        ResponsePayment responsePayment = new ResponsePayment();
+        responsePayment.setToken(id);
         System.out.println("\nKartica kontroler...  " + id);
         BankData bankData = bankDataService.findByToken(id); // id = token
         System.out.println("\n kolicina za skidanje :  " + bankData.getKolicina());
@@ -63,7 +64,9 @@ public class KarticaController {
 
                 karticaProdavac.setStanjeNaKartici((karticaProdavac.getStanjeNaKartici() + bankData.getKolicina()));
                 karticaService.save(karticaProdavac);
+                responsePayment.setUrl(bankData.getSuccess_url());
                 System.out.println("Uspesno placanje !");
+
                 ResultData result = new ResultData(id,"success");
 
                 bankData.setResult("success");
@@ -83,6 +86,7 @@ public class KarticaController {
         }else{
             System.out.println(" Upozorenje! Pogresan PAN ili CSC !");
             return new ResponseEntity<>(null,HttpStatus.OK);
+
         }
         //dodaj na racun naucne centrale
 

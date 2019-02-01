@@ -16,23 +16,13 @@ export class FormaComponent implements OnInit {
   private odgovorUplate: any;
 
   form = new FormGroup({
-    PAN: new FormControl('', Validators.compose ([Validators.required])),
-    CSC: new FormControl('', Validators.compose ([Validators.required])),
-    brojKartice: new FormControl('', Validators.compose ([Validators.required])),
-    vlasnikKartice: new FormControl('', Validators.compose ([Validators.required])),
+    pan: new FormControl('', Validators.compose ([Validators.required, Validators.min(999)])),
+    csc: new FormControl('', Validators.compose ([Validators.required, Validators.min(99)])),
+    brojKartice: new FormControl('', Validators.compose ([Validators.required, Validators.min(999999999999)])),
     datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
 
   });
   constructor(private router: Router, private proveraService: ProveraSericeService, private activatedRoute: ActivatedRoute) {
-   
-    this.form = new FormGroup({
-      pan: new FormControl('', Validators.compose ([Validators.required])),
-      csc: new FormControl('', Validators.compose ([Validators.required])),
-      brojKartice: new FormControl('', Validators.compose ([Validators.required])),
-      vlasnikKartice: new FormControl('', Validators.compose ([Validators.required])),
-      datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
-
-    });
     this.kupacUnos = new KupacUnos;
   }
 
@@ -85,7 +75,7 @@ export class FormaComponent implements OnInit {
   onSubmit = function (unetiPodaci) {
     console.log(unetiPodaci);
     console.log('Saljem token :' + this.token);
-      this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.token).subscribe(data => {
+      this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.token).subscribe((data: any) => {
         this.odgovorUplate = data;
         console.log(this.odgovorUplate);
         if(this.odgovorUplate.result == "success"){
