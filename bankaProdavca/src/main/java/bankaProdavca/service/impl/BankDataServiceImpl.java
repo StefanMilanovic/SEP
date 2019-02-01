@@ -16,4 +16,9 @@ public class BankDataServiceImpl implements BankDataService {
     public BankData findByToken(String token) {
         return bankDataRepository.findByToken(token);
     }
+
+    @Override
+    public BankData save(BankData b) {
+        return bankDataRepository.save(b);
+    }
 }

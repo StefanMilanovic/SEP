@@ -6,8 +6,10 @@ import koncentratorPlacanja.DTO.BitcoinResponseDTO;
 import koncentratorPlacanja.model.BankData;
 import koncentratorPlacanja.model.NaucnaCentralaData;
 import koncentratorPlacanja.model.Transakcija;
+import koncentratorPlacanja.model.ZavrsenaTransakcija;
 import koncentratorPlacanja.service.KlijentService;
 import koncentratorPlacanja.service.TransakcijaService;
+import koncentratorPlacanja.service.ZavrsenaTransakcijaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.BasicJsonParser;
 import org.springframework.boot.json.JsonParser;
@@ -23,7 +25,8 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/transakcija")
+@CrossOrigin(origins = "*")
+@RequestMapping("transakcija")
 public class TransakcijaController {
 
     @Autowired
@@ -32,6 +35,8 @@ public class TransakcijaController {
     @Autowired
     private KlijentService klijentService;
 
+    @Autowired
+    private ZavrsenaTransakcijaService zavrsenaTransakcijaService;
 
     @CrossOrigin
     @RequestMapping(
@@ -139,6 +144,28 @@ public class TransakcijaController {
             return null;
         else
             return new ResponseEntity<Transakcija>(retVal, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            value = "resultTransakcija/{token}",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<ZavrsenaTransakcija> resultTransaction(@PathVariable String token, @RequestBody @Valid String result) {
+
+        Transakcija tempTransakcija = transakcijaService.findByToken(token);
+        if(tempTransakcija != null) {
+            ZavrsenaTransakcija zavrsenaTransakcija = new ZavrsenaTransakcija(tempTransakcija.getToken(), tempTransakcija.getKolicina(),
+                    tempTransakcija.getKlijent_id(), tempTransakcija.getBankRacunProdavac(), result);
+
+            zavrsenaTransakcijaService.save(zavrsenaTransakcija);
+            transakcijaService.delete(tempTransakcija);
+
+            return new ResponseEntity<ZavrsenaTransakcija>(zavrsenaTransakcija, HttpStatus.OK);
+        }
+        else{
+            return null;
+        }
     }
 
 }

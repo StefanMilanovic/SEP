@@ -1,3 +1,7 @@
-<p>
-  Uspesno izvrsena transakcija. Redikretuje se...
+<p *ngIf="result=='success'">
+  Uspesno izvrsena transakcija. Redirektuje se...
+</p>
+
+<p *ngIf="result=='failure'">
+  Neuspesno izvrsena transakcija. Redirektuje se...
 </p>

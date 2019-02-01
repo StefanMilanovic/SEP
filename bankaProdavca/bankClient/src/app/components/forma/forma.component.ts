@@ -87,9 +87,19 @@ export class FormaComponent implements OnInit {
     console.log('Saljem token :' + this.token);
       this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.token).subscribe(data => {
         this.odgovorUplate = data;
-        setTimeout(() => {
-          window.location.href = 'http://localhost:5000/paymentForm/' + this.token;
-        }, 3000); //5s
+        console.log(this.odgovorUplate);
+        if(this.odgovorUplate.result == "success"){
+          window.location.href = 'http://localhost:4200/rezultat/success/' + this.odgovorUplate.token;
+        }
+        else if(this.odgovorUplate.result =="failure"){
+          window.location.href = 'http://localhost:4200/rezultat/failure/' + this.odgovorUplate.token;
+        }
+        else{
+          
+        }
+        // setTimeout(() => {
+        //   window.location.href = 'http://localhost:5000/paymentForm/' + this.token;
+        // }, 3000); //5s
       });
   };
 

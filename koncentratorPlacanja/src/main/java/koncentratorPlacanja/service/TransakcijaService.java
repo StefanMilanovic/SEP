@@ -11,4 +11,5 @@ public interface TransakcijaService {
     List<Transakcija> findAll();
     Transakcija findByToken( String token);
     Transakcija save(Transakcija t);
+    void delete(Transakcija t);
 }

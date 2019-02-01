@@ -14,11 +14,11 @@ const appRoutes: Routes =
         { path: '', component: HomepageComponent},
 
         { path: 'opcije/:id', component: OpcijePlacanjaComponent },
-        { path: 'uspesno', component: PorukaUspesnostiComponent },
+        { path: 'rezultat/:result/:token', component: PorukaUspesnostiComponent },
         { path: 'kriptovaluta', component: KriptovalutaComponent },
         { path: 'register', component: RegisterComponent },
         { path: 'login', component: LoginComponent },
-        { path: 'profile', component: ProfileComponent }
+        { path: 'profile', component: ProfileComponent },        
     ];
     export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
 

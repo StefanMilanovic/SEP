@@ -37,6 +37,9 @@ public class BankData {
     @Column()
     private String token;
 
+    @Column()
+    private String result;
+
 
     public BankData(String prodavac_bank_id, String prodavac_bank_lozinka, String success_url, String failed_url,
                     String error_url, double kolicina, Date prodavac_vreme_transakcije, String token, String bankRacunProdavac) {
@@ -52,6 +55,14 @@ public class BankData {
     }
 
     public BankData(){}
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public String getBankRacunProdavac() {
         return bankRacunProdavac;

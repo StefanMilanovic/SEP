@@ -2,6 +2,7 @@ package bankaProdavca.controller;
 import bankaProdavca.model.BankData;
 import bankaProdavca.model.BankKlijent;
 import bankaProdavca.model.Kartica;
+import bankaProdavca.model.ResultData;
 import bankaProdavca.service.BankDataService;
 import bankaProdavca.service.BankKlijentService;
 import bankaProdavca.service.KarticaService;
@@ -34,11 +35,10 @@ public class KarticaController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<BankKlijent> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
+    public ResponseEntity<ResultData> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
 
 
-       //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta
-        BankKlijent bk = new BankKlijent();
+       //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta//
         System.out.println("\nKartica kontroler...  " + id);
         BankData bankData = bankDataService.findByToken(id); // id = token
         System.out.println("\n kolicina za skidanje :  " + bankData.getKolicina());
@@ -46,31 +46,43 @@ public class KarticaController {
         Kartica karticaKupca = karticaService.findByBrojKartice(unetiPodaci.getBrojKartice());
         Kartica karticaProdavac = karticaService.findByBrojKartice(bankData.getBankRacunProdavac());
 
-        System.out.println("\n Vlasnik kartice kupca  :  " + karticaKupca.getVlasnikKartice());
+//        System.out.println("\n Vlasnik kartice kupca  :  " + karticaKupca.getVlasnikKartice());
         //provera pan
 
 
         //da li se pin i csc poklapaju
-        System.out.println("\n Pan uneti:" + unetiPodaci.getPan() + "\n Pan kartica:" + karticaKupca.getPan() +"\n csc uneti:" + unetiPodaci.getCsc() +"\n csc kartica:" + karticaKupca.getCsc());
+        //System.out.println("\n Pan uneti:" + unetiPodaci.getPan() + "\n Pan kartica:" + karticaKupca.getPan() +"\n csc uneti:" + unetiPodaci.getCsc() +"\n csc kartica:" + karticaKupca.getCsc());
+       if(karticaKupca == null){
+           return new ResponseEntity<>(null,HttpStatus.OK);
+       }
         if(unetiPodaci.getPan().equals(karticaKupca.getPan()) && unetiPodaci.getCsc().equals(karticaKupca.getCsc())) {
         //prvo proveris da li ima dovoljno raspolozivo
             if(karticaKupca.getStanjeNaKartici() >= bankData.getKolicina() ){
-                karticaKupca.setStanjeNaKartici(karticaKupca.getStanjeNaKartici() - bankData.getKolicina() );
+                karticaKupca.setStanjeNaKartici(karticaKupca.getStanjeNaKartici() - bankData.getKolicina());
                 karticaService.save(karticaKupca);
 
                 karticaProdavac.setStanjeNaKartici((karticaProdavac.getStanjeNaKartici() + bankData.getKolicina()));
                 karticaService.save(karticaProdavac);
                 System.out.println("Uspesno placanje !");
-                return new ResponseEntity<>(bk, HttpStatus.OK);
+                ResultData result = new ResultData(id,"success");
+
+                bankData.setResult("success");
+                bankDataService.save(bankData);
+
+                return new ResponseEntity<>(result, HttpStatus.OK);
             }else{
                 System.out.println(" Upozorenje! Nema dovoljno na racunu !");
                 //return bad request ?
-                return new ResponseEntity<>(bk,HttpStatus.BAD_REQUEST);
+                ResultData result = new ResultData(id,"failure");
+
+                bankData.setResult("failure");
+                bankDataService.save(bankData);
+
+                return new ResponseEntity<>(result,HttpStatus.OK);
             }
         }else{
             System.out.println(" Upozorenje! Pogresan PAN ili CSC !");
-            //return bad request ?
-            return new ResponseEntity<>(bk,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null,HttpStatus.OK);
         }
         //dodaj na racun naucne centrale
 

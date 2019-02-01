@@ -33,4 +33,7 @@ public class TransakcijaServiceImpl implements TransakcijaService {
        return tansakcijaRepository.save(t);
     }
 
+    @Override
+    public void delete(Transakcija t) { tansakcijaRepository.delete(t); }
+
 }
