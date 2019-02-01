@@ -17,5 +17,9 @@ export class ProveraSericeService {
     return this.http.post('http://localhost:8182/api/karticaController/proveraAzuriranjeStanja/' + id , unetiPodaci);
   }
 
+//za sada se ne koristi
+  setNazivBanke( token: String) {
+    return this.http.get('http://localhost:8182/api/karticaController/getNazivBanke/' + token );
+  }
 
 }
