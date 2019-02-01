@@ -1,17 +1,15 @@
+<h2> Banka :  </h2>
+
 <form  [formGroup] = "form"
        (ngSubmit) = "onSubmit(form.value)">
+
 
   <div>
     <label> Broj kartice: </label>
     <input  value="" type="number" name="brojKartice" id = "brojKartice"
-            formControlName="brojKartice" placeholder="Broj kartice" maxlength="13" min = "0" max = "99"  onKeyPress="if(this.value.length==13) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
+            formControlName="brojKartice" placeholder="Broj kartice" maxlength="16" min = "0" max = "99"  onKeyPress="if(this.value.length==16) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
   </div>
 
-  <div>
-    <label> PAN: </label>
-    <input value="" type="number" name="PAN" id = "PAN"
-           formControlName="pan" placeholder="PAN" maxlength="4" min = "0" max = "9999"  onKeyPress="if(this.value.length==4) return false;" onkeydown="javascript: return (event.keyCode > 47 && event.keyCode < 58 || event.keyCode == 08)" >
-  </div>
 
   <div>
     <label> CSC: </label>

@@ -14,7 +14,7 @@ export class PlacanjeService {
   obradaKriptovalute(podaciKriptovaluta){
     console.log('Obrada Kriptovalute');
     return this.http.post("http://localhost:8181/api/transakcija/kriptovaluta", podaciKriptovaluta);
-    
+
   }
 
   pripremiPodatkeZaBanku(id){
@@ -22,10 +22,12 @@ export class PlacanjeService {
     return this.http.post("http://localhost:8181/api/banka/pripremiPodatke", id);
   }
 
-  posaljiBanciPodatke(data){
-    return this.http.post("http://localhost:8182/api/primiPodatke/primi", data)
+  posaljiBanciPodatke(data, urlBank){
+
+    return this.http.post(urlBank + "/api/primiPodatke/primi", data)
   }
-  
+
+
   obradaKriptovalute2() {
     return this.http.get("http://localhost:8181/api/transakcija/kriptovaluta2").pipe(map((response : Response) => {
       const data = response.text();
@@ -35,5 +37,8 @@ export class PlacanjeService {
 
   uzmiPodatkeZaPayPal(id){
     return this.http.get("http://localhost:8181/api/payPal/uzmiPayPalPodatke/" + id);
+  }
+  getUrlBank(bankCode){
+    return this.http.get("http://localhost:8181/api/banka/getUrlBank/" + bankCode);
   }
 }

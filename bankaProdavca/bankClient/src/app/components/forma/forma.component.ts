@@ -12,18 +12,19 @@ import {KupacUnos} from '../../model';
 export class FormaComponent implements OnInit {
   formGroup: FormGroup;
   kupacUnos: KupacUnos;
+  nazivBanke: string;
   private token: string;
   private odgovorUplate: any;
 
   form = new FormGroup({
-    pan: new FormControl('', Validators.compose ([Validators.required, Validators.min(999)])),
     csc: new FormControl('', Validators.compose ([Validators.required, Validators.min(99)])),
-    brojKartice: new FormControl('', Validators.compose ([Validators.required, Validators.min(999999999999)])),
+    brojKartice: new FormControl('', Validators.compose ([Validators.required, Validators.min(9999999999999)])),
     datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
 
   });
   constructor(private router: Router, private proveraService: ProveraSericeService, private activatedRoute: ActivatedRoute) {
     this.kupacUnos = new KupacUnos;
+    //this.setNazivBanke();
   }
 
   ngOnInit() {
@@ -32,6 +33,12 @@ export class FormaComponent implements OnInit {
 
   ponisti() {
     window.location.href = 'http://localhost:4200/';
+  }
+  setNazivBanke() {
+    this.proveraService.setNazivBanke(this.token).subscribe((data: any) => {
+      this.nazivBanke = data;
+      console.log(this.nazivBanke);
+    });
   }
 
   getTodaysDate(): string {
@@ -85,7 +92,7 @@ export class FormaComponent implements OnInit {
           window.location.href = 'http://localhost:4200/rezultat/failure/' + this.odgovorUplate.token;
         }
         else{
-          
+
         }
         // setTimeout(() => {
         //   window.location.href = 'http://localhost:5000/paymentForm/' + this.token;

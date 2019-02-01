@@ -22,8 +22,6 @@ public class Kartica {
     @Column(nullable = false)
     private String brojKartice;
 
-    @Column(nullable = false)
-    private String pan;
 
     @Column(nullable = false)
     private String csc; // card security code
@@ -44,8 +42,7 @@ public class Kartica {
 
     public Kartica(){}
 
-    public Kartica(String PAN, String CSC, BankKlijent vlasnik, String vlasnikKartice, Date datumIsteka, double stanjeNaKartici, String brojKartice) {
-        this.pan = PAN;
+    public Kartica(String CSC, BankKlijent vlasnik, String vlasnikKartice, Date datumIsteka, double stanjeNaKartici, String brojKartice) {
         this.csc = CSC;
         this.vlasnik = vlasnik;
         this.vlasnikKartice = vlasnikKartice;
@@ -64,13 +61,6 @@ public class Kartica {
         this.id = id;
     }
 
-    public String getPan() {
-        return pan;
-    }
-
-    public void setPan(String pan) {
-        this.pan = pan;
-    }
 
     public String getCsc() {
         return csc;

@@ -36,7 +36,7 @@ public class KarticaController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<ResultData> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
+    public ResponseEntity<?> proveraAzuriranjeStanja(@RequestBody Kartica unetiPodaci, @PathVariable String id){
        //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta
         ResponsePayment responsePayment = new ResponsePayment();
         responsePayment.setToken(id);
@@ -56,7 +56,7 @@ public class KarticaController {
        if(karticaKupca == null){
            return new ResponseEntity<>(null,HttpStatus.OK);
        }
-        if(unetiPodaci.getPan().equals(karticaKupca.getPan()) && unetiPodaci.getCsc().equals(karticaKupca.getCsc())) {
+        if(unetiPodaci.getBrojKartice().equals(karticaKupca.getBrojKartice()) && unetiPodaci.getCsc().equals(karticaKupca.getCsc())) {
         //prvo proveris da li ima dovoljno raspolozivo
             if(karticaKupca.getStanjeNaKartici() >= bankData.getKolicina() ){
                 karticaKupca.setStanjeNaKartici(karticaKupca.getStanjeNaKartici() - bankData.getKolicina());
@@ -100,4 +100,7 @@ public class KarticaController {
         */
 
     }
+
+
+
 }
