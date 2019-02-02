@@ -12,8 +12,10 @@ export class BankaComponent implements OnInit {
   private id: string;
   private bankData: any;
   private redirectLinkA = 'http://localhost:5000/provera/';
+  private redirectLinkB = 'http://localhost:5001/provera/'
   private bankCode: string;
   private urlBank: string;
+  private token: string;
 
   constructor(private placanjeService: PlacanjeService, private activatedRoute:ActivatedRoute) { }
 
@@ -27,7 +29,10 @@ export class BankaComponent implements OnInit {
     this. placanjeService.pripremiPodatkeZaBanku(this.id)
     .subscribe( data => {
       this.bankData = data;
-      this.redirectLinkA =this.redirectLinkA.concat( this.bankData.token);
+      this.token = this.bankData.token;
+
+      this.redirectLinkA = this.redirectLinkA.concat( this.bankData.token);
+      this.redirectLinkB = this.redirectLinkB.concat(this.bankData.token);
 
       this.bankCode = this.bankData.bankRacunProdavac.substring(1,6);
       console.log("Salje banci : "  + this.bankCode);
@@ -38,10 +43,15 @@ export class BankaComponent implements OnInit {
           this.urlBank = data.urlBanke;
 
           this.placanjeService.posaljiBanciPodatke(this.bankData,this.urlBank).subscribe(data=>{
-            console.log("Salje banci A sledece::::");
+            console.log("Salje banci sledece::::");
             console.log(this.bankData);
-            //PROMENI LINK LINK B!!! DOLE
-            window.location.href = this.redirectLinkA;
+            
+            if(this.urlBank.includes('8182')) {
+              window.location.href = this.redirectLinkA;
+            }
+            else{
+              window.location.href = this.redirectLinkB;
+            }
 
           });
         });

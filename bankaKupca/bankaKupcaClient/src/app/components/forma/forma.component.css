@@ -1,0 +1,69 @@
+form {
+	width: 380px;
+	height: 450px;
+	margin: 4em auto;
+	padding: 3em 2em 2em 2em;
+	background: #fafafa;
+	border: 1px solid #ebebeb;
+	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+	/* overflow: scroll;
+	overflow-x: hidden; */
+
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+input[type=number], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-family: ubuntu;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    /* border: none; */
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    border-right: 2px;
+}
+
+#potvrdi {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  /* border: none; */
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  border-right: 2px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+#potvrdi:hover {
+  background-color: #45a049;
+}
+
+#PIN {
+  -webkit-text-security: disc;
+}

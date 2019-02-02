@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
-import {ProveraSericeService} from '../../services/provera-serice.service';
+import {ProveraServiceService} from '../../services/provera-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {KupacUnos} from '../../model';
+import {KupacUnos} from '../../model/KupacUnos';
 
 @Component({
   selector: 'app-forma',
@@ -10,6 +10,7 @@ import {KupacUnos} from '../../model';
   styleUrls: ['./forma.component.css']
 })
 export class FormaComponent implements OnInit {
+
   formGroup: FormGroup;
   kupacUnos: KupacUnos;
   nazivBanke: string;
@@ -18,28 +19,22 @@ export class FormaComponent implements OnInit {
 
   form = new FormGroup({
     csc: new FormControl('', Validators.compose ([Validators.required, Validators.min(99)])),
-    //brojKartice: new FormControl('', Validators.compose ([Validators.required, Validators.min(9999999999999)])),
     brojKartice: new FormControl('', Validators.compose ([Validators.required, Validators.min(999999999999)])),
     datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
 
   });
-  constructor(private router: Router, private proveraService: ProveraSericeService, private activatedRoute: ActivatedRoute) {
+
+  constructor(private router: Router, private proveraService: ProveraServiceService, private activatedRoute: ActivatedRoute) { 
     this.kupacUnos = new KupacUnos;
-    //this.setNazivBanke();
   }
 
   ngOnInit() {
     this.token = this.activatedRoute.snapshot.params['user'];
+    
   }
 
   ponisti() {
     window.location.href = 'http://localhost:4200/';
-  }
-  setNazivBanke() {
-    this.proveraService.setNazivBanke(this.token).subscribe((data: any) => {
-      this.nazivBanke = data;
-      console.log(this.nazivBanke);
-    });
   }
 
   getTodaysDate(): string {

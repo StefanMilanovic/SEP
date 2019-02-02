@@ -1,6 +1,6 @@
-package bankaProdavca.service;
+package bankaKupca.service;
 
-import bankaProdavca.model.BankKlijent;
+import bankaKupca.model.BankKlijent;
 
 public interface BankKlijentService {
     BankKlijent findByKlijentId(String bank_id);
