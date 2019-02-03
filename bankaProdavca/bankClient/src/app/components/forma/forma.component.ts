@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/form
 import {ProveraSericeService} from '../../services/provera-serice.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {KupacUnos} from '../../model';
+import { PccService } from 'src/app/services/pcc.service';
 
 @Component({
   selector: 'app-forma',
@@ -23,7 +24,8 @@ export class FormaComponent implements OnInit {
     datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
 
   });
-  constructor(private router: Router, private proveraService: ProveraSericeService, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private proveraService: ProveraSericeService, 
+    private activatedRoute: ActivatedRoute, private pccDataService: PccService) {
     this.kupacUnos = new KupacUnos;
     //this.setNazivBanke();
   }
@@ -91,6 +93,23 @@ export class FormaComponent implements OnInit {
         }
         else if(this.odgovorUplate.result =="failure"){
           window.location.href = 'http://localhost:4200/rezultat/failure/' + this.odgovorUplate.token;
+        }
+        else if(this.odgovorUplate.result == "different") {
+          this.pccDataService.posaljiKaPcc(this.odgovorUplate.bankData).subscribe( pccdata=> {
+              console.log(pccdata);
+           this.pccDataService.posaljiKaDrugojBanci(pccdata.bank.urlTransaction, pccdata.transactionData).subscribe(data =>{
+               console.log(data);
+               this.pccDataService.zavrsiPccTransakciju(data).subscribe( finalData => {
+                  console.log(data);
+                  if(data.result == 'success'){
+                    window.location.href = 'http://localhost:4200/rezultat/success/' + data.token;
+                  }
+                  else if(data.result == 'failure'){
+                    window.location.href = 'http://localhost:4200/rezultat/failure/' + data.token;
+                  }
+               });
+            });
+          });
         }
         else{
 

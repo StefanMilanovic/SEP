@@ -87,8 +87,11 @@ export class FormaComponent implements OnInit {
         else if(this.odgovorUplate.result =="failure"){
           window.location.href = 'http://localhost:4200/rezultat/failure/' + this.odgovorUplate.token;
         }
-        else{
+        else if(this.odgovorUplate.result == "different") {
 
+        }
+        else {
+          
         }
         // setTimeout(() => {
         //   window.location.href = 'http://localhost:5000/paymentForm/' + this.token;

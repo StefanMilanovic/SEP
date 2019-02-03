@@ -23,7 +23,6 @@ export class PlacanjeService {
   }
 
   posaljiBanciPodatke(data, urlBank){
-
     return this.http.post(urlBank + "/api/primiPodatke/primi", data)
   }
 

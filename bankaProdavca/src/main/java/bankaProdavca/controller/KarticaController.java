@@ -1,9 +1,6 @@
 package bankaProdavca.controller;
 import bankaProdavca.DTO.ResponsePayment;
-import bankaProdavca.model.BankData;
-import bankaProdavca.model.BankKlijent;
-import bankaProdavca.model.Kartica;
-import bankaProdavca.model.ResultData;
+import bankaProdavca.model.*;
 import bankaProdavca.service.BankDataService;
 import bankaProdavca.service.BankKlijentService;
 import bankaProdavca.service.KarticaService;
@@ -14,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.transform.Result;
+import java.security.SecureRandom;
+import java.util.Date;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -29,8 +29,6 @@ public class KarticaController {
     @Autowired
     KarticaService karticaService;
 
-
-
     @RequestMapping(
             value = "/proveraAzuriranjeStanja/{id}",
             method = RequestMethod.POST,
@@ -40,22 +38,46 @@ public class KarticaController {
        //MORA SE PROMENITI MODEL FAli preuzimanje klijenta i provera podataka unetihh sa fronta
         ResponsePayment responsePayment = new ResponsePayment();
         responsePayment.setToken(id);
+
         System.out.println("\nKartica kontroler...  " + id);
+
         BankData bankData = bankDataService.findByToken(id); // id = token
-        System.out.println("\n kolicina za skidanje :  " + bankData.getKolicina());
+        bankData.setBrojKartice(unetiPodaci.getBrojKartice());
+        bankData.setCsc(unetiPodaci.getCsc());
+        bankDataService.save(bankData);
 
         Kartica karticaKupca = karticaService.findByBrojKartice(unetiPodaci.getBrojKartice());
         Kartica karticaProdavac = karticaService.findByBrojKartice(bankData.getBankRacunProdavac());
 
-//        System.out.println("\n Vlasnik kartice kupca  :  " + karticaKupca.getVlasnikKartice());
-        //provera pan
+        if(!unetiPodaci.getBrojKartice().substring(1,5).equals("11111")){
+           String full = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+           SecureRandom rnd = new SecureRandom();
 
+           StringBuilder sb = new StringBuilder(10);
+           for(int i = 0; i<10; i++){
+               sb.append(full.charAt(rnd.nextInt(full.length())));
+           }
+           String aqquirerOrderId = sb.toString();
+           Date aqqurerTimestamp = new Date();
+//           PccData pccData = new PccData("11111", karticaKupca.getBrojKartice().substring(1,5),
+//                   aqquirerOrderId, aqqurerTimestamp, unetiPodaci.getBrojKartice(), unetiPodaci.getCsc(), null, null);
+//           ResultData result = new ResultData(id, "different", pccData);
+//
+           bankData.setAqquirerOrderId(aqquirerOrderId);
+           bankData.setAqquirerTimestamp(aqqurerTimestamp);
+           bankData.setBankCodeAqquirer("11111");
+           bankData.setBankCodeIssuer(unetiPodaci.getBrojKartice().substring(1,6));
+           bankDataService.save(bankData);
 
-        //da li se pin i csc poklapaju
-        //System.out.println("\n Pan uneti:" + unetiPodaci.getPan() + "\n Pan kartica:" + karticaKupca.getPan() +"\n csc uneti:" + unetiPodaci.getCsc() +"\n csc kartica:" + karticaKupca.getCsc());
-       if(karticaKupca == null){
-           return new ResponseEntity<>(null,HttpStatus.OK);
+           ResultData result = new ResultData(id, "different", bankData);
+
+           return new ResponseEntity<>(result, HttpStatus.OK);
        }
+
+        if(karticaKupca == null){
+            return new ResponseEntity<>(null,HttpStatus.OK);
+        }
+
         if(unetiPodaci.getBrojKartice().equals(karticaKupca.getBrojKartice()) && unetiPodaci.getCsc().equals(karticaKupca.getCsc())) {
         //prvo proveris da li ima dovoljno raspolozivo
             if(karticaKupca.getStanjeNaKartici() >= bankData.getKolicina() ){
@@ -67,20 +89,20 @@ public class KarticaController {
                 responsePayment.setUrl(bankData.getSuccess_url());
                 System.out.println("Uspesno placanje !");
 
-                ResultData result = new ResultData(id,"success");
 
                 bankData.setResult("success");
                 bankDataService.save(bankData);
 
+                ResultData result = new ResultData(id,"success", bankData);
+
                 return new ResponseEntity<>(result, HttpStatus.OK);
             }else{
                 System.out.println(" Upozorenje! Nema dovoljno na racunu !");
-                //return bad request ?
-                ResultData result = new ResultData(id,"failure");
 
                 bankData.setResult("failure");
                 bankDataService.save(bankData);
 
+                ResultData result = new ResultData(id,"failure", bankData);
                 return new ResponseEntity<>(result,HttpStatus.OK);
             }
         }else{

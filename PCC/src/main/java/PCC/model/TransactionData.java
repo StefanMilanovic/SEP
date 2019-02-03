@@ -10,34 +10,85 @@ public class TransactionData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String aqquirerOrderId;
-
-    @Column(nullable = false)
-    private Date aqquirerTimestamp;
-
-    @Column(nullable = false)
-    private String brojKartice;
-
-    @Column(nullable = false)
-    private String csc; // card security code
+    @Column()
+    private String prodavacBankId;
 
     @Column()
-    private double stanjeNaKartici;
+    private String prodavacBankLozinka;
 
-    @Column(nullable = false)
-    private Date datumIsteka;
+    @Column()
+    private String bankRacunProdavac;
+
+    @Column()
+    private String bankCodeAqquirer;
+
+    @Column()
+    private String bankCodeIssuer;
+
+    @Column()
+    private String aqquirerOrderId;
+
+    @Column()
+    private Date aqquirerTimestamp;
+
+    @Column()
+    private String issuerOrderId;
+
+    @Column()
+    private Date issuerTimestamp;
+
+    @Column()
+    private String brojKartice;
+
+    @Column()
+    private String csc;
+
+    @Column()
+    private String successUrl;
+
+    @Column()
+    private String failedUrl;
+
+    @Column()
+    private String errorUrl;
+
+    @Column()
+    private double kolicina;
+
+    @Column()
+    private Date prodavac_vreme_transakcije;
+
+    @Column()
+    private String token;
+
+    @Column()
+    private String result;
 
     public TransactionData(){}
 
-    public TransactionData(Long id, String aqquirerOrderId, Date aqquirerTimestamp, String brojKartice, String csc, double stanjeNaKartici, Date datumIsteka) {
-        this.id = id;
+    public TransactionData (String prodavacBankId, String prodavacBankLozinka, String bankRacunProdavac,
+                    String bankCodeAqquirer, String bankCodeIssuer, String aqquirerOrderId, Date aqquirerTimestamp,
+                    String issuerOrderId, Date issuerTimestamp, String brojKartice, String csc,
+                    String successUrl, String failedUrl, String errorUrl, double kolicina,
+                    Date prodavac_vreme_transakcije, String token, String result) {
+        this.prodavacBankId = prodavacBankId;
+        this.prodavacBankLozinka = prodavacBankLozinka;
+        this.bankRacunProdavac = bankRacunProdavac;
+        this.bankCodeAqquirer = bankCodeAqquirer;
+        this.bankCodeIssuer = bankCodeIssuer;
         this.aqquirerOrderId = aqquirerOrderId;
         this.aqquirerTimestamp = aqquirerTimestamp;
+        this.issuerOrderId = issuerOrderId;
+        this.issuerTimestamp = issuerTimestamp;
         this.brojKartice = brojKartice;
         this.csc = csc;
-        this.stanjeNaKartici = stanjeNaKartici;
-        this.datumIsteka = datumIsteka;
+        this.successUrl = successUrl;
+        this.failedUrl = failedUrl;
+        this.errorUrl = errorUrl;
+        this.kolicina = kolicina;
+        this.prodavac_vreme_transakcije = prodavac_vreme_transakcije;
+        this.token = token;
+        this.result = result;
     }
 
     public Long getId() {
@@ -46,6 +97,46 @@ public class TransactionData {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getProdavacBankId() {
+        return prodavacBankId;
+    }
+
+    public void setProdavacBankId(String prodavacBankId) {
+        this.prodavacBankId = prodavacBankId;
+    }
+
+    public String getProdavacBankLozinka() {
+        return prodavacBankLozinka;
+    }
+
+    public void setProdavacBankLozinka(String prodavacBankLozinka) {
+        this.prodavacBankLozinka = prodavacBankLozinka;
+    }
+
+    public String getBankRacunProdavac() {
+        return bankRacunProdavac;
+    }
+
+    public void setBankRacunProdavac(String bankRacunProdavac) {
+        this.bankRacunProdavac = bankRacunProdavac;
+    }
+
+    public String getBankCodeAqquirer() {
+        return bankCodeAqquirer;
+    }
+
+    public void setBankCodeAqquirer(String bankCodeAqquirer) {
+        this.bankCodeAqquirer = bankCodeAqquirer;
+    }
+
+    public String getBankCodeIssuer() {
+        return bankCodeIssuer;
+    }
+
+    public void setBankCodeIssuer(String bankCodeIssuer) {
+        this.bankCodeIssuer = bankCodeIssuer;
     }
 
     public String getAqquirerOrderId() {
@@ -64,6 +155,22 @@ public class TransactionData {
         this.aqquirerTimestamp = aqquirerTimestamp;
     }
 
+    public String getIssuerOrderId() {
+        return issuerOrderId;
+    }
+
+    public void setIssuerOrderId(String issuerOrderId) {
+        this.issuerOrderId = issuerOrderId;
+    }
+
+    public Date getIssuerTimestamp() {
+        return issuerTimestamp;
+    }
+
+    public void setIssuerTimestamp(Date issuerTimestamp) {
+        this.issuerTimestamp = issuerTimestamp;
+    }
+
     public String getBrojKartice() {
         return brojKartice;
     }
@@ -80,19 +187,59 @@ public class TransactionData {
         this.csc = csc;
     }
 
-    public double getStanjeNaKartici() {
-        return stanjeNaKartici;
+    public String getSuccessUrl() {
+        return successUrl;
     }
 
-    public void setStanjeNaKartici(double stanjeNaKartici) {
-        this.stanjeNaKartici = stanjeNaKartici;
+    public void setSuccessUrl(String successUrl) {
+        this.successUrl = successUrl;
     }
 
-    public Date getDatumIsteka() {
-        return datumIsteka;
+    public String getFailedUrl() {
+        return failedUrl;
     }
 
-    public void setDatumIsteka(Date datumIsteka) {
-        this.datumIsteka = datumIsteka;
+    public void setFailedUrl(String failedUrl) {
+        this.failedUrl = failedUrl;
+    }
+
+    public String getErrorUrl() {
+        return errorUrl;
+    }
+
+    public void setErrorUrl(String errorUrl) {
+        this.errorUrl = errorUrl;
+    }
+
+    public double getKolicina() {
+        return kolicina;
+    }
+
+    public void setKolicina(double kolicina) {
+        this.kolicina = kolicina;
+    }
+
+    public Date getProdavac_vreme_transakcije() {
+        return prodavac_vreme_transakcije;
+    }
+
+    public void setProdavac_vreme_transakcije(Date prodavac_vreme_transakcije) {
+        this.prodavac_vreme_transakcije = prodavac_vreme_transakcije;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }

@@ -14,12 +14,20 @@ public class Bank {
     @Column(nullable = false, length = 5)
     private String kodBanke;
 
+    @Column(nullable = false)
+    private String urlTransaction;
+
+    @Column(nullable = false)
+    private String urlResult;
+
     public Bank() {
     }
 
-    public Bank(String nazivBanke, String kodBanke) {
+    public Bank(String nazivBanke, String kodBanke, String urlTransaction, String urlResult) {
         this.nazivBanke = nazivBanke;
         this.kodBanke = kodBanke;
+        this.urlTransaction = urlTransaction;
+        this.urlResult = urlResult;
     }
 
     public Long getId() {
@@ -46,4 +54,19 @@ public class Bank {
         this.kodBanke = kodBanke;
     }
 
+    public String getUrlTransaction() {
+        return urlTransaction;
+    }
+
+    public void setUrlTransaction(String urlTransaction) {
+        this.urlTransaction = urlTransaction;
+    }
+
+    public String getUrlResult() {
+        return urlResult;
+    }
+
+    public void setUrlResult(String urlResult) {
+        this.urlResult = urlResult;
+    }
 }
