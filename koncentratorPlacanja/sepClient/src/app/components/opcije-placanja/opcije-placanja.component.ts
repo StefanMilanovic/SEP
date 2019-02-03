@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./opcije-placanja.component.css']
 })
 export class OpcijePlacanjaComponent implements OnInit {
-  
   private id:string
   constructor(private router: Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    // this.id = this.activatedRoute.snapshot.params['id'];  
-    // console.log("Id transakcije je ::::: " + this.id)  
+    this.id = this.activatedRoute.snapshot.params['id'];
+    console.log('Saljem transakciju sa id : ' + this.id);
+
   }
 }

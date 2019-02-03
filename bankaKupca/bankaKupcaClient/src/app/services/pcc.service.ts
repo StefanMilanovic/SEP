@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,10 +18,11 @@ export class PccService {
   }
 
   zavrsiPccTransakciju(bankData) {
-    return this.http.post('http://localhost:8182/api/bankPccController/zavrsiPccTransakciju', bankData);
+    return this.http.post('http://localhost:8184/api/bankPccController/zavrsiPccTransakciju', bankData);
   }
 
   snimanjeTransakcijePCC(bankData) {
     return this.http.post('http://localhost:8183/api/usmeravanje/snimanjeTransakcijePCC', bankData);
   }
+
 }

@@ -24,7 +24,7 @@ export class FormaComponent implements OnInit {
     datumIsteka: new FormControl(this.getTodaysDate(), Validators.compose ([Validators.maxLength(10), this.dateValidationStart]) ),
 
   });
-  constructor(private router: Router, private proveraService: ProveraSericeService, 
+  constructor(private router: Router, private proveraService: ProveraSericeService,
     private activatedRoute: ActivatedRoute, private pccDataService: PccService) {
     this.kupacUnos = new KupacUnos;
     //this.setNazivBanke();
@@ -88,31 +88,30 @@ export class FormaComponent implements OnInit {
       this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.token).subscribe((data: any) => {
         this.odgovorUplate = data;
         console.log(this.odgovorUplate);
-        if(this.odgovorUplate.result == "success"){
+        if (this.odgovorUplate.result === 'success') {
           window.location.href = 'http://localhost:4200/rezultat/success/' + this.odgovorUplate.token;
-        }
-        else if(this.odgovorUplate.result =="failure"){
+        } else if (this.odgovorUplate.result === 'failure') {
           window.location.href = 'http://localhost:4200/rezultat/failure/' + this.odgovorUplate.token;
-        }
-        else if(this.odgovorUplate.result == "different") {
-          this.pccDataService.posaljiKaPcc(this.odgovorUplate.bankData).subscribe( pccdata=> {
+        } else if (this.odgovorUplate.result === 'different') {
+          this.pccDataService.posaljiKaPcc(this.odgovorUplate.bankData).subscribe( (pccdata: any) => {
               console.log(pccdata);
-           this.pccDataService.posaljiKaDrugojBanci(pccdata.bank.urlTransaction, pccdata.transactionData).subscribe(data =>{
+           this.pccDataService.posaljiKaDrugojBanci(pccdata.bank.urlTransaction, pccdata.transactionData).subscribe((data: any) =>{
                console.log(data);
                this.pccDataService.zavrsiPccTransakciju(data).subscribe( finalData => {
                   console.log(data);
-                  if(data.result == 'success'){
-                    window.location.href = 'http://localhost:4200/rezultat/success/' + data.token;
-                  }
-                  else if(data.result == 'failure'){
-                    window.location.href = 'http://localhost:4200/rezultat/failure/' + data.token;
-                  }
+
+                 this.pccDataService.snimanjeTransakcijePCC(data.bankData).subscribe( (finalDataPccResponse: any) => {
+                   console.log('snimanjeTransakcijePCC , bankData' + finalDataPccResponse);
+                   if (finalDataPccResponse.result === 'success') {
+                     window.location.href = 'http://localhost:4200/rezultat/success/' + finalDataPccResponse.token;
+                   } else if (finalDataPccResponse.result === 'failure') {
+                     window.location.href = 'http://localhost:4200/rezultat/failure/' + finalDataPccResponse.token;
+                   }
+                 });
                });
             });
           });
-        }
-        else{
-
+        } else {
         }
         // setTimeout(() => {
         //   window.location.href = 'http://localhost:5000/paymentForm/' + this.token;

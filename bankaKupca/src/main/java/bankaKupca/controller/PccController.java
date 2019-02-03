@@ -79,4 +79,16 @@ public class PccController {
         return null;
     }
 
+    @RequestMapping(
+            value = "/zavrsiPccTransakciju",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<ResultData> zavrsiPccTransakciju(@RequestBody BankData data){
+        BankData bankData = bankDataService.findByToken(data.getToken());
+        bankDataService.save(bankData);
+
+        ResultData resultData = new ResultData(bankData.getToken(), bankData.getResult(), bankData);
+        return new ResponseEntity<ResultData>(resultData, HttpStatus.OK);
+    }
 }

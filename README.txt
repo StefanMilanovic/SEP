@@ -8,4 +8,8 @@ BankaProdavacServer port 8182
 
 BankaProdavacClient port 5000
 
-BankaKupca port 8184
+PCCServer port 8183
+
+BankaKupcaServer port 8184
+
+BankaKupcaClient port 5001

@@ -11,9 +11,9 @@ export class PlacanjeService {
   constructor(private http: HttpClient) { }
 
 
-  obradaKriptovalute(podaciKriptovaluta){
+  obradaKriptovalute(id){
     console.log('Obrada Kriptovalute');
-    return this.http.post("http://localhost:8181/api/transakcija/kriptovaluta", podaciKriptovaluta);
+    return this.http.get("http://localhost:8181/api/transakcija/kriptovaluta/" + id);
 
   }
 
@@ -26,13 +26,6 @@ export class PlacanjeService {
     return this.http.post(urlBank + "/api/primiPodatke/primi", data)
   }
 
-
-  obradaKriptovalute2() {
-    return this.http.get("http://localhost:8181/api/transakcija/kriptovaluta2").pipe(map((response : Response) => {
-      const data = response.text();
-      return data;
-    }));
-  }
 
   uzmiPodatkeZaPayPal(id){
     return this.http.get("http://localhost:8181/api/payPal/uzmiPayPalPodatke/" + id);

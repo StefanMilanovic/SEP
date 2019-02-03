@@ -3,10 +3,7 @@ package koncentratorPlacanja.controller;
 
 import koncentratorPlacanja.DTO.BitcoinDTO;
 import koncentratorPlacanja.DTO.BitcoinResponseDTO;
-import koncentratorPlacanja.model.BankData;
-import koncentratorPlacanja.model.NaucnaCentralaData;
-import koncentratorPlacanja.model.Transakcija;
-import koncentratorPlacanja.model.ZavrsenaTransakcija;
+import koncentratorPlacanja.model.*;
 import koncentratorPlacanja.service.KlijentService;
 import koncentratorPlacanja.service.TransakcijaService;
 import koncentratorPlacanja.service.ZavrsenaTransakcijaService;
@@ -40,28 +37,30 @@ public class TransakcijaController {
 
     @CrossOrigin
     @RequestMapping(
-            value = "/kriptovaluta",
-            method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE
-
+            value = "/kriptovaluta/{id}",
+            method = RequestMethod.GET
     )
-    public ResponseEntity<?> kriptovaluta(@RequestBody BitcoinDTO bitcoinDTO) {
+    public ResponseEntity<?> kriptovaluta(@PathVariable String id) {
         System.out.println("\nBitcoin...");
 
+        Transakcija t = this.transakcijaService.findOne(Long.parseLong(id));
+        Klijent k = t.getKlijent_id();
+        System.out.println("Klijent : " + k.getImeKompanije());
         Map<String, Object> map = new HashMap<String,Object>();
         map.put("order_id", UUID.randomUUID().toString());
-        map.put("price_amount",bitcoinDTO.getKolicina() + "");
+        map.put("price_amount",t.getKolicina() + "");
         map.put("price_currency","USD");
         map.put("receive_currency","USD");
-        map.put("title",bitcoinDTO.getNaziv() + "");
+        map.put("title",k.getImeKompanije() + "");
         map.put("description","desc");
         map.put("callback_url","https://api-sandbox.coingate.com/account/orders");// https://api-sandbox.coingate.com/account/orders
-        map.put("success_url", "http://localhost:4200/kriptovaluta/success");
+        map.put("success_url", "http://localhost:4200/rezultat/success/"+ t.getToken());
+        map.put("cancel_url","http://localhost:4200/rezultat/failure/"+ t.getToken());
 
         RestTemplate client = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
-        headers.add("Authorization", "Token ESQ92WMKo9NWCWzYJWdGxu1sQTSwdexkUbz9KJSG");
+        headers.add("Authorization", "Token " + k.getBitcoinSecret() + "");
 
         HttpEntity<Map<String, Object>> httpe = new HttpEntity<Map<String,Object>>(map, headers);
 
@@ -78,46 +77,6 @@ public class TransakcijaController {
         BankData b = new BankData();//response.getPayment_url()
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-
-
-    @CrossOrigin
-    @RequestMapping(
-            value = "/kriptovaluta2",
-            method = RequestMethod.GET
-    )
-    public ResponseEntity<?> bitcoin2() {
-        String url = "https://api-sandbox.coingate.com/v2/orders";
-        BitcoinDTO b  = new BitcoinDTO("13","AAAA");
-        try {
-            System.out.println("Usao");
-            RestTemplate restClient = new RestTemplate();
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Content-Type", "application/x-www-form-urlencoded");
-            headers.set("Authorization", "Token ESQ92WMKo9NWCWzYJWdGxu1sQTSwdexkUbz9KJSG");
-
-            MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
-            map.add("order_id", b.getNaziv() + "");
-            map.add("price_amount", b.getKolicina() + "");
-            map.add("price_currency", "USD");
-            map.add("receive_currency", "USD");
-            map.add("title", "ESQ92WMKo9NWCWzYJWdGxu1sQTSwdexkUbz9KJSG");
-
-            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
-            ResponseEntity<String> response = restClient.postForEntity(url, request, String.class);
-
-            JsonParser basicJsonParser = new BasicJsonParser();
-            String paymentUrl = (String)basicJsonParser.parseMap(response.getBody()).get("payment_url");
-            System.out.println("Izasao -> "+ paymentUrl);
-            return new ResponseEntity<String>(paymentUrl, HttpStatus.OK);
-
-        }catch (Exception ex) {
-
-            ex.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
 
     @RequestMapping(
            value = "/kreirajTransakciju",

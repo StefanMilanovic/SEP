@@ -50,7 +50,7 @@ public class KarticaController {
         Kartica karticaKupca = karticaService.findByBrojKartice(unetiPodaci.getBrojKartice());
         Kartica karticaProdavac = karticaService.findByBrojKartice(bankData.getBankRacunProdavac());
 
-        if(!unetiPodaci.getBrojKartice().substring(1,5).equals("22222")){
+        if(!unetiPodaci.getBrojKartice().substring(1,6).equals("22222")){
             String full = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
             SecureRandom rnd = new SecureRandom();
 
@@ -67,7 +67,7 @@ public class KarticaController {
             bankData.setAqquirerOrderId(aqquirerOrderId);
             bankData.setAqquirerTimestamp(aqqurerTimestamp);
             bankData.setBankCodeAqquirer("22222");
-            bankData.setBankCodeIssuer(unetiPodaci.getBrojKartice().substring(1,5));
+            bankData.setBankCodeIssuer(unetiPodaci.getBrojKartice().substring(1,6));
             bankDataService.save(bankData);
 
             ResultData result = new ResultData(id, "different", bankData);
