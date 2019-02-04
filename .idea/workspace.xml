@@ -2,11 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47f538f1-ca0c-4715-85aa-70d561eb7fa7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/koncentratorPlacanja/sepClient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/koncentratorPlacanja/sepClient/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PCC/PCC.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PCC/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/PCC/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaKupca/BankaKupca.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaKupca/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bankaKupca/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaKupca/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bankaKupca/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaKupca/target/classes/bankaKupca/controller/PccController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bankaKupca/target/classes/bankaKupca/controller/PccController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaProdavca/BankaProdavca.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaProdavca/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bankaProdavca/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaProdavca/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bankaProdavca/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bankaProdavca/target/classes/bankaProdavca/controller/PccController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bankaProdavca/target/classes/bankaProdavca/controller/PccController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/koncentratorPlacanja/target/" />
+    <ignored path="$PROJECT_DIR$/bankaProdavca/target/" />
+    <ignored path="$PROJECT_DIR$/bankaKupca/target/" />
+    <ignored path="$PROJECT_DIR$/PCC/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,54 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/model/Klijent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
-              <folding>
-                <element signature="e#2185#2186#0" expanded="true" />
-                <element signature="e#2233#2234#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/import.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="386" selection-start-column="386" selection-end-column="386" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/KlijentController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="115" column="78" selection-start-line="115" selection-start-column="78" selection-end-line="115" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/TestController.java">
+        <entry file="file://$PROJECT_DIR$/bankaKupca/src/main/java/bankaKupca/BankaKupcaApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/BankaController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="27" />
+            <state relative-caret-position="102">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -75,7 +48,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/BankaController.java" />
         <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/repository/KlijentRepository.java" />
         <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/service/KlijentService.java" />
@@ -83,6 +55,10 @@
         <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/import.sql" />
         <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/model/Klijent.java" />
         <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/KlijentController.java" />
+        <option value="$PROJECT_DIR$/bankaKupca/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/bankaProdavca/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/PCC/src/main/resources/application.properties" />
       </list>
     </option>
   </component>
@@ -101,6 +77,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -111,6 +88,41 @@
             <path>
               <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
               <item name="SEP" type="462c0819:PsiDirectoryNode" />
+              <item name="bankaProdavca" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SEP" type="462c0819:PsiDirectoryNode" />
+              <item name="bankaProdavca" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SEP" type="462c0819:PsiDirectoryNode" />
+              <item name="bankaProdavca" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SEP" type="462c0819:PsiDirectoryNode" />
+              <item name="bankaProdavca" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SEP" type="462c0819:PsiDirectoryNode" />
+              <item name="bankaProdavca" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="bankaProdavca" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SEP" type="462c0819:PsiDirectoryNode" />
               <item name="koncentratorPlacanja" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -146,30 +158,16 @@
             <path>
               <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
               <item name="SEP" type="462c0819:PsiDirectoryNode" />
-              <item name="koncentratorPlacanja" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="koncentratorPlacanja" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SEP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SEP" type="462c0819:PsiDirectoryNode" />
-              <item name="koncentratorPlacanja" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="PCC" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547583492958" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549302715791" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
@@ -185,7 +183,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.bankaProdavcaApplication">
+    <configuration name="BankaKupcaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bankaKupca.BankaKupcaApplication" />
+      <module name="BankaKupca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bankaKupca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="KoncentratorPlacanjaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="koncentratorPlacanja.KoncentratorPlacanjaApplication" />
       <module name="KoncentratorPlacanja" />
@@ -199,9 +210,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="bankaProdavcaApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bankaProdavca.bankaProdavcaApplication" />
+      <module name="BankaProdavca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="bankaProdavca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.bankaProdavcaApplication" />
         <item itemvalue="Application.KoncentratorPlacanjaApplication" />
+        <item itemvalue="Application.BankaKupcaApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -220,8 +246,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21860817" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22163388" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -230,7 +257,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.36006546" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39770868" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.29787233" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -267,13 +294,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/KoncentratorPlacanjaApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -314,7 +334,7 @@
     <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/model/Klijent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1190">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
           <folding>
             <element signature="e#2185#2186#0" expanded="true" />
             <element signature="e#2233#2234#0" expanded="true" />
@@ -329,27 +349,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/BankaController.java">
+    <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="27" />
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/KlijentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
-          <caret line="115" column="78" selection-start-line="115" selection-start-column="78" selection-end-line="115" selection-end-column="78" />
+          <caret line="115" column="77" selection-start-line="115" selection-start-column="77" selection-end-line="115" selection-end-column="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/TestController.java">
+    <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/java/koncentratorPlacanja/controller/BankaController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bankaKupca/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bankaProdavca/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="31" lean-forward="true" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/koncentratorPlacanja/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="41" lean-forward="true" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PCC/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bankaKupca/src/main/java/bankaKupca/BankaKupcaApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>

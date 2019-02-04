@@ -6,11 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="BankaKupca" />
+        <module name="BankaProdavca" />
         <module name="KoncentratorPlacanja" />
+        <module name="PCC" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="BankaKupca" target="1.8" />
+      <module name="BankaProdavca" target="1.8" />
       <module name="KoncentratorPlacanja" target="1.8" />
+      <module name="PCC" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
