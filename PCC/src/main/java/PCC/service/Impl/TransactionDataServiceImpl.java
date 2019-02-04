@@ -13,7 +13,13 @@ public class TransactionDataServiceImpl implements TransactionDataService {
     private TransacrionDataRepository transacrionDataRepository;
 
     @Override
-    public TransactionData saveOne(TransactionData data) {
+    public TransactionData save(TransactionData data) {
         return this.transacrionDataRepository.save(data);
     }
+
+    @Override
+    public TransactionData findByToken(String token){
+        return transacrionDataRepository.findByToken(token);
+    }
+
 }

@@ -10,7 +10,6 @@ import { PlacanjeService } from 'src/app/service/placanje.service';
   styleUrls: ['./opcije-placanja.component.css']
 })
 export class OpcijePlacanjaComponent implements OnInit {
-  
   private id:string
   private payPalEnabled: boolean;
   private bitcoinEnabled: boolean;

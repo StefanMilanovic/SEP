@@ -6,6 +6,8 @@
     </div>
     <div  class="opcija" *ngIf="bitcoinEnabled">
       <a routerLink="/kriptovaluta"><img src="../../../assets/images/bitcoin.png" width="150" height="150"></a>
+    <div class="opcija">
+      <a routerLink="/kriptovaluta/{{id}}"><img src="../../../assets/images/bitcoin.png" width="150" height="150"></a>
     </div>
     <div class="opcija" *ngIf="bankEnabled" >
         <app-banka></app-banka>

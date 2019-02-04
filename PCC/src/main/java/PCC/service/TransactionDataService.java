@@ -4,5 +4,7 @@ import PCC.model.TransactionData;
 
 public interface TransactionDataService {
 
-    TransactionData saveOne (TransactionData data);
+    TransactionData save (TransactionData data);
+
+    TransactionData findByToken(String token);
 }
