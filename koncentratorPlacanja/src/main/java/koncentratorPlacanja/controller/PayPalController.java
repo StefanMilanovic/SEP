@@ -25,7 +25,7 @@ public class PayPalController {
 
         Transakcija t = this.transakcijaService.findOne(Long.parseLong(id));
         PayPalData data = new PayPalData(t.getKlijent_id().getSuccessUrl(), t.getKlijent_id().getFailedUrl(), t.getKlijent_id().getErrorUrl(),
-                t.getKolicina(), t.getKlijent_id().getPaypalSecret());
+                t.getKolicina(), t.getKlijent_id().getPaypalSecret(), t.getToken());
 
         return new ResponseEntity<PayPalData>(data, HttpStatus.OK);
     }

@@ -6,13 +6,23 @@ public class PayPalData {
     private String errorUrl;
     private double kolicina;
     private String secret;
+    private String token;
 
-    public PayPalData(String successUrl, String failedUrl, String errorUrl, double kolicina, String secret) {
+    public PayPalData(String successUrl, String failedUrl, String errorUrl, double kolicina, String secret, String token) {
         this.successUrl = successUrl;
         this.failedUrl = failedUrl;
         this.errorUrl = errorUrl;
         this.kolicina = kolicina;
         this.secret = secret;
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getSuccessUrl() {

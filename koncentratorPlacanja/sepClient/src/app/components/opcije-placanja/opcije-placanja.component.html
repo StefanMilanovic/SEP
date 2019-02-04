@@ -3,10 +3,36 @@
 <div class ="opcijePlacanja">
     <div  class="opcija" *ngIf="payPalEnabled">
         <app-paypal></app-paypal>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+            <!-- Identify your business so that you can collect the payments. -->
+            <input type="hidden" name="business" value="alice@mystore.com">
+        
+            <!-- Specify a Subscribe button. -->
+            <input type="hidden" name="cmd" value="_xclick-subscriptions">
+        
+            <!-- Identify the subscription. -->
+            <input type="hidden" name="item_name" value="Alice's Monthly Digest">
+            <input type="hidden" name="item_number" value="DIG Weekly">
+        
+            <!-- Set the terms of the recurring payments. -->
+            <input type="hidden" name="a3" value="69.95">
+            <input type="hidden" name="p3" value="1">
+            <input type="hidden" name="t3" value="M">
+        
+            <!-- Set recurring payments to stop after 6 billing cycles. -->
+            <input type="hidden" name="src" value="1">
+            <input type="hidden" name="srt" value="6">
+        
+            <!-- Display the payment button. -->
+            <input type="image" name="submit"
+            src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribe_LG.gif"
+            alt="Subscribe">
+            <img alt="" width="1" height="1"
+            src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+        </form>
     </div>
-    <div  class="opcija" *ngIf="bitcoinEnabled">
-      <a routerLink="/kriptovaluta"><img src="../../../assets/images/bitcoin.png" width="150" height="150"></a>
-    <div class="opcija">
+    <div class="opcija" *ngIf="bitcoinEnabled">
       <a routerLink="/kriptovaluta/{{id}}"><img src="../../../assets/images/bitcoin.png" width="150" height="150"></a>
     </div>
     <div class="opcija" *ngIf="bankEnabled" >

@@ -12,13 +12,15 @@ export class PaypalComponent implements OnInit {
 
   public payPalConfig?: PayPalConfig;
   //private secret: string;
-  private secret ='Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9';
+  private secret = "Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9";
+  private token: string;
+  
   private subtotal= 3.00;
-  private tax= 0.05;
+  private tax= 0.00;
   private shipping= 0.00;
   private handling_fee= 0.00;
   private shipping_discount= 0.00;
-  private insurance= 0.10;
+  private insurance= 0.00;
   private total = this.subtotal + this.tax + this.shipping + this.handling_fee + this.shipping_discount + this.insurance;
   private success_url = "";
   private failure_url = "";
@@ -37,13 +39,15 @@ export class PaypalComponent implements OnInit {
       console.log(data);
       this.secret = data.secret;
       this.subtotal = data.kolicina;
+      this.token = data.token;
+      this.total = this.subtotal + this.tax + this.shipping + this.handling_fee + this.shipping_discount + this.insurance;
+      //console.log(this.subtotal);
       // this.success_url = data.successUrl;
       // this.failure_url = data.failedUrl;
       // this.error_url = data.errorUrl;
+      this.initConfig();
       
     });
-    this.initConfig();
-    
   }
   private initConfig(): void {
     this.payPalConfig = new PayPalConfig(
@@ -65,7 +69,7 @@ export class PaypalComponent implements OnInit {
         },
         onPaymentComplete: (data, actions) => {
           console.log('OnPaymentComplete');
-          this.router.navigate([this.success_url]);
+          this.router.navigate(['/rezultat/success/' + this.token]);
         },
         onCancel: (data, actions) => {
           console.log('OnCancel');
@@ -99,37 +103,6 @@ export class PaypalComponent implements OnInit {
               }
             },
             custom: 'Custom value',
-            // item_list: {
-            //   items: [
-            //     {
-            //       name: 'hat',
-            //       description: 'Brown hat.',
-            //       quantity: 5,
-            //       price: 3,
-            //       tax: 0.01,
-            //       sku: '1',
-            //       currency: 'USD'
-            //     },
-            //     {
-            //       name: 'handbag',
-            //       description: 'Black handbag.',
-            //       quantity: 1,
-            //       price: 15,
-            //       tax: 0.02,
-            //       sku: 'product34',
-            //       currency: 'USD'
-            //     }],
-            //   shipping_address: {
-            //     recipient_name: 'Brian Robinson',
-            //     line1: '4th Floor',
-            //     line2: 'Unit #34',
-            //     city: 'San Jose',
-            //     country_code: 'US',
-            //     postal_code: '95131',
-            //     phone: '011862212345678',
-            //     state: 'CA'
-            //   },
-            // },
           }
         ],
         note_to_payer: 'Contact us if you have troubles processing payment'

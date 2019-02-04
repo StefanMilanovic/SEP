@@ -34,6 +34,10 @@ public class PccController {
         BankData bankData = bankDataService.findByToken(data.getToken());
         bankDataService.save(bankData);
 
+        Kartica k = karticaService.findByBrojKartice(bankData.getBankRacunProdavac());
+        k.setStanjeNaKartici(k.getStanjeNaKartici() + bankData.getKolicina());
+        karticaService.save(k);
+
         ResultData resultData = new ResultData(bankData.getToken(), bankData.getResult(), bankData);
         return new ResponseEntity<ResultData>(resultData, HttpStatus.OK);
     }
