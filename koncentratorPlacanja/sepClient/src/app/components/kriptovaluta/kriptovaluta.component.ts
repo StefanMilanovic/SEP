@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlacanjeService} from '../../service/placanje.service';
 import {PodaciKriptovaluta} from '../../model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-kriptovaluta',
@@ -10,7 +11,8 @@ import {PodaciKriptovaluta} from '../../model';
 export class KriptovalutaComponent implements OnInit {
   podaciKriptovaluta: PodaciKriptovaluta;
   data: any;
-  constructor(private placanjeService: PlacanjeService) {
+  
+  constructor(private placanjeService: PlacanjeService, private activatedRoute: ActivatedRoute) {
     this.podaciKriptovaluta = new PodaciKriptovaluta();
     this.podaciKriptovaluta.kolicina = '12';
     this.podaciKriptovaluta.naziv = "test";

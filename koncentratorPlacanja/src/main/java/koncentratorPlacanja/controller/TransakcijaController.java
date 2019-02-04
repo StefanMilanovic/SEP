@@ -3,10 +3,7 @@ package koncentratorPlacanja.controller;
 
 import koncentratorPlacanja.DTO.BitcoinDTO;
 import koncentratorPlacanja.DTO.BitcoinResponseDTO;
-import koncentratorPlacanja.model.BankData;
-import koncentratorPlacanja.model.NaucnaCentralaData;
-import koncentratorPlacanja.model.Transakcija;
-import koncentratorPlacanja.model.ZavrsenaTransakcija;
+import koncentratorPlacanja.model.*;
 import koncentratorPlacanja.service.KlijentService;
 import koncentratorPlacanja.service.TransakcijaService;
 import koncentratorPlacanja.service.ZavrsenaTransakcijaService;
@@ -144,6 +141,20 @@ public class TransakcijaController {
             return null;
         else
             return new ResponseEntity<Transakcija>(retVal, HttpStatus.OK);
+    }
+
+    @RequestMapping(
+            value = "/nadjiKlijentaTransakcije/{id}",
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<Klijent> nadjiKlijentaTransakcije(@PathVariable String id){
+
+        Transakcija transakcija = this.transakcijaService.findOne(Long.parseLong(id));
+        Klijent klijent = transakcija.getKlijent_id();
+        if(klijent == null)
+            return null;
+        else
+            return new ResponseEntity<Klijent>(klijent, HttpStatus.OK);
     }
 
     @RequestMapping(

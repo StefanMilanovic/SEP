@@ -37,7 +37,12 @@ export class PlacanjeService {
   uzmiPodatkeZaPayPal(id){
     return this.http.get("http://localhost:8181/api/payPal/uzmiPayPalPodatke/" + id);
   }
+  
   getUrlBank(bankCode){
     return this.http.get("http://localhost:8181/api/banka/getUrlBank/" + bankCode);
+  }
+
+  getOpcijePlacanja(id){
+    return this.http.get("http://localhost:8181/api/transakcija/nadjiKlijentaTransakcije/" + id);
   }
 }

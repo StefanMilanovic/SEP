@@ -1,13 +1,13 @@
 <h1>Izaberite opciju placanja</h1>
 <br/>
 <div class ="opcijePlacanja">
-    <div class="opcija">
+    <div  class="opcija" *ngIf="payPalEnabled">
         <app-paypal></app-paypal>
     </div>
-    <div class="opcija">
+    <div  class="opcija" *ngIf="bitcoinEnabled">
       <a routerLink="/kriptovaluta"><img src="../../../assets/images/bitcoin.png" width="150" height="150"></a>
     </div>
-    <div class="opcija">
+    <div class="opcija" *ngIf="bankEnabled" >
         <app-banka></app-banka>
     </div>
 </div>

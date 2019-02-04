@@ -31,7 +31,8 @@ export class PaypalComponent implements OnInit {
   constructor(private router: Router, private placanjeServcice: PlacanjeService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params['id'];  
+    this.id = this.activatedRoute.snapshot.params['id'];     
+
     this.placanjeServcice.uzmiPodatkeZaPayPal(this.id).subscribe((data: any)=>{
       console.log(data);
       this.secret = data.secret;
