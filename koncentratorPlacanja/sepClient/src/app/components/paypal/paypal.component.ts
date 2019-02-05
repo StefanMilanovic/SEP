@@ -13,6 +13,7 @@ export class PaypalComponent implements OnInit {
   public payPalConfig?: PayPalConfig;
   //private secret: string;
   private secret = "Af6RrdeRgT1nP1NLcztzn0RoivQnFIBDii_C23gtxljFUuugYofl5Y0asUu8mtS6JA9Xg2_G0XncrJw9";
+  private subscribeCode: string;
   private token: string;
   
   private subtotal= 3.00;
@@ -38,6 +39,7 @@ export class PaypalComponent implements OnInit {
     this.placanjeServcice.uzmiPodatkeZaPayPal(this.id).subscribe((data: any)=>{
       console.log(data);
       this.secret = data.secret;
+      this.subscribeCode = data.subscribeCode;
       this.subtotal = data.kolicina;
       this.token = data.token;
       this.total = this.subtotal + this.tax + this.shipping + this.handling_fee + this.shipping_discount + this.insurance;

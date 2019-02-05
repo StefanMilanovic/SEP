@@ -86,7 +86,7 @@ public class KlijentController {
     )
     public ResponseEntity<Klijent> registrujKlijenta(@RequestBody Klijent data){
         Klijent noviKlijent = new Klijent(data.getImeKompanije(), data.getEmail(), data.getPassword(), data.getBankId(),
-                data.getBankPass(), data.getSuccessUrl(), data.getFailedUrl(), data.getErrorUrl(), data.getPaypalSecret(),
+                data.getBankPass(), data.getSuccessUrl(), data.getFailedUrl(), data.getErrorUrl(), data.getPaypalSecret(), data.getPaypalSubscribeCode(),
                 data.getBitcoinSecret(), data.isPaypalEnabled(), data.isBitcoinEnabled(), data.isBankEnabled());
         klijentService.save(noviKlijent);
         return new ResponseEntity<Klijent>(noviKlijent, HttpStatus.OK);

@@ -39,6 +39,9 @@ public class Klijent {
     @Column(length = 80)
     private String paypalSecret;
 
+    @Column
+    private String paypalSubscribeCode;
+
     @Column(length = 80)
     private String bitcoinSecret;
 
@@ -56,7 +59,7 @@ public class Klijent {
     private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 
     public Klijent(String imeKompanije, String email, String password, String bankId, String bankPass, String successUrl,
-                   String failedUrl, String errorUrl, String paypalSecret, String bitcoinSecret,
+                   String failedUrl, String errorUrl, String paypalSecret, String paypalSubscribeCode, String bitcoinSecret,
                    boolean paypalEnabled, boolean bitcoinEnabled, boolean bankEnabled) {
         this.imeKompanije = imeKompanije;
         this.email = email;
@@ -71,9 +74,18 @@ public class Klijent {
         this.paypalEnabled = paypalEnabled;
         this.bitcoinEnabled = bitcoinEnabled;
         this.bankEnabled = bankEnabled;
+        this.paypalSubscribeCode = paypalSubscribeCode;
     }
 
     public Klijent() {}
+
+    public String getPaypalSubscribeCode() {
+        return paypalSubscribeCode;
+    }
+
+    public void setPaypalSubscribeCode(String paypalSubscribeCode) {
+        this.paypalSubscribeCode = paypalSubscribeCode;
+    }
 
     public String getImeKompanije() {
         return imeKompanije;

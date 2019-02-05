@@ -7,14 +7,24 @@ public class PayPalData {
     private double kolicina;
     private String secret;
     private String token;
+    private String subscribeCode;
 
-    public PayPalData(String successUrl, String failedUrl, String errorUrl, double kolicina, String secret, String token) {
+    public PayPalData(String successUrl, String failedUrl, String errorUrl, double kolicina, String secret, String token, String subscribeCode) {
         this.successUrl = successUrl;
         this.failedUrl = failedUrl;
         this.errorUrl = errorUrl;
         this.kolicina = kolicina;
         this.secret = secret;
         this.token = token;
+        this.subscribeCode = subscribeCode;
+    }
+
+    public String getSubscribeCode() {
+        return subscribeCode;
+    }
+
+    public void setSubscribeCode(String subscribeCode) {
+        this.subscribeCode = subscribeCode;
     }
 
     public String getToken() {

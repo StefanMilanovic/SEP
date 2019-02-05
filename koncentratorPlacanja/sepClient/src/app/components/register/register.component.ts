@@ -28,9 +28,11 @@ export class RegisterComponent implements OnInit {
       failed_url: new FormControl('',[Validators.required]),
       error_url: new FormControl('',[Validators.required]),
       paypalSecret: new FormControl(''),
+      paypalSubscribeCode: new FormControl(''),
       bitcoinSecret: new FormControl(''),
       bank_id: new FormControl(''),
       bank_pass: new FormControl('')
+
     }, {validators: this.checkPasswords });
    }
 
@@ -84,6 +86,7 @@ export class RegisterComponent implements OnInit {
     this.noviKorisnik.failedUrl = this.form.value.failed_url;
     this.noviKorisnik.errorUrl = this.form.value.error_url;
     this.noviKorisnik.paypalSecret = this.form.value.paypalSecret;
+    this.noviKorisnik.paypalSubscribeCode = this.form.value.paypalSubscribeCode;
     this.noviKorisnik.bitcoinSecret = this.form.value.bitcoinSecret;
     this.noviKorisnik.bankId = this.form.value.bank_id;
     this.noviKorisnik.bankPass = this.form.value.bank_pass;

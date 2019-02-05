@@ -65,6 +65,12 @@
                     <span class="tooltiptext">Secret you recieved after registering a PayPal account.</span>
                   </div>  
 
+                  <div class="form-group" [hidden]="payPalHidden">
+                    <label for="address">PayPal Subscrobe Code :</label>
+                    <input type="text" formControlName="paypalSubscribeCode" id="paypalSecret"/>
+                    <span class="tooltiptext">Subscribe code for your PayPal account.</span>
+                  </div>  
+
                   <div class="form-radio">
                     <label for="bitcoin" class="radio-label">BitCoin :</label>
                       <div class="form-radio-item">

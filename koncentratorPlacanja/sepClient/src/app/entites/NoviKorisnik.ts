@@ -6,6 +6,7 @@ export class NoviKorisnik {
     public failedUrl: string;
     public errorUrl: string;
     public paypalSecret: string;
+    public paypalSubscribeCode: string;
     public bitcoinSecret: string;
     public bankId: string;
     public bankPass: string;
