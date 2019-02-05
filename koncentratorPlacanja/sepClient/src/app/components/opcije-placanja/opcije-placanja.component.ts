@@ -26,4 +26,5 @@ export class OpcijePlacanjaComponent implements OnInit {
       this.bankEnabled = data.bankEnabled;      
     });
   }
+
 }
