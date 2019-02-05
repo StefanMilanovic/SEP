@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlacanjeService} from '../../service/placanje.service';
 import {PodaciKriptovaluta} from '../../model';
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-kriptovaluta',
@@ -12,9 +12,12 @@ export class KriptovalutaComponent implements OnInit {
   podaciKriptovaluta: PodaciKriptovaluta;
   data: any;
   id: any;
-  constructor(private placanjeService: PlacanjeService, private activatedRoute:ActivatedRoute) {
-    this.id = this.activatedRoute.snapshot.params['id'];
-    console.log('Saljem transakciju sa id : ' + this.id);
+  
+  constructor(private placanjeService: PlacanjeService, private activatedRoute: ActivatedRoute) {
+    this.podaciKriptovaluta = new PodaciKriptovaluta();
+    this.podaciKriptovaluta.kolicina = '12';
+    this.podaciKriptovaluta.naziv = "test";
+
   }
 
   ngOnInit() {
@@ -31,7 +34,7 @@ export class KriptovalutaComponent implements OnInit {
         (error) =>
           console.log(error) );
 */
-
+    this.id = this.activatedRoute.snapshot.params['id'];     
     this.placanjeService.obradaKriptovalute(this.id).subscribe((response:any)=>{
 
 

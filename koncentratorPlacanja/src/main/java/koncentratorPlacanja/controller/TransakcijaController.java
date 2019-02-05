@@ -106,6 +106,20 @@ public class TransakcijaController {
     }
 
     @RequestMapping(
+            value = "/nadjiKlijentaTransakcije/{id}",
+            method = RequestMethod.GET
+    )
+    public ResponseEntity<Klijent> nadjiKlijentaTransakcije(@PathVariable String id){
+
+        Transakcija transakcija = this.transakcijaService.findOne(Long.parseLong(id));
+        Klijent klijent = transakcija.getKlijent_id();
+        if(klijent == null)
+            return null;
+        else
+            return new ResponseEntity<Klijent>(klijent, HttpStatus.OK);
+    }
+
+    @RequestMapping(
             value = "resultTransakcija/{token}",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE

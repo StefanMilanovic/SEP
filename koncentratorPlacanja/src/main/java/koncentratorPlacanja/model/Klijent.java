@@ -1,5 +1,7 @@
 package koncentratorPlacanja.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,7 @@ public class Klijent {
     @Column(nullable = false)
     private boolean bankEnabled;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "klijent", cascade = CascadeType.ALL)
     private List<Transakcija> transakcije = new ArrayList<Transakcija>();
 

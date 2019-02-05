@@ -1,0 +1,326 @@
+<html>
+<head>
+
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+	
+	<!-- JQuery link -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	<style>
+	body{
+		background: #2c3e50;
+	}
+	
+	</style>
+	<script>
+		/* $(document).on("change", "#username", function() { 
+			$.ajax({
+				url: '/user/checkusername',
+				data: $("#registerform").serialize(),
+				type: 'post',
+				cache: false,
+				success: function(response){
+					if(response== "false"){
+						$("#rusernamespan").html("Username already exist.");
+						$("#rusernamespan").css("font-size","15px");
+						$("#username").css("border","2px solid red");
+						$("#username").val("");
+						$("#rusernamespan").show(500);
+					}else{
+						$("#username").css("border","2px solid green");
+						$("#rusernamespan").hide(500);
+					}
+				},
+				error: function(){alert('error');}
+			});
+		});	 */
+			
+	</script>
+
+
+<head>
+<body>
+	<script>
+		$(document).ready(function(){
+			$("#submitButton").click(function(){
+				 var val = true;
+				var username = $("#username").val();
+				var password = $("#password1").val();
+				var password2 = $("#password2").val();
+				var name = $("#name").val();
+				var surname = $("#surname").val();
+				var email = $("#email").val();
+				var city = $("#city").val();
+				var country = $("#country").val();
+				
+				name = name.trim();
+				surname = surname.trim();
+				
+				//provera za username
+				if(username.length<4 || username.length >15 || username.trim() == "" || parseInt(username[0])){
+					$("#rusernamespan").html("Invalid username (must be atleast 4 characters long).");
+					$("#rusernamespan").css("font-size","15px");
+					$("#username").css("border","2px solid red");
+					$("#username").val("");
+					$("#rusernamespan").show(500);
+					val = false;
+					
+				}else{
+					$("#username").css("border","2px solid green");
+					$("#rusernamespan").hide(500);
+					
+				}
+				
+				//provera za password1
+				if(password.length > 30 || password.length<4){
+					$("#rpassword1span").html("Invalid password (must be atleast 4 characters long).");
+					$("#rpassword1span").css("font-size","15px");
+					$("#password1").css("border","2px solid red");
+					$("#password1").val("");
+					$("#rpassword1span").show(500);
+					val = false;
+				}else{
+					$("#password1").css("border","2px solid green");
+					$("#rpassword1span").hide(500);
+				}
+				
+				//provera za password2
+				if(password2.length > 30 || password2.length<4){
+					$("#rpassword2span").html("Invalid password (must be atleast 4 characters long).");
+					$("#rpassword2span").css("font-size","15px");
+					$("#password2").css("border","2px solid red");
+					$("#password2").val("");
+					$("#rpassword2span").show(500);
+					val = false;
+				}else{
+					$("#password2").css("border","2px solid green");
+					$("#rpassword2span").hide(500);
+				}
+				
+				//provera za oba passworda
+				if(password != password2){
+					$("#rpassword2span").html("Invalid password.");
+					$("#rpassword2span").css("font-size","15px");
+					$("#password2").css("border","2px solid red");
+					$("#password2").val("");
+					$("#rpassword2span").show(500);
+					val = false;
+				}
+				
+				//provera za name
+				var namereg = /^[a-zA-Z\s]+$/;
+				if(name.length > 25 || name.length <3 || (!namereg.test(name))){
+					$("#rnamespan").html("Invalid name.");
+					$("#rnamespan").css("font-size","15px");
+					$("#name").css("border","2px solid red");
+					$("#name").val("");
+					$("#rnamespan").show(500);
+					val = false;
+				}else{
+					$("#name").css("border","2px solid green");
+					$("#rnamespan").hide(500);
+				}
+				
+				//provera za surname
+				var surnamereg = /^[a-zA-Z\s]+$/;
+				if(surname.length > 25 || surname.length <3 || (!surnamereg.test(surname))){
+					$("#rsurnamespan").html("Invalid surname.");
+					$("#rsurnamespan").css("font-size","15px");
+					$("#surname").css("border","2px solid red");
+					$("#surname").val("");
+					$("#rsurnamespan").show(500);
+					val = false;
+				}else{
+					$("#surname").css("border","2px solid green");
+					$("#rsurnamespan").hide(500);
+				}
+				
+				//provera za city
+				var cityreg = /^[a-zA-Z\s]+$/;
+				if(city.length > 40 || city.length <0 || (!cityreg.test(city))){
+					$("#rcityspan").html("Invalid name.");
+					$("#rcityspan").css("font-size","15px");
+					$("#city").css("border","2px solid red");
+					$("#city").val("");
+					$("#rcityspan").show(500);
+					val = false;
+				}else{
+					$("#city").css("border","2px solid green");
+					$("#rcityspan").hide(500);
+				}
+				
+				//provera za country
+				var countryreg = /^[a-zA-Z\s]+$/;
+				if(country.length > 40 || country.length <3 || (!countryreg.test(country))){
+					$("#rcountryspan").html("Invalid name.");
+					$("#rcountryspan").css("font-size","15px");
+					$("#country").css("border","2px solid red");
+					$("#country").val("");
+					$("#rcountryspan").show(500);
+					val = false;
+				}else{
+					$("#country").css("border","2px solid green");
+					$("#rcountryspan").hide(500);
+				}
+				
+				
+				//provera za email
+				var emailreg = /^[a-zA-Z]+[0-9a-zA-Z.!#$_*]+[@][0-9a-zA-Z]+[.][0-9a-zA-Z]+/;
+				if(email.length > 60 || email.length <3 || (!emailreg.test(email))){
+					$("#remailspan").html("Invalid email.");
+					$("#remailspan").css("font-size","15px");
+					$("#email").css("border","2px solid red");
+					$("#email").val("");
+					$("#remailspan").show(500);
+					val = false;
+				}else{
+					$("#email").css("border","2px solid green");
+					$("#remailspan").hide(500);
+				}
+				
+				if (val) {
+					var user = {
+							username: $("#username").val(),
+							password: $("#password1").val(),
+							email: $("#email").val(),
+							firstName: $("#name").val(),
+							lastName: $("#surname").val(),
+							city: $("#city").val(),
+							country: $("#country").val(),
+					}
+					
+					$.ajax({
+						url:'http://localhost:8080/user/register',
+						type:'post',
+						crossDomain: true,
+				        xhrFields: {
+				            withCredentials: true
+				         },
+				        headers: {  'Access-Control-Allow-Origin': '*' },
+						data: JSON.stringify(user),
+						contentType:"application/json",
+						dataType:"json",
+						complete:function(data, textStatus){
+							var d = data.status;
+							if (d == 201){
+								window.location.href="/";				
+							}else if(d == 400) {
+							}
+						},
+						error:function(){}
+					 });
+				}
+				return val; 
+			});
+		});
+	
+	</script>
+
+        <div class="modal show">
+			<div class="modal-dialog">
+				<div  class="modal-content">
+					<div class="modal-header">
+						<h1 class="text-center">Registracija</h1>
+					</div>
+					<div class="modal-body">
+						<form id="registerform">
+							
+							<div class="form-group">
+								<input type="text" name="username" id="username" class="form-control input-sm" placeholder="Korisnicko ime">
+								<span id="rusernamespan" style="display:none;color:red;"></span>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="password" name="password1" id="password1" class="form-control input-sm" placeholder="Lozinka">
+										 <span id="rpassword1span" style="display:none;color:red;"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="password" name="password2" id="password2" class="form-control input-sm" placeholder="Potvrdi lozinku">
+										<span id="rpassword2span" style="display:none;color:red;"></span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<input type="email" name="email" id="email" class="form-control input-sm" placeholder="E-mail adresa">
+								<span id="remailspan" style="display:none;color:red;"></span>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="name" id="name" class="form-control input-sm" placeholder="Ime">
+										 <span id="rnamespan" style="display:none;color:red;"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="surname" id="surname" class="form-control input-sm" placeholder="Prezime">
+										<span id="rsurnamespan" style="display:none;color:red;"></span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="city" id="city" class="form-control input-sm" placeholder="Grad">
+										 <span id="rcityspan" style="display:none;color:red;"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="country" id="country" class="form-control input-sm" placeholder="Drzava">
+										<span id="rcountryspan" style="display:none;color:red;"></span>
+									</div>
+								</div>
+							</div>
+							
+							<!-- <div class="form-group">
+								<input type="text" name="phone" id="phone" class="form-control input-sm" placeholder="Phone">
+								<span id="rphonespan" style="display:none;color:red;"></span>
+							</div>
+							
+							
+							<div class="form-group">
+								<input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address">
+								<span id="raddressspan" style="display:none;color:red;"></span>
+							</div>
+
+							<div class="form-group">
+								<input type="text" name="state" id="state" class="form-control input-sm" placeholder="State">
+								<span id="rstatespan" style="display:none;color:red;">
+							</div>
+
+							 -->
+							
+						</form>
+						<button id="submitButton" value="Register" class="btn btn-primary btn-lg btn-block">Registruj se</button>
+					</div>
+					
+					<div class="modal-footer">
+						<div class="col-md-1">
+							<a href="/">Pocetak</a>	
+						</div>
+						<div class="col-md-offset-9 col-md-1">
+							<a href="login.html">Login</a>
+						</div>	
+					</div>
+	    		</div>
+    		</div>
+    	</div>
+</body>
+</html>

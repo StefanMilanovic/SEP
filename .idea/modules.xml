@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/bankaKupca/BankaKupca.iml" filepath="$PROJECT_DIR$/bankaKupca/BankaKupca.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bankaProdavca/BankaProdavca.iml" filepath="$PROJECT_DIR$/bankaProdavca/BankaProdavca.iml" />
       <module fileurl="file://$PROJECT_DIR$/koncentratorPlacanja/KoncentratorPlacanja.iml" filepath="$PROJECT_DIR$/koncentratorPlacanja/KoncentratorPlacanja.iml" />
-      <module fileurl="file://$PROJECT_DIR$/koncentratorPlacanja/KoncentratorPlacanja.iml" filepath="$PROJECT_DIR$/koncentratorPlacanja/KoncentratorPlacanja.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PCC/PCC.iml" filepath="$PROJECT_DIR$/PCC/PCC.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SEP.iml" filepath="$PROJECT_DIR$/.idea/SEP.iml" />
     </modules>
   </component>

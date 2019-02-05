@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PayPalConfig, PayPalEnvironment, PayPalIntegrationType } from 'ngx-paypal';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { PlacanjeService } from 'src/app/service/placanje.service';
 
 @Component({
   selector: 'app-opcije-placanja',
@@ -10,12 +11,20 @@ import { Router } from '@angular/router';
 })
 export class OpcijePlacanjaComponent implements OnInit {
   private id:string
-  constructor(private router: Router, private activatedRoute:ActivatedRoute) { }
+  private payPalEnabled: boolean;
+  private bitcoinEnabled: boolean;
+  private bankEnabled: boolean;
+
+  constructor(private router: Router, private activatedRoute:ActivatedRoute, private placanjeService: PlacanjeService) { }
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.params['id'];
-    console.log('Saljem transakciju sa id : ' + this.id);
+    this.id = this.activatedRoute.snapshot.params['id'];  
 
+    this.placanjeService.getOpcijePlacanja(this.id).subscribe((data:any) => {
+      this.payPalEnabled = data.paypalEnabled;
+      this.bitcoinEnabled = data.bitcoinEnabled;
+      this.bankEnabled = data.bankEnabled;      
+    });
   }
 
 }
