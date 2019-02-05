@@ -10,5 +10,35 @@
     <div class="opcija">
         <app-banka></app-banka>
     </div>
+    <div calss="opcija">
+     <!-- //https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9BZVCJGTRN7L6-->
+      <form  ngNoForm action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+
+        <!-- Identify your business so that you can collect the payments. <input type="hidden" name="business" value="alice@mystore.com"> -->
+        <input type="hidden"name="hosted_button_id" value="3XU5UGGY3PBWN">
+
+        <!-- Specify a Subscribe button.  <input type="hidden" name="cmd" value="_xclick-subscriptions"> -->
+        <input type="hidden" name="cmd"  value="_s-xclick">
+        <!-- Identify the subscription. -->
+        <input type="hidden" name="item_name" value="Pretplata na NC">
+        <input type="hidden" name="item_number" value="Mesecna">
+
+        <!-- Set the terms of the regular subscription. -->
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="a3" value="5.00">
+        <input type="hidden" name="p3" value="1">
+        <input type="hidden" name="t3" value="M">
+
+        <!-- Set recurring payments until canceled. -->
+        <input type="hidden" name="src" value="1">
+
+        <!-- Display the payment button. -->
+        <input  type="image" name="submit"
+               src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribe_LG.gif"
+               alt="Subscribe">
+        <img alt="" width="1" height="1"
+             src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+      </form>
+    </div>
 </div>
 <!--Napraviti kontroler sa dodeljenim vrenostima  cene i valute i proslediti na ovaj url -->

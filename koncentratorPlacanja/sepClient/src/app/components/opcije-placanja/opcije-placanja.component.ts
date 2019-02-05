@@ -17,4 +17,5 @@ export class OpcijePlacanjaComponent implements OnInit {
     console.log('Saljem transakciju sa id : ' + this.id);
 
   }
+
 }
