@@ -28,5 +28,4 @@ public class ScientificField {
 		this.name = name;
 	}
 	
-	
 }

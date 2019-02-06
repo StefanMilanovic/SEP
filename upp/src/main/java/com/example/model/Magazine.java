@@ -5,14 +5,16 @@ public class Magazine {
 	private String issn;
 	private String name;
 	private String field;
+	private String paymentType;
 	
 	public Magazine(){}
 
-	public Magazine(String issn, String name, String field) {
+	public Magazine(String issn, String name, String field, String paymentType) {
 		super();
 		this.issn = issn;
 		this.name = name;
 		this.field = field;
+		this.paymentType = paymentType;
 	}
 
 	public Long getId() {
@@ -46,6 +48,16 @@ public class Magazine {
 	public void setField(String field) {
 		this.field = field;
 	}
+
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+	
+	
 	
 		
 }

@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,18 +37,12 @@ public class User {
     private String password;
     
     @Column(nullable = false)
-    private boolean emailConfirmed;
-    
-    @Column(nullable = false)
-    private String userType;
-    
-    @Column()
-	private String userStatus;
+    private String role;
 	
 	public User(){}
 	
 	public User(String username, String firstname, String lastname, String city, String country, String email, String password,
-			boolean emailConfirmed, String userType, String userStatus) {
+			String role) {
 		super();
 		this.username = username;
 		this.firstname = firstname;
@@ -55,9 +51,7 @@ public class User {
 		this.country = country;
 		this.email = email;
 		this.password = password;
-		this.emailConfirmed = emailConfirmed;
-		this.userType = userType;
-		this.userStatus = userStatus;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -125,28 +119,12 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isEmailConfirmed() {
-		return emailConfirmed;
+	public String getRole() {
+		return role;
 	}
 
-	public void setEmailConfirmed(boolean emailConfirmed) {
-		this.emailConfirmed = emailConfirmed;
-	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-
-	public String getUserStatus() {
-		return userStatus;
-	}
-
-	public void setUserStatus(String userStatus) {
-		this.userStatus = userStatus;
+	public void setRole(String role) {
+		this.role = role;
 	}
     
 }
