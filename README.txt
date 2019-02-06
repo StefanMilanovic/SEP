@@ -13,3 +13,7 @@ PCCServer port 8183
 BankaKupcaServer port 8184
 
 BankaKupcaClient port 5001
+
+NaucnaCentralaClient 4300
+
+NaucnaCentralaServer 8086
