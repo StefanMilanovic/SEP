@@ -63,7 +63,8 @@ public class Usercontroller {
 		}		
 		
 		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(),data.getPassword(), 
-				false, UserType.USER.name(), UserStatus.PENDING.name());		
+				"author");
+		
 		this.userService.register(newUser);		
 		RegisterUserResponse response = new RegisterUserResponse(newUser,"success");
 		

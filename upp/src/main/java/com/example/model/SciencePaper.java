@@ -3,18 +3,22 @@ package com.example.model;
 public class SciencePaper {
 	private String id;	
 	private String name;	
-	private String keySubjects;	
+	private String keywords;	
 	private String abbstract;	
 	private String scentificField;
+	private String revisionPDF;
+	private String finalPDF;
 	
 	public SciencePaper(){}
 	
-	public SciencePaper(String name, String keySubjects, String abbstract, String scentificField) {
+	public SciencePaper(String name, String keywords, String abbstract, String scentificField, String revisionPDF, String finalPDF) {
 		super();
 		this.name = name;
-		this.keySubjects = keySubjects;
+		this.keywords = keywords;
 		this.abbstract = abbstract;
 		this.scentificField = scentificField;
+		this.revisionPDF = revisionPDF;
+		this.finalPDF = finalPDF;
 	}
 
 	public String getId() {
@@ -33,12 +37,12 @@ public class SciencePaper {
 		this.name = name;
 	}
 
-	public String getKeySubjects() {
-		return keySubjects;
+	public String getKeywords() {
+		return keywords;
 	}
 
-	public void setKeySubjects(String keySubjects) {
-		this.keySubjects = keySubjects;
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 
 	public String getAbbstract() {
@@ -56,6 +60,24 @@ public class SciencePaper {
 	public void setScentificField(String scentificField) {
 		this.scentificField = scentificField;
 	}
+
+	public String getRevisionPDF() {
+		return revisionPDF;
+	}
+
+	public void setRevisionPDF(String revisionPDF) {
+		this.revisionPDF = revisionPDF;
+	}
+
+	public String getFinalPDF() {
+		return finalPDF;
+	}
+
+	public void setFinalPDF(String finalPDF) {
+		this.finalPDF = finalPDF;
+	}
+	
+	
 	
 	
 }
