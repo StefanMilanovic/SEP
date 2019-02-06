@@ -17,7 +17,7 @@ public class User {
 	private String username;	
     
 	@Column(nullable = false)
-	private String name;
+	private String firstname;
     
 	@Column(nullable = false)
 	private String lastname;
@@ -40,16 +40,16 @@ public class User {
     @Column(nullable = false)
     private String userType;
     
-    @Column(nullable = false)
+    @Column()
 	private String userStatus;
 	
 	public User(){}
 	
-	public User(String username, String name, String lastname, String city, String country, String email, String password,
-			boolean emailConfirmed, String userType, String userkStatus) {
+	public User(String username, String firstname, String lastname, String city, String country, String email, String password,
+			boolean emailConfirmed, String userType, String userStatus) {
 		super();
 		this.username = username;
-		this.name = name;
+		this.firstname = firstname;
 		this.lastname = lastname;
 		this.city = city;
 		this.country = country;
@@ -57,7 +57,7 @@ public class User {
 		this.password = password;
 		this.emailConfirmed = emailConfirmed;
 		this.userType = userType;
-		this.userStatus = userkStatus;
+		this.userStatus = userStatus;
 	}
 
 	public Long getId() {
@@ -76,12 +76,13 @@ public class User {
 		this.username = username;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getLastname() {
@@ -144,10 +145,8 @@ public class User {
 		return userStatus;
 	}
 
-	public void setUserStatus(String userkStatus) {
-		this.userStatus = userkStatus;
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
 	}
-	
-	
     
 }

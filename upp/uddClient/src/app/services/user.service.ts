@@ -11,4 +11,8 @@ export class UserService {
   logUser(logUser){
     return this.httpClient.get('http://localhost:8080/user/login/' + logUser.email + '/' + logUser.password);
   }
+
+  registerUser(newUser){
+    return this.httpClient.post('http://localhost:8080/user/register', newUser);
+  }
 }

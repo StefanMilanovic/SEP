@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.DTO.LogUserDTO;
+import com.example.DTO.RegisterUserResponse;
 import com.example.model.User;
+import com.example.model.UserStatus;
+import com.example.model.UserType;
 import com.example.service.UserService;
 
 
@@ -47,9 +50,23 @@ public class Usercontroller {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<User>register(@RequestBody User data){
-		this.userService.register(data);
+	public ResponseEntity<RegisterUserResponse>register(@RequestBody User data){
 		
-		return new ResponseEntity<User>(data, HttpStatus.OK);
+		
+		if(userService.findByUsername(data.getUsername()) != null){
+			RegisterUserResponse response = new RegisterUserResponse(userService.findByUsername(data.getUsername()), "username");
+			return new ResponseEntity<RegisterUserResponse>(response, HttpStatus.OK);
+		}
+		else if(userService.findByEmail(data.getEmail()) != null){
+			RegisterUserResponse response = new RegisterUserResponse(userService.findByEmail(data.getEmail()), "email");
+			return new ResponseEntity<RegisterUserResponse>(response, HttpStatus.OK);
+		}		
+		
+		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(),data.getPassword(), 
+				false, UserType.USER.name(), UserStatus.PENDING.name());		
+		this.userService.register(newUser);		
+		RegisterUserResponse response = new RegisterUserResponse(newUser,"success");
+		
+		return new ResponseEntity<RegisterUserResponse>(response, HttpStatus.OK);
 	}
 }

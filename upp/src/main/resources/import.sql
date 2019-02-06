@@ -1,1 +1,1 @@
-insert into user(id, city, email, email_confirmed, lastname, name, password, country, user_status, user_type, username) values ('1','Novi Sad','marica50@ptt.yu', 1,'Zoric','Marica','marica','Srbija','ACTIVATED','USER','maricaZoric');
+insert into user(id, city, email, email_confirmed, lastname, firstname, password, country, user_status, user_type, username) values ('1','Novi Sad','marica50@ptt.yu', 1,'Zoric','Marica','marica','Srbija','ACTIVATED','USER','maricaZoric');

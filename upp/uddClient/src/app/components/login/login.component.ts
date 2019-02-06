@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   
   private logUser: LogUser = new LogUser();
+  private loginError = false;
   private form: FormGroup;
 
   constructor(private userService: UserService, @Inject(FormBuilder) formBuilder: FormBuilder) {
@@ -32,6 +33,12 @@ export class LoginComponent implements OnInit {
     console.log(this.logUser);
     this.userService.logUser(this.logUser).subscribe(data =>{
       console.log(data);
+      if(data == null){
+        this.loginError = true;
+      }
+      else {
+        this.loginError = false;
+      }
     })
   }
 }
