@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.DTO.LogUserDTO;
 import com.example.DTO.RegisterUserResponse;
 import com.example.model.User;
-import com.example.model.UserStatus;
-import com.example.model.UserType;
 import com.example.service.UserService;
+import com.example.test.Hashing;
 
 
 @RestController
@@ -60,9 +58,13 @@ public class Usercontroller {
 		else if(userService.findByEmail(data.getEmail()) != null){
 			RegisterUserResponse response = new RegisterUserResponse(userService.findByEmail(data.getEmail()), "email");
 			return new ResponseEntity<RegisterUserResponse>(response, HttpStatus.OK);
-		}		
+		}
 		
-		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(),data.getPassword(), 
+		String pw = data.getPassword();
+		
+		String hashedPw = Hashing.hash(pw);
+		
+		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), hashedPw, 
 				"author");
 		
 		this.userService.register(newUser);		

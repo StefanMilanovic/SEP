@@ -7,6 +7,7 @@ import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
 
+
 @Service
 public class UserServiceImpl implements UserService{
 	
