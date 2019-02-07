@@ -21,7 +21,7 @@ public class UppApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		storageService.deleteAll();
+		//storageService.deleteAll();
 		storageService.init();
 	}
 

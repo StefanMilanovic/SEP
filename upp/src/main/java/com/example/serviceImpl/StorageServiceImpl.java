@@ -20,7 +20,7 @@ import com.example.service.StorageService;
 public class StorageServiceImpl implements StorageService{
 	
 	Logger log = LoggerFactory.getLogger(this.getClass().getName());
-	private final Path rootLocation = Paths.get("upload-dir");
+	private final Path rootLocation = Paths.get("science-papers");
 
 	@Override
 	public void store(MultipartFile file) {
@@ -54,11 +54,13 @@ public class StorageServiceImpl implements StorageService{
 
 	@Override
 	public void init() {
-		try {
-			Files.createDirectory(rootLocation);
-		} catch (IOException e) {
-			throw new RuntimeException("Could not initialize storage!");
-		}
+		if(!Files.exists(rootLocation)) {
+			try {
+				Files.createDirectory(rootLocation);
+			} catch (IOException e) {
+				throw new RuntimeException("Could not initialize storage!");
+			}
+		}		
 	}
 
 }

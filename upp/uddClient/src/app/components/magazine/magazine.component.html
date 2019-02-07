@@ -1,0 +1,24 @@
+
+<h1>Magazines:</h1>
+
+<div class="magazines">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let magazine of magazines">
+        <mat-expansion-panel-header>{{magazine.name}}</mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item *ngFor="let paper of magazine.scientificPapers">
+                <a mat-line href="">{{paper  .name}}</a>               
+                <button style="float: right;" mat-stroked-button>Download</button>                
+            </mat-list-item>
+            <br/>
+            <button mat-stroked-button>Buy Access</button>  
+        </mat-list>        
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+
+    
+
+
+    
