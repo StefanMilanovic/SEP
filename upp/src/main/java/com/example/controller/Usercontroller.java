@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.DTO.RegisterUserResponse;
 import com.example.model.User;
 import com.example.service.UserService;
-import com.example.test.Hashing;
+//import com.example.test.Hashing;
 
 
 @RestController
@@ -62,7 +62,8 @@ public class Usercontroller {
 		
 		String pw = data.getPassword();
 		
-		String hashedPw = Hashing.hash(pw);
+		//String hashedPw = Hashing.hash(pw);
+		String hashedPw = pw;
 		
 		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), hashedPw, 
 				"author");

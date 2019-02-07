@@ -1,22 +1,59 @@
 package com.example.model;
 
-public class Magazine {
-	private Long id;
-	private String issn;
-	private String name;
-	private String field;
-	private String paymentType;
-	
-	public Magazine(){}
+import java.util.ArrayList;
+import java.util.List;
 
-	public Magazine(String issn, String name, String field, String paymentType) {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;	
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+public class Magazine {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(nullable = false)
+	private String issn;
+	
+	@Column(nullable = false)
+	private String name;
+	
+	@OneToMany(mappedBy = "scienceMagazine", cascade = CascadeType.ALL)
+	private List<SciencePaper> scientificPapers = new ArrayList<SciencePaper>();
+	
+	
+		
+	@ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+		})
+	@JoinTable(name = "magazine_fields",
+		joinColumns = @JoinColumn(name = "mag_id"),
+		inverseJoinColumns = @JoinColumn(name = "field_id")
+			)
+	private List<ScientificField> scientificFields = new ArrayList<ScientificField>();
+	
+	
+		
+	public Magazine(String issn, String name) {
 		super();
 		this.issn = issn;
-		this.name = name;
-		this.field = field;
-		this.paymentType = paymentType;
+		this.name = name;		
 	}
 
+	public Magazine(){}
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,23 +78,21 @@ public class Magazine {
 		this.name = name;
 	}
 
-	public String getField() {
-		return field;
+	public List<SciencePaper> getScientificPapers() {
+		return scientificPapers;
 	}
 
-	public void setField(String field) {
-		this.field = field;
+	public void setScientificPapers(List<SciencePaper> scientificPapers) {
+		this.scientificPapers = scientificPapers;
 	}
 
-	public String getPaymentType() {
-		return paymentType;
+	public List<ScientificField> getScientificFields() {
+		return scientificFields;
 	}
 
-	public void setPaymentType(String paymentType) {
-		this.paymentType = paymentType;
+	public void setScientificFields(List<ScientificField> scientificFields) {
+		this.scientificFields = scientificFields;
 	}
 	
 	
-	
-		
 }
