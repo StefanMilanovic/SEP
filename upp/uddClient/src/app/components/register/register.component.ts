@@ -18,9 +18,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService, @Inject(FormBuilder) formBuilder: FormBuilder, private router: Router) { 
     this.form = formBuilder.group({
-      username: new FormControl('',[Validators.required, Validators.minLength(5), Validators.maxLength(14)]),
-      email: new FormControl('',[Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
-      password: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(30), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]),
+      username: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required]),
       firstname: new FormControl('',[Validators.required]),
       lastname: new FormControl('',[Validators.required]),
       country: new FormControl('',[Validators.required]),
