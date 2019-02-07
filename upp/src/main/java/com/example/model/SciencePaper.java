@@ -4,7 +4,7 @@ public class SciencePaper {
 	private String id;	
 	private String name;	
 	private String keywords;	
-	private String abbstract;	
+	private String abbstract;
 	private String scentificField;
 	private String revisionPDF;
 	private String finalPDF;

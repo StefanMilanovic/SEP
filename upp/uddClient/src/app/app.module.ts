@@ -13,6 +13,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UploadComponent } from './components/upload/upload.component';
     HomepageComponent,
     LoginComponent,
     RegisterComponent,
-    UploadComponent
+    UploadComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
