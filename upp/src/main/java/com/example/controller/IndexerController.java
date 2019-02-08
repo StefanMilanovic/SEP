@@ -11,6 +11,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.example.lucene.indexing.Indexer;
+import com.example.lucene.model.IndexUnit;
+import com.example.model.Magazine;
+import com.example.model.SciencePaper;
+import com.example.model.ScientificField;
+import com.example.service.MagazineService;
+import com.example.service.SciencePaperService;
+import com.example.service.ScientificFieldService;
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,18 +45,18 @@ import udd.service.nc.RadService;
 
 @RestController
 public class IndexerController {
-/*
+
 	@Autowired
 	private Indexer indexer;
 	
 	@Autowired
-	RadService radService;
+    SciencePaperService sciencePaperService;
 	
 	@Autowired
-	CasopisService casopisService;
+    MagazineService magazineService;
 	
 	@Autowired
-	KorisnikService korisnikService;
+    UserService userService;
 
 	private static String DATA_DIR_PATH;
 	
@@ -85,8 +94,8 @@ public class IndexerController {
 	}
 	
 	//indeksiranje rada   //posledjeni model naseg RADA !!!!!! ZA MULITI UPLOAD ISTO
-	private void indexUploadedFile(Rad model) throws IOException{
-		for (MultipartFile file : model.getPdfs()) {
+	private void indexUploadedFile(SciencePaper model) throws IOException{
+		for (MultipartFile file : model.getTextPDF()) {
 			if (file.isEmpty()) {
 				continue; //next please
 	        }
@@ -94,41 +103,41 @@ public class IndexerController {
 	        String fileName = saveUploadedFile(file);
 	        if(fileName != null){
 	        	IndexUnit indexUnit = indexer.getHandler(fileName).getIndexUnit(new File(fileName));
-	        	indexUnit.setNazivCasopisa(model.getCasopis().getNaziv());
-	        	indexUnit.setNaslov(model.getNaslov());
-	        	indexUnit.setAutor(model.getAutor().getIme() + " " + model.getAutor().getPrezime());
-	            indexUnit.setKljucniPojmovi(model.getKljucniPojmovi());
+	        	indexUnit.setNameMagazine(model.getScienceMagazine().getName());
+	        	indexUnit.setTitle(model.getName());
+	        	indexUnit.setAuthor(model.getAuthor().getFirstname() + " " + model.getAuthor().getLastname());
+	            indexUnit.setKeywords(model.getKeywords());
 	            //indexUnit.setText(preuzmiSadrzajFajla(file));
-	            indexUnit.setNaucnaOblast(model.getCasopis().getNaucnaOblast().getNaziv());
+	            indexUnit.setScientificField(model.getScienceMagazine().getScientificField().getName());
 	            indexer.add(indexUnit);
 	        }
 	    }
 	}
 		
 	//indeksiranje i dodavanje rada
-	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/index/add/{id}")
-	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute Rad rad, @PathVariable Long id) {
-		Casopis casopis = casopisService.findOne(id);
-			
-		rad.setCasopis(casopis);
-		rad.setNazivCasopisa(rad.getCasopis().getNaziv());
-		rad.setNaucnaOblast(rad.getCasopis().getNaucnaOblast().getNaziv());
-		System.out.println("\n\t\tnaucna oblast kojoj pripada rad: " + rad.getCasopis().getNaucnaOblast().getNaziv());
-		rad.setStatusRada(StatusRada.PRIHVACEN);
-	    rad.setAutor(korisnikService.getCurrentUser());
-		rad.setKoautorPodnosilacRada(korisnikService.getCurrentUser());
-		rad.setKoautori(new ArrayList<Korisnik>());
-		rad.setRecenzenti(new ArrayList<Korisnik>());
-		rad.setUrednici(new ArrayList<Korisnik>());
-	        
+	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
+		Magazine magazine = magazineService.findOne(id);
+
+        sciencePaper.setScienceMagazine(magazine);
+        sciencePaper.setNameMagazine(sciencePaper.getScienceMagazine().getName());
+        sciencePaper.setNameScientifiField(sciencePaper.getScienceMagazine().getScientificField().getName());
+		System.out.println("\n\t\tnaucna oblast kojoj pripada rad: " + sciencePaper.getScienceMagazine().getScientificField().getName());
+
+      //UBACI AUTORE KADA SREDIS
+       /* sciencePaper.setAuthor(userService.getCurrentUser());
+        sciencePaper.setKoautorPodnosilacRada(korisnikService.getCurrentUser());
+        sciencePaper.setKoautori(new ArrayList<Korisnik>());
+        sciencePaper.setRecenzenti(new ArrayList<Korisnik>());
+        sciencePaper.setUrednici(new ArrayList<Korisnik>());
+	        */
 	    try {
-	    	indexUploadedFile(rad);
+	    	indexUploadedFile(sciencePaper);
 	    } catch (IOException e) {
 	    	return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	    }
-	       
-	    radService.save(rad);
+
+        sciencePaperService.save(sciencePaper);
 	    return new ResponseEntity<String>("Uspesan upload fajla! :)", HttpStatus.OK);
 	}
 	
@@ -142,5 +151,5 @@ public class IndexerController {
 		String text = "Indexing " + numIndexed + " files took " + (end - start) + " milliseconds";
 		return new ResponseEntity<String>(text, HttpStatus.OK);
 	}
-*/
+
 }

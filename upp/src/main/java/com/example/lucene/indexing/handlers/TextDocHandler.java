@@ -24,18 +24,16 @@ public class TextDocHandler extends DocumentHandler {
 			reader = new BufferedReader(new InputStreamReader(
 					fis, "UTF8"));
 
-			String firstLine = reader.readLine(); // u prvoj liniji svake
-													// tekstualne datoteke se
-													// nalazi naslov rada
+			String firstLine = reader.readLine(); // prva linija naslov
 
-			retVal.setNaslov(firstLine);
+			retVal.setTitle(firstLine);
 			
 			/*
 			 * add other custom metadata
 			 */
 
 			String secondLine = reader.readLine();
-			retVal.setKljucniPojmovi(secondLine);
+			retVal.setKeywords(secondLine);
 
 			String fullText = "";
 			while (true) {

@@ -29,10 +29,10 @@ public class WordHandler extends DocumentHandler {
 			// pomocu SummaryInformation objekta izvuci ostale metapodatke
 			SummaryInformation si = we.getSummaryInformation();
 			String title = si.getTitle();
-			retVal.setNaslov(title);
+			retVal.setTitle(title);
 
 			String keywords = si.getKeywords();
-			retVal.setKljucniPojmovi(keywords);
+			retVal.setKeywords(keywords);
 			
 			retVal.setFilename(file.getCanonicalPath());
 			

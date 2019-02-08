@@ -1,15 +1,13 @@
 package com.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Entity
 public class SciencePaper {
@@ -19,8 +17,19 @@ public class SciencePaper {
 	private Long id;	
 	
 	@Column(nullable = false)
-	private String name;	
+	private String name;
 
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "autor_id")
+	private User author;
+
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+			name = "coAuthor_sciencePaper",
+			joinColumns = { @JoinColumn(name = "coAuthor_id") },
+			inverseJoinColumns = { @JoinColumn(name = "sciencePaper_id") }
+	)
+	private List<User> coAuthor;
 
 
 	@Column(nullable = false)
@@ -38,22 +47,28 @@ public class SciencePaper {
     @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne
     private Magazine scienceMagazine;
-	
-	@Column()
-	private String revisionPDF;
-	
+
+	@Transient
+	@Lob
+	private MultipartFile[] textPDF;
+
 	@Column(nullable = false)
 	private String finalPDF;
-	
+
+
+	private String nameMagazine;
+
+	private String nameScientifiField;
+
 	public SciencePaper(){}
 	
-	public SciencePaper(String name, String keywords, String abbstract, ScientificField scientificField, String revisionPDF, String finalPDF) {
+	public SciencePaper(String name, String keywords, String abbstract, ScientificField scientificField, MultipartFile[] textPDF, String finalPDF) {
 		super();
 		this.name = name;
 		this.keywords = keywords;
 		this.abbstract = abbstract;
 		this.scientificField = scientificField;
-		this.revisionPDF = revisionPDF;
+		this.textPDF = textPDF;
 		this.finalPDF = finalPDF;
 	}
 
@@ -97,14 +112,6 @@ public class SciencePaper {
 		this.scientificField = scientificField;
 	}
 
-	public String getRevisionPDF() {
-		return revisionPDF;
-	}
-
-	public void setRevisionPDF(String revisionPDF) {
-		this.revisionPDF = revisionPDF;
-	}
-
 	public String getFinalPDF() {
 		return finalPDF;
 	}
@@ -112,8 +119,60 @@ public class SciencePaper {
 	public void setFinalPDF(String finalPDF) {
 		this.finalPDF = finalPDF;
 	}
-	
-	
-	
-	
+
+	public MultipartFile[] getTextPDF() {
+		return textPDF;
+	}
+
+	public void setTextPDF(MultipartFile[] textPDF) {
+		this.textPDF = textPDF;
+	}
+
+	public String getNameMagazine() {
+		return nameMagazine;
+	}
+
+	public void setNameMagazine(String nameMagazine) {
+		this.nameMagazine = nameMagazine;
+	}
+
+	public String getNameScientifiField() {
+		return nameScientifiField;
+	}
+
+	public void setNameScientifiField(String nameScientifiField) {
+		this.nameScientifiField = nameScientifiField;
+	}
+
+	public ScientificField getScientificField() {
+		return scientificField;
+	}
+
+	public void setScientificField(ScientificField scientificField) {
+		this.scientificField = scientificField;
+	}
+
+	public Magazine getScienceMagazine() {
+		return scienceMagazine;
+	}
+
+	public void setScienceMagazine(Magazine scienceMagazine) {
+		this.scienceMagazine = scienceMagazine;
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
+	public List<User> getCoAuthor() {
+		return coAuthor;
+	}
+
+	public void setCoAuthor(List<User> coAuthor) {
+		this.coAuthor = coAuthor;
+	}
 }

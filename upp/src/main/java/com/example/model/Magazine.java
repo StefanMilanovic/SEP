@@ -28,13 +28,13 @@ public class Magazine {
 	
 	@Column(nullable = false)
 	private String name;
-	
+
 	@OneToMany(mappedBy = "scienceMagazine", cascade = CascadeType.ALL)
 	private List<SciencePaper> scientificPapers = new ArrayList<SciencePaper>();
-	
-	
-		
-	@ManyToMany(cascade = {
+
+
+
+	/*@ManyToMany(cascade = {
 	        CascadeType.PERSIST,
 	        CascadeType.MERGE
 		})
@@ -43,9 +43,12 @@ public class Magazine {
 		inverseJoinColumns = @JoinColumn(name = "field_id")
 			)
 	private List<ScientificField> scientificFields = new ArrayList<ScientificField>();
-	
-	
-		
+*/
+	@ManyToOne
+	@JoinColumn(name="scientificFields_id", nullable=false)
+	@JsonIgnore
+	private ScientificField scientificField;
+
 	public Magazine(String issn, String name) {
 		super();
 		this.issn = issn;
@@ -85,7 +88,7 @@ public class Magazine {
 	public void setScientificPapers(List<SciencePaper> scientificPapers) {
 		this.scientificPapers = scientificPapers;
 	}
-
+/*
 	public List<ScientificField> getScientificFields() {
 		return scientificFields;
 	}
@@ -93,6 +96,13 @@ public class Magazine {
 	public void setScientificFields(List<ScientificField> scientificFields) {
 		this.scientificFields = scientificFields;
 	}
-	
-	
+	*/
+
+	public ScientificField getScientificField() {
+		return scientificField;
+	}
+
+	public void setScientificField(ScientificField scientificField) {
+		this.scientificField = scientificField;
+	}
 }

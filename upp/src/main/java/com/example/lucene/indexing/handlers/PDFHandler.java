@@ -29,10 +29,10 @@ public class PDFHandler extends DocumentHandler {
 			PDDocumentInformation info = pdf.getDocumentInformation();
 
 			String title = ""+info.getTitle();
-			retVal.setNaslov(title);
+			retVal.setTitle(title);
 
 			String keywords = ""+info.getKeywords();
-			retVal.setKljucniPojmovi(keywords);
+			retVal.setKeywords(keywords);
 			
 			retVal.setFilename(file.getCanonicalPath());
 			

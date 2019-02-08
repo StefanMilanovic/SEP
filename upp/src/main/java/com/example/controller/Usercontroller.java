@@ -36,7 +36,7 @@ public class Usercontroller {
 		User user = this.userService.findByEmail(email);
 		
 		if(user == null || !user.getPassword().equals(password)){
-			return new ResponseEntity<>(null, HttpStatus.OK);
+			return new ResponseEntity<User>((User) null, HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<User>(user, HttpStatus.OK);		
@@ -64,9 +64,9 @@ public class Usercontroller {
 		
 		//String hashedPw = Hashing.hash(pw);
 		String hashedPw = pw;
-		
-		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), hashedPw, 
-				"author");
+
+		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), hashedPw,
+				"author", data.getScientificFieldList());
 		
 		this.userService.register(newUser);		
 		RegisterUserResponse response = new RegisterUserResponse(newUser,"success");

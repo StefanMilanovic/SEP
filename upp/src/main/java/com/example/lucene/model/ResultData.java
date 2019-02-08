@@ -2,12 +2,12 @@ package com.example.lucene.model;
 
 public final class ResultData {
 	
-	private String nazivCasopisa;
-	private String naslov;
-	private String autor;
-	private String kljucniPojmovi;
+	private String nameMagazine;
+	private String title;
+	private String author;
+	private String keywords;
 	private String text;
-	private String naucnaOblast;
+	private String scientificField;
 	private String location;
 	private String highlight;
 	
@@ -15,48 +15,47 @@ public final class ResultData {
 		super();
 	}
 
-	public ResultData(String nazivCasopisa, String naslov, String autor, String kljucniPojmovi, String text, String naucnaOblast, String location, String highlight) {
-		super();
-		this.nazivCasopisa = nazivCasopisa;
-		this.naslov = naslov;
-		this.autor = autor;
-		this.kljucniPojmovi = kljucniPojmovi;
+	public ResultData(String nameMagazine, String title, String author, String keywords, String text, String scientificField, String location, String highlight) {
+		this.nameMagazine = nameMagazine;
+		this.title = title;
+		this.author = author;
+		this.keywords = keywords;
 		this.text = text;
-		this.naucnaOblast = naucnaOblast;
+		this.scientificField = scientificField;
 		this.location = location;
 		this.highlight = highlight;
 	}
 
-	public String getNazivCasopisa() {
-		return nazivCasopisa;
+	public String getNameMagazine() {
+		return nameMagazine;
 	}
 
-	public void setNazivCasopisa(String nazivCasopisa) {
-		this.nazivCasopisa = nazivCasopisa;
+	public void setNameMagazine(String nameMagazine) {
+		this.nameMagazine = nameMagazine;
 	}
 
-	public String getNaslov() {
-		return naslov;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setNaslov(String naslov) {
-		this.naslov = naslov;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getAutor() {
-		return autor;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
-	public String getKljucniPojmovi() {
-		return kljucniPojmovi;
+	public String getKeywords() {
+		return keywords;
 	}
 
-	public void setKljucniPojmovi(String kljucniPojmovi) {
-		this.kljucniPojmovi = kljucniPojmovi;
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 
 	public String getText() {
@@ -67,12 +66,12 @@ public final class ResultData {
 		this.text = text;
 	}
 
-	public String getNaucnaOblast() {
-		return naucnaOblast;
+	public String getScientificField() {
+		return scientificField;
 	}
 
-	public void setNaucnaOblast(String naucnaOblast) {
-		this.naucnaOblast = naucnaOblast;
+	public void setScientificField(String scientificField) {
+		this.scientificField = scientificField;
 	}
 
 	public String getLocation() {
@@ -90,5 +89,4 @@ public final class ResultData {
 	public void setHighlight(String highlight) {
 		this.highlight = highlight;
 	}
-
 }

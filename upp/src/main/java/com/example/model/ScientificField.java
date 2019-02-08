@@ -1,7 +1,9 @@
 package com.example.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,7 +29,7 @@ public class ScientificField {
 	@JsonIgnore
 	@OneToMany(mappedBy = "scientificField", cascade = CascadeType.ALL)
 	private List<SciencePaper> sciencePapers = new ArrayList<SciencePaper>();
-	
+	/*
 	@JsonIgnore
 	@ManyToMany(mappedBy = "scientificFields")
     private List<Magazine> posts = new ArrayList<>();
@@ -35,8 +37,12 @@ public class ScientificField {
 	public ScientificField(String name) {
 		super();
 		this.name = name;
-	}
-	
+	}*/
+
+	@OneToMany(mappedBy = "scientificField", cascade = CascadeType.REMOVE)
+	private Set<Magazine> magazines = new HashSet<Magazine>();
+
+
 	public ScientificField(){}
 	
 	
@@ -48,7 +54,7 @@ public class ScientificField {
 	public void setSciencePapers(List<SciencePaper> sciencePapers) {
 		this.sciencePapers = sciencePapers;
 	}
-
+/*
 	public List<Magazine> getPosts() {
 		return posts;
 	}
@@ -56,7 +62,7 @@ public class ScientificField {
 	public void setPosts(List<Magazine> posts) {
 		this.posts = posts;
 	}
-
+*/
 	public Long getId() {
 		return id;
 	}
@@ -72,5 +78,12 @@ public class ScientificField {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public Set<Magazine> getMagazines() {
+		return magazines;
+	}
+
+	public void setMagazines(Set<Magazine> magazines) {
+		this.magazines = magazines;
+	}
 }

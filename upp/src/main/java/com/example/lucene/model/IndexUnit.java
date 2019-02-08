@@ -17,87 +17,85 @@ public class IndexUnit {
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 
 	@Field(type = FieldType.String, index = FieldIndex.analyzed, store = true)
-	private String nazivCasopisa;
+	private String nameMagazine;
 	@Field(type = FieldType.String, index = FieldIndex.analyzed, store = true)
-	private String naslov;
+	private String title;
 	@Field(type = FieldType.String, index = FieldIndex.analyzed, store = true)
-	private String autor;
+	private String author;
 	@Field(type = FieldType.String, index = FieldIndex.analyzed, store = true)
-	private String kljucniPojmovi;
+	private String keywords;
 	@Field(type = FieldType.String, index = FieldIndex.analyzed, store = true)
 	private String text; //sadrzaj fajla
 	@Field(type = FieldType.String, index = FieldIndex.analyzed, store = true)
-	private String naucnaOblast;
+	private String scientificField;
 	@Id
 	@Field(type = FieldType.String, index = FieldIndex.not_analyzed, store = true)
 	private String filename;
 	@Field(type = FieldType.String, index = FieldIndex.analyzed, store = true)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_PATTERN)
 	private String filedate;
-	
-	
-	public String getNazivCasopisa() {
-		return nazivCasopisa;
-	}
-	
-	public void setNazivCasopisa(String nazivCasopisa) {
-		this.nazivCasopisa = nazivCasopisa;
-	}
-	
-	public String getNaslov() {
-		return naslov;
-	}
-	
-	public void setNaslov(String naslov) {
-		this.naslov = naslov;
-	}
-	
-	public String getAutor() {
-		return autor;
-	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
-	
-	public String getKljucniPojmovi() {
-		return kljucniPojmovi;
-	}
+    public String getNameMagazine() {
+        return nameMagazine;
+    }
 
-	public void setKljucniPojmovi(String kljucniPojmovi) {
-		this.kljucniPojmovi = kljucniPojmovi;
-	}
+    public void setNameMagazine(String nameMagazine) {
+        this.nameMagazine = nameMagazine;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getNaucnaOblast() {
-		return naucnaOblast;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public void setNaucnaOblast(String naucnaOblast) {
-		this.naucnaOblast = naucnaOblast;
-	}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public String getFilename() {
-		return filename;
-	}
-	
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-	
-	public String getFiledate() {
-		return filedate;
-	}
-	
-	public void setFiledate(String filedate) {
-		this.filedate = filedate;
-	}
-	
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getScientificField() {
+        return scientificField;
+    }
+
+    public void setScientificField(String scientificField) {
+        this.scientificField = scientificField;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getFiledate() {
+        return filedate;
+    }
+
+    public void setFiledate(String filedate) {
+        this.filedate = filedate;
+    }
 }

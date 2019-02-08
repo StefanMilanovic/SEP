@@ -35,7 +35,7 @@ public class ResultRetriever {
 		List<ResultData> results = new ArrayList<ResultData>();
 
 		for (IndexUnit indexUnit : repository.search(query)) {
-			results.add(new ResultData(indexUnit.getNazivCasopisa(), indexUnit.getNaslov(), indexUnit.getAutor(), indexUnit.getKljucniPojmovi(), indexUnit.getText(), indexUnit.getNaucnaOblast(), indexUnit.getFilename(), ""));
+			results.add(new ResultData(indexUnit.getNameMagazine(), indexUnit.getTitle(), indexUnit.getAuthor(), indexUnit.getKeywords(), indexUnit.getText(), indexUnit.getScientificField(), indexUnit.getFilename(), ""));
 		}
 
 		return results;

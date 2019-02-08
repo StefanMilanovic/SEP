@@ -1,12 +1,9 @@
 package com.example.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -38,12 +35,20 @@ public class User {
     
     @Column(nullable = false)
     private String role;
-	
+
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+			name = "user_scientificFieldList",
+			joinColumns = { @JoinColumn(name = "editor_id") },
+			inverseJoinColumns = { @JoinColumn(name = "scientificFieldList_id") }
+	)
+	private List<ScientificField> scientificFieldList;
+
+
+
 	public User(){}
-	
-	public User(String username, String firstname, String lastname, String city, String country, String email, String password,
-			String role) {
-		super();
+
+	public User(String username, String firstname, String lastname, String city, String country, String email, String password, String role, List<ScientificField> scientificFieldList) {
 		this.username = username;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -52,6 +57,7 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.scientificFieldList = scientificFieldList;
 	}
 
 	public Long getId() {
@@ -126,5 +132,12 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-    
+
+	public List<ScientificField> getScientificFieldList() {
+		return scientificFieldList;
+	}
+
+	public void setScientificFieldList(List<ScientificField> scientificFieldList) {
+		this.scientificFieldList = scientificFieldList;
+	}
 }

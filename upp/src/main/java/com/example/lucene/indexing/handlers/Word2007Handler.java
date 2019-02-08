@@ -27,11 +27,11 @@ public class Word2007Handler extends DocumentHandler {
 			POIXMLProperties props = wordDoc.getProperties();
 
 			String title = props.getCoreProperties().getTitle();
-			retVal.setNaslov(title);
+			retVal.setTitle(title);
 
 			String keywords = props.getCoreProperties()
 					.getUnderlyingProperties().getKeywordsProperty().getValue();
-			retVal.setKljucniPojmovi(keywords);
+			retVal.setKeywords(keywords);
 
 			retVal.setFilename(file.getCanonicalPath());
 			

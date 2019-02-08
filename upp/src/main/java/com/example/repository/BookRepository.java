@@ -9,12 +9,12 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 public interface BookRepository extends ElasticsearchRepository<IndexUnit, String> {
 
-	List<IndexUnit> findByNazivCasopisa(String nazivCasopisa);
-	List<IndexUnit> findByNaslov(String naslov);
-	List<IndexUnit> findByAutor(String autor);
-	List<IndexUnit> findByKljucniPojmovi(String kljucniPojmovi);
+	List<IndexUnit> findByNameMagazine(String nameMagazine);
+	List<IndexUnit> findByTitle(String title);
+	List<IndexUnit> findByAuthor(String autor);
+	List<IndexUnit> findByKeywords(String keywords);
 	List<IndexUnit> findByText(String text);
-	List<IndexUnit> findByNaucnaOblast(String naucnaOblast);
+	List<IndexUnit> findByScientificField(String scientificField);
 	IndexUnit findByFilename(String filename);
 	IndexUnit findByFiledate(String filedate);
 	
