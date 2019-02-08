@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.DTO.RegisterUserResponse;
 import com.example.model.User;
 import com.example.service.UserService;
+import com.example.test.Hashing;
 //import com.example.test.Hashing;
 
 
@@ -35,8 +36,12 @@ public class Usercontroller {
 		System.out.println("Entered into login controller.");				
 		User user = this.userService.findByEmail(email);
 		
-		if(user == null || !user.getPassword().equals(password)){
-			return new ResponseEntity<User>((User) null, HttpStatus.OK);
+
+		String hashCheck = Hashing.hash(password);			// provera
+		System.out.println(hashCheck);
+		
+		if(user == null || !user.getPassword().equals(Hashing.hash(password))){
+			return new ResponseEntity<>((User) null, HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<User>(user, HttpStatus.OK);		
@@ -61,12 +66,13 @@ public class Usercontroller {
 		}
 		
 		String pw = data.getPassword();
-		
+
 		//String hashedPw = Hashing.hash(pw);
 		String hashedPw = pw;
 
 		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), hashedPw,
 				"author", data.getScientificFieldList());
+
 		
 		this.userService.register(newUser);		
 		RegisterUserResponse response = new RegisterUserResponse(newUser,"success");

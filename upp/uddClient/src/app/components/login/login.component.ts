@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   private loginError = false;
   private form: FormGroup;
 
-  constructor(private userService: UserService, @Inject(FormBuilder) formBuilder: FormBuilder) {
+  constructor(private userService: UserService, @Inject(FormBuilder) formBuilder: FormBuilder, private router: Router) {
 
     this.form = formBuilder.group({
       email: new FormControl('',[Validators.required]),
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       }
       else {
         this.loginError = false;
+        this.router.navigate(['/']);
       }
     })
   }
