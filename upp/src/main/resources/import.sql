@@ -1,4 +1,4 @@
-insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('1','Novi Sad','marica50@ptt.yu','Zoric','Marica','marica','Srbija','author','maricaZoric');
+insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('1','Novi Sad','marica50@ptt.yu','Zoric','Marica','$2a$10$2HnklNkNwAtdVNZKs8.Hx.fH3.eGbiXSFkTjz736OCTrmjxgFhy/S','Srbija','author','maricaZoric');
 
 
 #--SCIENTIFIC FIELDS

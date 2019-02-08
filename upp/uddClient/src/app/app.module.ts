@@ -11,8 +11,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 
 
-import { UserService } from './services/user.service';
 
+
+//LOGIN
+import { AuthenticationService } from './services/authentication.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { TokenInterceptorService } from './app.module';
+export { TokenInterceptorService } from './services/token-interceptor.service';
+import { AuthGuardService } from './services/auth-guard.service'
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -49,7 +56,8 @@ import { MagazineComponent } from './components/magazine/magazine.component';
     MatButtonModule,
     MatListModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthenticationService, AuthGuardService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
