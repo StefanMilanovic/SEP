@@ -24,11 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 /*
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -42,7 +38,7 @@ import udd.service.nc.CasopisService;
 import udd.service.nc.KorisnikService;
 import udd.service.nc.RadService;
 */
-
+@CrossOrigin(origins = "*")
 @RestController
 public class IndexerController {
 
@@ -115,8 +111,12 @@ public class IndexerController {
 	}
 		
 	//indeksiranje i dodavanje rada
+	
 	@PostMapping("/index/add/{id}")
+	//public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
 	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
+		//@ModelAttribute SciencePaper sciencePaper
+		System.out.println("\n\t\taaaa oblas");
 		Magazine magazine = magazineService.findOne(id);
 
         sciencePaper.setScienceMagazine(magazine);
@@ -124,8 +124,8 @@ public class IndexerController {
         sciencePaper.setNameScientifiField(sciencePaper.getScienceMagazine().getScientificField().getName());
 		System.out.println("\n\t\tnaucna oblast kojoj pripada rad: " + sciencePaper.getScienceMagazine().getScientificField().getName());
 
-      //UBACI AUTORE KADA SREDIS
-       /* sciencePaper.setAuthor(userService.getCurrentUser());
+
+       /*sciencePaper.setAuthor(userService.getCurrentUser());
         sciencePaper.setKoautorPodnosilacRada(korisnikService.getCurrentUser());
         sciencePaper.setKoautori(new ArrayList<Korisnik>());
         sciencePaper.setRecenzenti(new ArrayList<Korisnik>());

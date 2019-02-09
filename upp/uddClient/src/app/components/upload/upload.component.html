@@ -1,7 +1,7 @@
 <button class="button btn-info" *ngIf='showFile' (click)='showFiles(false)'>Hide Files</button>
- 
+
 <button class="button btn-info" *ngIf='!showFile' (click)='showFiles(true)'>Show Files</button>
- 
+
 <div [hidden]="!showFile">
   <div class="panel panel-primary">
     <div class="panel-heading">List of Files</div>
@@ -20,20 +20,54 @@
     aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
     {{progress.percentage}}%</div>
 </div>
- 
+
 <label class="btn btn-default">
   <input type="file" (change)="selectFile($event)">
 </label>
- 
-<button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+
+<div class="wrap-login100">
+  <form [formGroup]="formUpload" enctype="multipart/form-data" >
+    <br/>
+    <label>Title: </label>
+    <br/>
+     <input formControlName="name" type="text" class="form-control" name="name"  placeholder="title">
+    <br/>
+    <!--<div class="container-login100-form-btn">-->
+      <!--<button type="button" (click)="serachMagazineTitle(formTitleMagazine.value)" class="login100-form-btn"> Search </button>-->
+    <!--</div>-->
+
+    <br/>
+    <label>Keywords: </label>
+    <br/>
+    <input formControlName="keywords" type="text" class="form-control" name="keywords"  placeholder="Keywords">
+    <br/>
+    <br/>
+
+    <label>Abstract</label>
+    <br/>
+     <input formControlName="abbstract" type="text" class="form-control" name="abbstract"  placeholder="Abstract">
+    <br/>
+
+
+    <label>File</label>
+    <br/>
+    <input type="file"  formControlName="textPDF" name="textPDF"/><br/><br/>
+
+    <button class="btn btn-success"  [disabled]="!formUpload.valid" (click)="upload(formUpload.value)">Upload</button>
+  </form>
+</div>
+
+
 
 <div class="container" style="width:400px">
   <div style="color: blue; margin-bottom: 20px">
     <h1>{{title}}</h1>
     <h3>{{description}}</h3>
   </div>
- 
+
+
   <br/>
   <br/>
 
 </div>
+

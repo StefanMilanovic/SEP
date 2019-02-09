@@ -11,6 +11,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,8 @@ import udd.lucene.model.SimpleQuery;
 import udd.lucene.search.QueryBuilder;
 import udd.lucene.search.ResultRetriever;
 */
+
+@CrossOrigin(origins = "*")
 @RestController
 public class SearchController {
 
@@ -33,10 +36,15 @@ public class SearchController {
 		//pretraga po nazivu casopisa
 		@PostMapping(value="/search/nameMagazine", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchNameMagazine(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());		
+			System.out.println(" \n 1");
+			org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
+			System.out.println(" \n 2");
 			List<RequiredHighlight> rh = new ArrayList<RequiredHighlight>();
+			System.out.println(" \n 3");
 			rh.add(new RequiredHighlight(simpleQuery.getField(), simpleQuery.getValue()));
+			System.out.println(" \n 4");
 			List<ResultData> results = resultRetriever.getResults(query, rh);
+			System.out.println(" \n 5");
 			return new ResponseEntity<List<ResultData>>(results, HttpStatus.OK);
 		}
 	
