@@ -114,7 +114,7 @@ public class IndexerController {
 	//public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
 	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute("currentUser") CurrentUser currentUser, @ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
 		//@ModelAttribute SciencePaper sciencePaper
-		System.out.println("\n\t\tIndeksiranje ...");
+		System.out.println("\n\t\taaaa oblas");
 		User user = currentUser.getUser();
 		List<User> coAuthor = new ArrayList<User>();
 		Magazine magazine = magazineService.findOne(id);

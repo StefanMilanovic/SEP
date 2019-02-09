@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RequestMapping("/paper")
 public class SciencePaperController {
-	
+
 	@RequestMapping(
 			value = "/download",
 			method = RequestMethod.POST,

@@ -16,6 +16,7 @@ export class FormaComponent implements OnInit {
   nazivBanke: string;
   private token: string;
   private odgovorUplate: any;
+  private pogresanUnos = false;
 
   form = new FormGroup({
     csc: new FormControl('', Validators.compose ([Validators.required, Validators.min(99)])),
@@ -87,32 +88,38 @@ export class FormaComponent implements OnInit {
     console.log('Saljem token :' + this.token);
       this.proveraService.posaljiPodatkeKupca(unetiPodaci, this.token).subscribe((data: any) => {
         this.odgovorUplate = data;
-        console.log(this.odgovorUplate);
+      console.log(this.odgovorUplate);
+      if(this.odgovorUplate == null){
+        this.pogresanUnos = true;
+      }
+      else{
         if (this.odgovorUplate.result === 'success') {
           window.location.href = 'http://localhost:4200/rezultat/success/' + this.odgovorUplate.token;
         } else if (this.odgovorUplate.result === 'failure') {
           window.location.href = 'http://localhost:4200/rezultat/failure/' + this.odgovorUplate.token;
         } else if (this.odgovorUplate.result === 'different') {
           this.pccDataService.posaljiKaPcc(this.odgovorUplate.bankData).subscribe( (pccdata: any) => {
-              console.log(pccdata);
-           this.pccDataService.posaljiKaDrugojBanci(pccdata.bank.urlTransaction, pccdata.transactionData).subscribe((data: any) =>{
-               console.log(data);
-               this.pccDataService.zavrsiPccTransakciju(data).subscribe( finalData => {
-                  console.log(data);
+            console.log(pccdata);
+            this.pccDataService.posaljiKaDrugojBanci(pccdata.bank.urlTransaction, pccdata.transactionData).subscribe((data: any) =>{
+              console.log(data);
+              this.pccDataService.zavrsiPccTransakciju(data).subscribe( finalData => {
+                console.log(data);
 
-                 this.pccDataService.snimanjeTransakcijePCC(data.bankData).subscribe( (finalDataPccResponse: any) => {
-                   console.log('snimanjeTransakcijePCC , bankData' + finalDataPccResponse);
-                   if (finalDataPccResponse.result === 'success') {
-                     window.location.href = 'http://localhost:4200/rezultat/success/' + finalDataPccResponse.token;
-                   } else if (finalDataPccResponse.result === 'failure') {
-                     window.location.href = 'http://localhost:4200/rezultat/failure/' + finalDataPccResponse.token;
-                   }
-                 });
-               });
+                this.pccDataService.snimanjeTransakcijePCC(data.bankData).subscribe( (finalDataPccResponse: any) => {
+                  console.log('snimanjeTransakcijePCC , bankData' + finalDataPccResponse);
+                  if (finalDataPccResponse.result === 'success') {
+                    window.location.href = 'http://localhost:4200/rezultat/success/' + finalDataPccResponse.token;
+                  } else if (finalDataPccResponse.result === 'failure') {
+                    window.location.href = 'http://localhost:4200/rezultat/failure/' + finalDataPccResponse.token;
+                  }
+                });
+              });
             });
           });
         } else {
         }
+      }
+
         // setTimeout(() => {
         //   window.location.href = 'http://localhost:5000/paymentForm/' + this.token;
         // }, 3000); //5s
