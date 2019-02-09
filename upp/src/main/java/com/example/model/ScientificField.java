@@ -40,6 +40,7 @@ public class ScientificField {
 	}*/
 
 	@OneToMany(mappedBy = "scientificField", cascade = CascadeType.REMOVE)
+	@JsonIgnore
 	private Set<Magazine> magazines = new HashSet<Magazine>();
 
 

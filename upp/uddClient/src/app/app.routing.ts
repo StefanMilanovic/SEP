@@ -5,6 +5,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {LoginComponent} from './components/login/login.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { SearchComponent } from './components/search/search.component';
+import { ResultComponent } from './components/result/result.component';
 
 const appRoutes: Routes =
     [
@@ -13,5 +14,6 @@ const appRoutes: Routes =
         { path: 'login', component: LoginComponent },
         { path: 'upload', component: UploadComponent},
         { path: 'search', component: SearchComponent},
+        { path: 'result/:result', component: ResultComponent},
     ];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

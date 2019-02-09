@@ -49,7 +49,8 @@ public class KarticaController {
         Kartica karticaKupca = karticaService.findByBrojKartice(unetiPodaci.getBrojKartice());
         Kartica karticaProdavac = karticaService.findByBrojKartice(bankData.getBankRacunProdavac());
 
-        if(!unetiPodaci.getBrojKartice().substring(1,5).equals("11111")){
+        if(!unetiPodaci.getBrojKartice().substring(1,6).equals("11111")){
+            System.out.println(unetiPodaci.getBrojKartice().substring(1,5));
            String full = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
            SecureRandom rnd = new SecureRandom();
 

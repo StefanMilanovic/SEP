@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  private loggedUser: any;
+  private userLogged: boolean;
+
+  constructor(private authService: AuthenticationService) { }
+
+
 
   ngOnInit() {
+    this.loggedUser = this.authService.getUserFromService();
+    if(this.loggedUser != null){
+      this.userLogged = true;
+      console.log(this.loggedUser);
+    }
+    else{
+      this.userLogged = false;
+    }
+  }
+
+  clickLogout(){
+    this.authService.logOutUser();
   }
 
 }

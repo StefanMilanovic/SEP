@@ -47,7 +47,16 @@ public class User {
 	)
 	private List<ScientificField> scientificFieldList = new ArrayList<ScientificField>();
 
-
+    @ManyToMany(cascade = {
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+		}, fetch =FetchType.EAGER)
+    @JoinTable(name = "user_magazine",
+	joinColumns = @JoinColumn(name = "user_id"),
+	inverseJoinColumns = @JoinColumn(name = "mag_id")
+		)
+    @JsonIgnore
+    private List<Magazine> allowedMagazines = new ArrayList<Magazine>();
 
 	public User(){}
 
@@ -60,6 +69,16 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+	}
+	
+	
+
+	public List<Magazine> getAllowedMagazines() {
+		return allowedMagazines;
+	}
+
+	public void setAllowedMagazines(List<Magazine> allowedMagazines) {
+		this.allowedMagazines = allowedMagazines;
 	}
 
 	public Long getId() {

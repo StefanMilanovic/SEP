@@ -1,18 +1,13 @@
 package koncentratorPlacanja.controller;
 
 
-import koncentratorPlacanja.DTO.BitcoinDTO;
 import koncentratorPlacanja.DTO.BitcoinResponseDTO;
 import koncentratorPlacanja.model.*;
 import koncentratorPlacanja.service.KlijentService;
 import koncentratorPlacanja.service.TransakcijaService;
 import koncentratorPlacanja.service.ZavrsenaTransakcijaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.BasicJsonParser;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -83,13 +78,13 @@ public class TransakcijaController {
            method = RequestMethod.POST,
            produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Transakcija> createTransaction(@RequestBody @Valid NaucnaCentralaData naucnaCentralaData) {
+    public ResponseEntity<Transakcija> createTransaction(@RequestBody @Valid KoncentratorData naucnaCentralaData) {
 
-        Transakcija t = new Transakcija(naucnaCentralaData.getKolicina(), klijentService.findByBankId(naucnaCentralaData.getProdavacBankId()),
-                naucnaCentralaData.getDatum(), naucnaCentralaData.getBankRacunProdavca());
+        Transakcija t = new Transakcija(naucnaCentralaData.getPrice(), klijentService.findOne(Long.parseLong(naucnaCentralaData.getClientId())),
+                naucnaCentralaData.getDate(), naucnaCentralaData.getBankAccount());
         transakcijaService.save(t);
 
-        return new ResponseEntity<Transakcija>(HttpStatus.OK);
+        return new ResponseEntity<Transakcija>(transakcijaService.findByToken(t.getToken()), HttpStatus.OK);
     }
 
     @RequestMapping(
@@ -124,9 +119,10 @@ public class TransakcijaController {
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<ZavrsenaTransakcija> resultTransaction(@PathVariable String token, @RequestBody @Valid String result) {
+    public ResponseEntity<Klijent> resultTransaction(@PathVariable String token, @RequestBody @Valid String result) {
 
         Transakcija tempTransakcija = transakcijaService.findByToken(token);
+        Klijent retKlijent = klijentService.findOne(tempTransakcija.getKlijent_id().getId());
         if(tempTransakcija != null) {
             ZavrsenaTransakcija zavrsenaTransakcija = new ZavrsenaTransakcija(tempTransakcija.getToken(), tempTransakcija.getKolicina(),
                     tempTransakcija.getKlijent_id(), tempTransakcija.getBankRacunProdavac(), result);
@@ -134,7 +130,7 @@ public class TransakcijaController {
             zavrsenaTransakcijaService.save(zavrsenaTransakcija);
             transakcijaService.delete(tempTransakcija);
 
-            return new ResponseEntity<ZavrsenaTransakcija>(zavrsenaTransakcija, HttpStatus.OK);
+            return new ResponseEntity<Klijent>(retKlijent, HttpStatus.OK);
         }
         else{
             return null;

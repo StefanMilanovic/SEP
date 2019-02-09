@@ -14,8 +14,8 @@ insert into scientific_field(id, name) values ('9', 'Geography');
 insert into scientific_field(id, name) values ('10', 'Medicine');
 
 #--MAGAZINES
-insert into magazine(id, issn, name, scientific_fields_id) values ('1','1234-4321','Engineering Monthly', '1');
-insert into magazine(id, issn, name, scientific_fields_id) values ('2','4321-1234','This Month in Physics and Maths', '2');
+insert into magazine(id, issn, name, scientific_fields_id, price) values ('1','1234-4321','Engineering Monthly', '1', '9.99');
+insert into magazine(id, issn, name, scientific_fields_id, price) values ('2','4321-1234','This Month in Physics and Maths', '2', '0.00');
 
 #--MAGAZINE_FIELDS
 # insert into magazine_fields(mag_id, field_id) values ('1','2');

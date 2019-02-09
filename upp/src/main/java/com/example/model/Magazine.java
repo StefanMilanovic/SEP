@@ -14,9 +14,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;	
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+//@JsonIdentityInfo(scope = Magazine.class, property = "id", generator = ObjectIdGenerators.None.class)
 public class Magazine {
 	
 	@Id
@@ -46,17 +49,41 @@ public class Magazine {
 */
 	@ManyToOne
 	@JoinColumn(name="scientificFields_id", nullable=false)
-	@JsonIgnore
 	private ScientificField scientificField;
+	
+	@Column()
+	private double price;
+	
+	@ManyToMany(fetch =FetchType.EAGER, mappedBy = "allowedMagazines")
+    private List<User> allowedUsers = new ArrayList<>();
 
-	public Magazine(String issn, String name) {
+	public Magazine(String issn, String name, double price) {
 		super();
 		this.issn = issn;
 		this.name = name;		
+		this.price = price;
 	}
 
 	public Magazine(){}
 	
+	
+	
+	public List<User> getAllowedUsers() {
+		return allowedUsers;
+	}
+
+	public void setAllowedUsers(List<User> allowedUsers) {
+		this.allowedUsers = allowedUsers;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	public Long getId() {
 		return id;
 	}

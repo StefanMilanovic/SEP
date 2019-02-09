@@ -25,4 +25,9 @@ public class MagazineServiceImpl implements MagazineService{
 		return this.magazineRepository.findOne(id);
 	}
 
+	@Override
+	public Magazine save(Magazine mag) {
+		return this.magazineRepository.save(mag);
+	}
+
 }

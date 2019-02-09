@@ -40,4 +40,11 @@ export class AuthenticationService {
   public getUserFromService(): any {
     return JSON.parse(localStorage.getItem('user'));
   }
+
+  public logOutUser() {
+    this.token = null;
+    this.user = null;
+    this.redirectUrl = null;
+    localStorage.clear();
+  }
 }
