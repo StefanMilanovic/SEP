@@ -20,7 +20,7 @@ import com.example.lucene.indexing.handlers.WordHandler;
 public class ResultRetriever {
 	
 	@Autowired
-	private BookRepository repository;
+	private BookRepository bookRepository;
 	
 	public ResultRetriever(){
 		
@@ -34,7 +34,7 @@ public class ResultRetriever {
 			
 		List<ResultData> results = new ArrayList<ResultData>();
 
-		for (IndexUnit indexUnit : repository.search(query)) {
+		for (IndexUnit indexUnit : bookRepository.search(query)) {
 			results.add(new ResultData(indexUnit.getNameMagazine(), indexUnit.getTitle(), indexUnit.getAuthor(), indexUnit.getKeywords(), indexUnit.getText(), indexUnit.getScientificField(), indexUnit.getFilename(), ""));
 		}
 

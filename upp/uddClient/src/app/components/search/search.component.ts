@@ -10,8 +10,10 @@ import {Router} from '@angular/router';
 export class SearchComponent implements OnInit {
 
 
+  private allSciPaper: any[];
+
   formTitleMagazine = new FormGroup({
-    field: new FormControl('magazineTitle', Validators.compose ([Validators.required])),
+    field: new FormControl('nameMagazine', Validators.compose ([Validators.required])),
     value: new FormControl('', Validators.compose ([Validators.required])),
   });
 
@@ -28,8 +30,8 @@ export class SearchComponent implements OnInit {
     console.log( " pocni pretragu formTitleMagazine za : " + formTitleMagazine.field + " : " + formTitleMagazine.value );
 
     this.searchService.serachMagazineTitle(formTitleMagazine).subscribe( (retVal: any) => {
-      console.log('Povratna vrenost searc Magazin title' + retVal);
-
+      console.log('Povratna vrenost searc Magazin title' + retVal[0].title);
+      this.allSciPaper = retVal;
        // window.location.href = 'http://localhost:4300/search';
 
     });

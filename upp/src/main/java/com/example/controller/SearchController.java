@@ -36,15 +36,12 @@ public class SearchController {
 		//pretraga po nazivu casopisa
 		@PostMapping(value="/search/nameMagazine", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchNameMagazine(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			System.out.println(" \n 1");
+			System.out.println(" \n  Kontroler nameMagazine");
 			org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
-			System.out.println(" \n 2");
 			List<RequiredHighlight> rh = new ArrayList<RequiredHighlight>();
-			System.out.println(" \n 3");
 			rh.add(new RequiredHighlight(simpleQuery.getField(), simpleQuery.getValue()));
-			System.out.println(" \n 4");
 			List<ResultData> results = resultRetriever.getResults(query, rh);
-			System.out.println(" \n 5");
+
 			return new ResponseEntity<List<ResultData>>(results, HttpStatus.OK);
 		}
 	

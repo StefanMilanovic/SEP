@@ -3,12 +3,39 @@
   <component name="ChangeListManager">
     <list default="true" id="b8fe8c34-0842-4d39-8df2-e4b5c751454f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../upp/src/main/java/com/example/controller/IndexerController.java" afterPath="$PROJECT_DIR$/../upp/src/main/java/com/example/controller/IndexerController.java" />
-      <change beforePath="$PROJECT_DIR$/../upp/src/main/java/com/example/model/SciencePaper.java" afterPath="$PROJECT_DIR$/../upp/src/main/java/com/example/model/SciencePaper.java" />
-      <change beforePath="$PROJECT_DIR$/../upp/src/main/resources/import.sql" afterPath="$PROJECT_DIR$/../upp/src/main/resources/import.sql" />
-      <change beforePath="$PROJECT_DIR$/../upp/uddClient/src/app/components/upload/upload.component.html" afterPath="$PROJECT_DIR$/../upp/uddClient/src/app/components/upload/upload.component.html" />
-      <change beforePath="$PROJECT_DIR$/../upp/uddClient/src/app/components/upload/upload.component.ts" afterPath="$PROJECT_DIR$/../upp/uddClient/src/app/components/upload/upload.component.ts" />
-      <change beforePath="$PROJECT_DIR$/../upp/uddClient/src/app/services/upload.service.ts" afterPath="$PROJECT_DIR$/../upp/uddClient/src/app/services/upload.service.ts" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/_state/global-10.st" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/_state/state-10.st" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/index/_0.cfe" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/index/_0.cfs" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/index/_0.si" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/index/segments_8" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-1.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-1.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-10.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-10.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-11.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-2.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-2.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-3.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-3.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-4.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-4.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-5.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-5.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-6.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-6.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-7.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-7.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-8.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-8.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-9.ckp" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog-9.tlog" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog.ckp" afterPath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/0/translog/translog.ckp" />
+      <change beforePath="$PROJECT_DIR$/../upp/data/elasticsearch/nodes/0/indices/digitallibrary/_state/state-21.st" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../upp/src/main/java/com/example/controller/SearchController.java" afterPath="$PROJECT_DIR$/../upp/src/main/java/com/example/controller/SearchController.java" />
+      <change beforePath="$PROJECT_DIR$/../upp/src/main/java/com/example/lucene/search/ResultRetriever.java" afterPath="$PROJECT_DIR$/../upp/src/main/java/com/example/lucene/search/ResultRetriever.java" />
+      <change beforePath="$PROJECT_DIR$/../upp/uddClient/src/app/components/search/search.component.html" afterPath="$PROJECT_DIR$/../upp/uddClient/src/app/components/search/search.component.html" />
+      <change beforePath="$PROJECT_DIR$/../upp/uddClient/src/app/components/search/search.component.ts" afterPath="$PROJECT_DIR$/../upp/uddClient/src/app/components/search/search.component.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -110,7 +137,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/bankClient/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="189" />
     <option name="y" value="26" />
     <option name="width" value="1145" />
@@ -287,15 +314,15 @@
       <workItem from="1548848081919" duration="13273000" />
       <workItem from="1549195169327" duration="6332000" />
       <workItem from="1549216751486" duration="121000" />
-      <workItem from="1549642518500" duration="4858000" />
+      <workItem from="1549642518500" duration="5093000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55034000" />
+    <option name="totallyTimeSpent" value="55269000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="189" y="26" width="1145" height="750" extended-state="1" />
+    <frame x="189" y="26" width="1145" height="750" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />

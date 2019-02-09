@@ -12,5 +12,13 @@
     </div>
 
   </form>
+
+  <h4>Results: </h4>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let sciPaper of allSciPaper">
+      <mat-expansion-panel-header>{{sciPaper.nameMagazine}}</mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
 
