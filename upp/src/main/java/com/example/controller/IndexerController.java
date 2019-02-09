@@ -111,7 +111,7 @@ public class IndexerController {
 	}
 		
 	//indeksiranje i dodavanje rada
-	
+
 	@PostMapping("/index/add/{id}")
 	//public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
 	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {

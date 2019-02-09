@@ -40,6 +40,8 @@ export class RegisterComponent implements OnInit {
     this.newUser.country = this.form.value.country;
     this.newUser.city = this.form.value.city;
 
+    console.log(this.newUser);
+
     this.userService.registerUser(this.newUser).subscribe((data:any) => {
       console.log(data);
       if(data.code == "success") {

@@ -1,10 +1,14 @@
 package com.example.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.DTO.RegisterUserResponse;
+import com.example.model.CurrentUser;
 import com.example.model.User;
 import com.example.service.UserService;
 import com.example.test.Hashing;
@@ -27,24 +32,31 @@ public class Usercontroller {
 	private UserService userService;
 	
 	@RequestMapping(
-            value = "/login/{email}/{password}",
+            value = "/login",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-	public ResponseEntity<User> login(@PathVariable String email, @PathVariable String password) {
+	public ResponseEntity<User> login(@ModelAttribute("currentUser") CurrentUser currentUser) {
 		
-		System.out.println("Entered into login controller.");				
-		User user = this.userService.findByEmail(email);
+//		System.out.println("Entered into login controller.");				
+//		User user = this.userService.findByEmail(email);
+//		
+//
+//		String hashCheck = Hashing.hash(password);			// provera
+//		System.out.println(hashCheck);
+//		
+//		if(user == null || !user.getPassword().equals(Hashing.hash(password))){
+//			return new ResponseEntity<>((User) null, HttpStatus.OK);
+//		}
+//		
+//		return new ResponseEntity<User>(user, HttpStatus.OK);
+		System.out.println("treba da vrati:" +currentUser);
 		
-
-		String hashCheck = Hashing.hash(password);			// provera
-		System.out.println(hashCheck);
+		if(currentUser == null){
+			return null;
+		}	
 		
-		if(user == null || !user.getPassword().equals(Hashing.hash(password))){
-			return new ResponseEntity<>((User) null, HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<User>(user, HttpStatus.OK);		
+		return new ResponseEntity<User>(currentUser.getUser(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(
@@ -55,24 +67,26 @@ public class Usercontroller {
 	)
 	public ResponseEntity<RegisterUserResponse>register(@RequestBody User data){
 		
+		Optional<User> testUsername = userService.findByUsername(data.getUsername());
+		Optional<User> testEmail = userService.findByEmail(data.getEmail());
 		
-		if(userService.findByUsername(data.getUsername()) != null){
-			RegisterUserResponse response = new RegisterUserResponse(userService.findByUsername(data.getUsername()), "username");
+		
+		if(testUsername.isPresent()){
+			RegisterUserResponse response = new RegisterUserResponse(userService.findByUsername(data.getUsername()).get(), "username");
 			return new ResponseEntity<RegisterUserResponse>(response, HttpStatus.OK);
 		}
-		else if(userService.findByEmail(data.getEmail()) != null){
-			RegisterUserResponse response = new RegisterUserResponse(userService.findByEmail(data.getEmail()), "email");
+		else if(testEmail.isPresent()){
+			RegisterUserResponse response = new RegisterUserResponse(userService.findByEmail(data.getEmail()).get(), "email");
 			return new ResponseEntity<RegisterUserResponse>(response, HttpStatus.OK);
 		}
+				
+
+//		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), hashedPw,
+//				"author", data.getScientificFieldList());
 		
-		String pw = data.getPassword();
-
-		//String hashedPw = Hashing.hash(pw);
-		String hashedPw = pw;
-
-		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), hashedPw,
-				"author", data.getScientificFieldList());
-
+		String password = new BCryptPasswordEncoder().encode(data.getPassword());
+		
+		User newUser = new User(data.getUsername(), data.getFirstname(), data.getLastname(), data.getCity(), data.getCountry(), data.getEmail(), password, "USER");
 		
 		this.userService.register(newUser);		
 		RegisterUserResponse response = new RegisterUserResponse(newUser,"success");

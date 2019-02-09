@@ -21,7 +21,7 @@
         </div>
 
         <div class="container-login100-form-btn">
-          <button type="button" (click)="login()" class="login100-form-btn"> Sign in </button>
+          <button type="button" [disabled]="!form.valid" (click)="login()" class="login100-form-btn"> Log In </button>
         </div>
 
         <div class="flex-col-c p-t-170 p-b-40">

@@ -312,6 +312,15 @@
     background-color: #1b3815;
   }
   
+  .login100-form-btn:disabled{
+    background-color: gray;
+    cursor: not-allowed;
+  }
+
+  .login100-form-btn:disabled:hover{
+    background-color: gray;
+    
+  }
   
   /*------------------------------------------------------------------
   [ Alert validate ]*/

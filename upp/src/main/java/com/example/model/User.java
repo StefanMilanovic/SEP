@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
@@ -35,20 +37,21 @@ public class User {
     
     @Column(nullable = false)
     private String role;
-
+    
+    @JsonIgnore
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(
 			name = "user_scientificFieldList",
 			joinColumns = { @JoinColumn(name = "editor_id") },
 			inverseJoinColumns = { @JoinColumn(name = "scientificFieldList_id") }
 	)
-	private List<ScientificField> scientificFieldList;
+	private List<ScientificField> scientificFieldList = new ArrayList<ScientificField>();
 
 
 
 	public User(){}
 
-	public User(String username, String firstname, String lastname, String city, String country, String email, String password, String role, List<ScientificField> scientificFieldList) {
+	public User(String username, String firstname, String lastname, String city, String country, String email, String password, String role) {
 		this.username = username;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -57,7 +60,6 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.role = role;
-		this.scientificFieldList = scientificFieldList;
 	}
 
 	public Long getId() {
