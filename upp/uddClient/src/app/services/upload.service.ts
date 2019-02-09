@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {RequestOptions} from '@angular/http';
+import {AuthenticationService} from "./authentication.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
 
-  constructor(private http: HttpClient) { }
+  serverUser :any;
+  authenticationService: any;
+
+  constructor(private http: HttpClient,  authenticationService: AuthenticationService) {
+    this.authenticationService = authenticationService;
+  }
 
   pushFileToStorage(file: File, formUpload): Observable<HttpEvent<{}>> {
+    this.serverUser = this.authenticationService.getUserFromService();
+    console.log("Ulogovani -> " + this.serverUser);
+
     const formdata: FormData = new FormData();
 
     formdata.append('textPDF', file);
@@ -38,11 +46,11 @@ export class UploadService {
       responseType: 'text',
       headers: headers
     });
-    console.log("saljem na index contr : " + formdataNewTry);
     return this.http.request(req);
 
 
   }
+
   uploadIndex(formdata) {
     return this.http.post('http://localhost:8080/index/add/1',formdata);
   }

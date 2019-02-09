@@ -48,11 +48,6 @@
      <input formControlName="abbstract" type="text" class="form-control" name="abbstract"  placeholder="Abstract">
     <br/>
 
-
-    <label>File</label>
-    <br/>
-    <input type="file"  formControlName="textPDF" name="textPDF"/><br/><br/>
-
     <button class="btn btn-success"  [disabled]="!formUpload.valid" (click)="upload(formUpload.value)">Upload</button>
   </form>
 </div>

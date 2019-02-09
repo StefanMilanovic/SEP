@@ -9,13 +9,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.example.lucene.indexing.Indexer;
 import com.example.lucene.model.IndexUnit;
-import com.example.model.Magazine;
-import com.example.model.SciencePaper;
-import com.example.model.ScientificField;
+import com.example.model.*;
 import com.example.service.MagazineService;
 import com.example.service.SciencePaperService;
 import com.example.service.ScientificFieldService;
@@ -111,26 +110,26 @@ public class IndexerController {
 	}
 		
 	//indeksiranje i dodavanje rada
-
 	@PostMapping("/index/add/{id}")
 	//public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
-	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
+	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute("currentUser") CurrentUser currentUser, @ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
 		//@ModelAttribute SciencePaper sciencePaper
-		System.out.println("\n\t\taaaa oblas");
+		System.out.println("\n\t\tIndeksiranje ...");
+		User user = currentUser.getUser();
+		List<User> coAuthor = new ArrayList<User>();
 		Magazine magazine = magazineService.findOne(id);
-
+		//ID DODELITI NA OSNOVU COMBO BOX
         sciencePaper.setScienceMagazine(magazine);
         sciencePaper.setNameMagazine(sciencePaper.getScienceMagazine().getName());
         sciencePaper.setNameScientifiField(sciencePaper.getScienceMagazine().getScientificField().getName());
 		System.out.println("\n\t\tnaucna oblast kojoj pripada rad: " + sciencePaper.getScienceMagazine().getScientificField().getName());
 
 
-       /*sciencePaper.setAuthor(userService.getCurrentUser());
-        sciencePaper.setKoautorPodnosilacRada(korisnikService.getCurrentUser());
-        sciencePaper.setKoautori(new ArrayList<Korisnik>());
-        sciencePaper.setRecenzenti(new ArrayList<Korisnik>());
-        sciencePaper.setUrednici(new ArrayList<Korisnik>());
-	        */
+        sciencePaper.setAuthor(user);
+
+        sciencePaper.setCoAuthor(new ArrayList<User>());
+		sciencePaper.setScentificField(sciencePaper.getScienceMagazine().getScientificField());
+
 	    try {
 	    	indexUploadedFile(sciencePaper);
 	    } catch (IOException e) {

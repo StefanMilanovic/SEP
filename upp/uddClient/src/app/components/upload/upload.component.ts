@@ -27,7 +27,6 @@ export class UploadComponent implements OnInit {
     name: new FormControl('', Validators.compose ([Validators.required])),
     keywords: new FormControl('', Validators.compose ([Validators.required])),
     abbstract: new FormControl('', Validators.compose ([Validators.required])),
-    textPDF: new FormControl('', Validators.compose ([Validators.required])),
   });
 
   constructor(private uploadService: UploadService) { }

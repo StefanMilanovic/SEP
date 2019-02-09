@@ -52,8 +52,6 @@ public class SciencePaper {
 	@Lob
 	private MultipartFile[] textPDF;
 
-	@Column(nullable = false)
-	private String finalPDF;
 
 
 	private String nameMagazine;
@@ -62,14 +60,14 @@ public class SciencePaper {
 
 	public SciencePaper(){}
 	
-	public SciencePaper(String name, String keywords, String abbstract, ScientificField scientificField, MultipartFile[] textPDF, String finalPDF) {
+	public SciencePaper(String name, String keywords, String abbstract, ScientificField scientificField, MultipartFile[] textPDF) {
 		super();
 		this.name = name;
 		this.keywords = keywords;
 		this.abbstract = abbstract;
 		this.scientificField = scientificField;
 		this.textPDF = textPDF;
-		this.finalPDF = finalPDF;
+
 	}
 
 	public Long getId() {
@@ -110,14 +108,6 @@ public class SciencePaper {
 
 	public void setScentificField(ScientificField scientificField) {
 		this.scientificField = scientificField;
-	}
-
-	public String getFinalPDF() {
-		return finalPDF;
-	}
-
-	public void setFinalPDF(String finalPDF) {
-		this.finalPDF = finalPDF;
 	}
 
 	public MultipartFile[] getTextPDF() {
