@@ -28,7 +28,7 @@
     <label> PIN: </label>
     <input  value="" type="number" name="PIN" id = "PIN">
   </div>
-
+  <p *ngIf="pogresanUnos">Pogresan unos</p>
   <div>
     <!--<button (click)="potvrdi($event)">Potvrdi</button>-->
     <input id="potvrdi" type = "submit" [disabled]="!form.valid"  value ="Potvrdi">
