@@ -26,6 +26,16 @@ export class SearchComponent implements OnInit {
     value: new FormControl('', Validators.compose ([Validators.required])),
   });
 
+  formKeywords  = new FormGroup({
+    field: new FormControl('keywords', Validators.compose ([Validators.required])),
+    value: new FormControl('', Validators.compose ([Validators.required])),
+  });
+
+  formScientificField = new FormGroup({
+    field: new FormControl('scientificField', Validators.compose ([Validators.required])),
+    value: new FormControl('', Validators.compose ([Validators.required])),
+  });
+
   constructor(private router: Router, private searchService: SearchService) {
 
   }
@@ -34,10 +44,10 @@ export class SearchComponent implements OnInit {
   }
 
 
-  serachMagazineTitle(formAuthor){
-    console.log( " pocni pretragu formAuthor za : " + formAuthor.field + " : " + formAuthor.value );
+  serachMagazineTitle(formTitleMagazine){
+    console.log( " pocni pretragu formTitleMagazine za : " + formTitleMagazine.field + " : " + formTitleMagazine.value );
 
-    this.searchService.serachAutor(formAuthor).subscribe( (retVal: any) => {
+    this.searchService.serachAutor(formTitleMagazine).subscribe( (retVal: any) => {
       if(retVal == null){
         console.log("Nema rezultata pretrage");
         this.allSciPaper = null;
@@ -65,15 +75,46 @@ export class SearchComponent implements OnInit {
 
     });
   }
-  serachAuthor(formTitle){
-    console.log( " pocni pretragu serachTitle za : " + formTitle.field + " : " + formTitle.value );
+  serachAuthor(formAuthor){
+    console.log( " pocni pretragu formAuthor za : " + formAuthor.field + " : " + formAuthor.value );
 
-    this.searchService.serachTitle(formTitle).subscribe( (retVal: any) => {
+    this.searchService.serachAutor(formAuthor).subscribe( (retVal: any) => {
       if(retVal == null){
         console.log("Nema rezultata pretrage");
         this.allSciPaper = null;
       }else {
-        console.log('Povratna vrenost search  title' + retVal[0].title);
+        console.log('Povratna vrenost ' + retVal[0].title);
+        this.allSciPaper = retVal;
+        // window.location.href = 'http://localhost:4300/search';
+      }
+
+    });
+  }
+  serachKeywords(formKeywords){
+    console.log( " pocni pretragu formKeywords za : " + formKeywords.field + " : " + formKeywords.value );
+
+    this.searchService.serachKeywords(formKeywords).subscribe( (retVal: any) => {
+      if(retVal == null){
+        console.log("Nema rezultata pretrage");
+        this.allSciPaper = null;
+      }else {
+        console.log('Povratna vrenost ' + retVal[0].title);
+        this.allSciPaper = retVal;
+        // window.location.href = 'http://localhost:4300/search';
+      }
+
+    });
+  }
+
+  serachScientificField(formScientificField){
+    console.log( " pocni pretragu formScientificField za : " + formScientificField.field + " : " + formScientificField.value );
+
+    this.searchService.serachScientificField(formScientificField).subscribe( (retVal: any) => {
+      if(retVal == null){
+        console.log("Nema rezultata pretrage");
+        this.allSciPaper = null;
+      }else {
+        console.log('Povratna vrenost ' + retVal[0].title);
         this.allSciPaper = retVal;
         // window.location.href = 'http://localhost:4300/search';
       }
