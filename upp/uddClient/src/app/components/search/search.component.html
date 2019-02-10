@@ -20,10 +20,24 @@
     <input formControlName="value" type="text" class="form-control" name="titleValue"  placeholder="Title">
 
     <div class="container-login100-form-btn">
-      <button type="button" [disabled]="!formTitle.valid" (click)="serachMagazineTitle(formTitle.value)" class="login100-form-btn"> Search </button>
+      <button type="button" [disabled]="!formTitle.valid" (click)="serachTitle(formTitle.value)" class="login100-form-btn"> Search </button>
     </div>
 
   </form>
+
+
+  <form [formGroup]="formAuthor" >
+    <label>Author: </label>
+    <br/>
+    <input  formControlName="field" type="text" class="form-control" name="authorKey" value="author" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="authorValue"  placeholder="First name last name ">
+
+    <div class="container-login100-form-btn">
+      <button type="button" [disabled]="!formAuthor.valid" (click)="serachAuthor(formAuthor.value)" class="login100-form-btn"> Search </button>
+    </div>
+
+  </form>
+
 
   <h4>Results: </h4>
 

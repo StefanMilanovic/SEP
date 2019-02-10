@@ -21,7 +21,10 @@ export class SearchComponent implements OnInit {
     field: new FormControl('title', Validators.compose ([Validators.required])),
     value: new FormControl('', Validators.compose ([Validators.required])),
   });
-
+  formAuthor = new FormGroup({
+    field: new FormControl('author', Validators.compose ([Validators.required])),
+    value: new FormControl('', Validators.compose ([Validators.required])),
+  });
 
   constructor(private router: Router, private searchService: SearchService) {
 
@@ -31,10 +34,10 @@ export class SearchComponent implements OnInit {
   }
 
 
-  serachMagazineTitle(formTitleMagazine){
-    console.log( " pocni pretragu formTitleMagazine za : " + formTitleMagazine.field + " : " + formTitleMagazine.value );
+  serachMagazineTitle(formAuthor){
+    console.log( " pocni pretragu formAuthor za : " + formAuthor.field + " : " + formAuthor.value );
 
-    this.searchService.serachMagazineTitle(formTitleMagazine).subscribe( (retVal: any) => {
+    this.searchService.serachAutor(formAuthor).subscribe( (retVal: any) => {
       if(retVal == null){
         console.log("Nema rezultata pretrage");
         this.allSciPaper = null;
@@ -62,5 +65,19 @@ export class SearchComponent implements OnInit {
 
     });
   }
+  serachAuthor(formTitle){
+    console.log( " pocni pretragu serachTitle za : " + formTitle.field + " : " + formTitle.value );
 
+    this.searchService.serachTitle(formTitle).subscribe( (retVal: any) => {
+      if(retVal == null){
+        console.log("Nema rezultata pretrage");
+        this.allSciPaper = null;
+      }else {
+        console.log('Povratna vrenost search  title' + retVal[0].title);
+        this.allSciPaper = retVal;
+        // window.location.href = 'http://localhost:4300/search';
+      }
+
+    });
+  }
 }

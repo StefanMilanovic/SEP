@@ -15,4 +15,8 @@ export class SearchService {
   serachTitle(formTitle){
     return this.httpClient.post('http://localhost:8080/search/title', formTitle);
   }
+
+  serachAutor(formTitle){
+    return this.httpClient.post('http://localhost:8080/search/author', formTitle);
+  }
 }
