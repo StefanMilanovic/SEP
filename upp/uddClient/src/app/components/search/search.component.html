@@ -51,13 +51,25 @@
   </form>
 
   <form [formGroup]="formScientificField" >
-    <label>Keywords: </label>
+    <label>Scientific field: </label>
     <br/>
     <input  formControlName="field" type="text" class="form-control" name="scientificFieldKey" value="keywords" readonly hidden>
     <input formControlName="value" type="text" class="form-control" name="scientificFieldValue"  placeholder="Scientific Field">
 
     <div class="container-login100-form-btn">
       <button type="button" [disabled]="!formScientificField.valid" (click)="serachScientificField(formScientificField.value)" class="login100-form-btn"> Search </button>
+    </div>
+
+  </form>
+
+  <form [formGroup]="formContent" >
+    <label>Content: </label>
+    <br/>
+    <input  formControlName="field" type="text" class="form-control" name="contentKey" value="keywords" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="contentValue"  placeholder="Content">
+
+    <div class="container-login100-form-btn">
+      <button type="button" [disabled]="!formContent.valid" (click)="serachContent(formContent.value)" class="login100-form-btn"> Search </button>
     </div>
 
   </form>

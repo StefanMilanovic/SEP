@@ -27,4 +27,9 @@ export class SearchService {
   serachScientificField(formScientificField){
     return this.httpClient.post('http://localhost:8080/search/scientificField', formScientificField);
   }
+
+  serachContent(formContent){
+    return this.httpClient.post('http://localhost:8080/search/content', formContent);
+  }
+
 }
