@@ -11,4 +11,8 @@ export class SearchService {
   serachMagazineTitle(formTitleMagazine){
     return this.httpClient.post('http://localhost:8080/search/nameMagazine', formTitleMagazine);
   }
+
+  serachTitle(formTitle){
+    return this.httpClient.post('http://localhost:8080/search/title', formTitle);
+  }
 }
