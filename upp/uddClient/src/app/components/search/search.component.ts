@@ -36,6 +36,11 @@ export class SearchComponent implements OnInit {
     value: new FormControl('', Validators.compose ([Validators.required])),
   });
 
+  formContent  = new FormGroup({
+    field: new FormControl('text', Validators.compose ([Validators.required])),
+    value: new FormControl('', Validators.compose ([Validators.required])),
+  });
+
   constructor(private router: Router, private searchService: SearchService) {
 
   }
@@ -110,6 +115,21 @@ export class SearchComponent implements OnInit {
     console.log( " pocni pretragu formScientificField za : " + formScientificField.field + " : " + formScientificField.value );
 
     this.searchService.serachScientificField(formScientificField).subscribe( (retVal: any) => {
+      if(retVal == null){
+        console.log("Nema rezultata pretrage");
+        this.allSciPaper = null;
+      }else {
+        console.log('Povratna vrenost ' + retVal[0].title);
+        this.allSciPaper = retVal;
+        // window.location.href = 'http://localhost:4300/search';
+      }
+
+    });
+  }
+  serachContent(formContent){
+    console.log( " pocni pretragu formContent za : " + formContent.field + " : " + formContent.value );
+
+    this.searchService.serachContent(formContent).subscribe( (retVal: any) => {
       if(retVal == null){
         console.log("Nema rezultata pretrage");
         this.allSciPaper = null;
