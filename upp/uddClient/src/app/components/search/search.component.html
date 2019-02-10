@@ -27,18 +27,40 @@
 
 
   <form [formGroup]="formAuthor" >
-    <label>Author: </label>
+  <label>Author: </label>
+  <br/>
+  <input  formControlName="field" type="text" class="form-control" name="authorKey" value="author" readonly hidden>
+  <input formControlName="value" type="text" class="form-control" name="authorValue"  placeholder="First name last name ">
+
+  <div class="container-login100-form-btn">
+    <button type="button" [disabled]="!formAuthor.valid" (click)="serachAuthor(formAuthor.value)" class="login100-form-btn"> Search </button>
+  </div>
+
+</form>
+
+  <form [formGroup]="formKeywords" >
+    <label>Keywords: </label>
     <br/>
-    <input  formControlName="field" type="text" class="form-control" name="authorKey" value="author" readonly hidden>
-    <input formControlName="value" type="text" class="form-control" name="authorValue"  placeholder="First name last name ">
+    <input  formControlName="field" type="text" class="form-control" name="keywordsKey" value="keywords" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="keywordsValue"  placeholder="(e.g. key,value,string )">
 
     <div class="container-login100-form-btn">
-      <button type="button" [disabled]="!formAuthor.valid" (click)="serachAuthor(formAuthor.value)" class="login100-form-btn"> Search </button>
+      <button type="button" [disabled]="!formKeywords.valid" (click)="serachKeywords(formKeywords.value)" class="login100-form-btn"> Search </button>
     </div>
 
   </form>
 
+  <form [formGroup]="formScientificField" >
+    <label>Keywords: </label>
+    <br/>
+    <input  formControlName="field" type="text" class="form-control" name="scientificFieldKey" value="keywords" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="scientificFieldValue"  placeholder="Scientific Field">
 
+    <div class="container-login100-form-btn">
+      <button type="button" [disabled]="!formScientificField.valid" (click)="serachScientificField(formScientificField.value)" class="login100-form-btn"> Search </button>
+    </div>
+
+  </form>
   <h4>Results: </h4>
 
   <mat-accordion>
