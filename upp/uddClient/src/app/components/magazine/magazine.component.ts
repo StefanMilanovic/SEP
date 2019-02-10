@@ -72,9 +72,7 @@ export class MagazineComponent implements OnInit {
   }
 
   download(paper){
-    this.magazineService.downloadPaper(paper).subscribe( data => {
-      console.log(data);
-    });
+    this.magazineService.downloadPaper(paper);
   }
 
   redirectPaper(paper){

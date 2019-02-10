@@ -27,7 +27,8 @@ export class MagazineService {
     return this.httpClient.post('http://localhost:8080/magazine/allowUser', magazineId);
   }
 
-  downloadPaper(paper): Observable<any>{
-    return this.httpClient.post('http://localhost:8080/paper/download', paper.name);
+  downloadPaper(paper){
+    //return this.httpClient.get('http://localhost:8080/paper/download/' + paper.name);
+    window.location.href="http://localhost:8080/paper/download/" + paper.name;
   }  
 }
