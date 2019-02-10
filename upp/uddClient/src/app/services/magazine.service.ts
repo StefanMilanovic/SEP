@@ -27,5 +27,5 @@ export class MagazineService {
 
   downloadPaper(paper){
     return this.httpClient.post('http://localhost:8080/paper/download', paper.name);
-  }
+  }  
 }

@@ -29,6 +29,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { SearchComponent } from './components/search/search.component';
 import { MagazineComponent } from './components/magazine/magazine.component';
 import { ResultComponent } from './components/result/result.component';
+import { PaperComponent } from './components/paper/paper.component';
 
 
 
@@ -42,6 +43,7 @@ import { ResultComponent } from './components/result/result.component';
     SearchComponent,
     MagazineComponent,
     ResultComponent,
+    PaperComponent,
 
   ],
   imports: [

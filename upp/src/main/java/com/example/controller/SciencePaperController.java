@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +23,8 @@ public class SciencePaperController {
 	)
 	public ResponseEntity<?>downloadPaper(@RequestBody String paperName){
 		System.out.println(paperName);
+		Path resourceDirectory = Paths.get("src","main","resources");
+		System.out.println(resourceDirectory);
 		return null;
 	}
 
