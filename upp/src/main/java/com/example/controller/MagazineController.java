@@ -72,6 +72,7 @@ public class MagazineController {
 		userService.register(loggedUser);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
-	}
+	}	
+	
 
 }

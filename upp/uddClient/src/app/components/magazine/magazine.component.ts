@@ -63,6 +63,11 @@ export class MagazineComponent implements OnInit {
           });
         });
       }
+      else{
+        this.magazineService.allowUser(magazine.id).subscribe( data => {
+          location.reload();
+        });
+      }
     }
   }
 
@@ -70,5 +75,10 @@ export class MagazineComponent implements OnInit {
     this.magazineService.downloadPaper(paper).subscribe( data => {
 
     });
+  }
+
+  redirectPaper(paper){
+    localStorage.setItem('paper', JSON.stringify(paper));
+    this.router.navigate(['/paper']);
   }
 }
