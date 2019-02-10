@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,14 +15,22 @@ public class SciencePaper {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(View.FileInfo.class)
 	private Long id;	
 	
 	@Column(nullable = false)
+	@JsonView(View.FileInfo.class)
 	private String name;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "autor_id")
 	private User author;
+	
+	@Lob
+	@Transient
+	@Column(name="pic")
+	private byte[] pic;
+	
 
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(
@@ -165,4 +174,14 @@ public class SciencePaper {
 	public void setCoAuthor(List<User> coAuthor) {
 		this.coAuthor = coAuthor;
 	}
+
+	public byte[] getPic() {
+		return pic;
+	}
+
+	public void setPic(byte[] pic) {
+		this.pic = pic;
+	}
+	
+	
 }
