@@ -13,11 +13,71 @@
 
   </form>
 
+  <form [formGroup]="formTitle" >
+    <label>Science papaer title: </label>
+    <br/>
+    <input  formControlName="field" type="text" class="form-control" name="titleKey" value="title" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="titleValue"  placeholder="Title">
+
+    <div class="container-login100-form-btn">
+      <button type="button" [disabled]="!formTitle.valid" (click)="serachTitle(formTitle.value)" class="login100-form-btn"> Search </button>
+    </div>
+
+  </form>
+
+
+  <form [formGroup]="formAuthor" >
+  <label>Author: </label>
+  <br/>
+  <input  formControlName="field" type="text" class="form-control" name="authorKey" value="author" readonly hidden>
+  <input formControlName="value" type="text" class="form-control" name="authorValue"  placeholder="First name last name ">
+
+  <div class="container-login100-form-btn">
+    <button type="button" [disabled]="!formAuthor.valid" (click)="serachAuthor(formAuthor.value)" class="login100-form-btn"> Search </button>
+  </div>
+
+</form>
+
+  <form [formGroup]="formKeywords" >
+    <label>Keywords: </label>
+    <br/>
+    <input  formControlName="field" type="text" class="form-control" name="keywordsKey" value="keywords" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="keywordsValue"  placeholder="(e.g. key,value,string )">
+
+    <div class="container-login100-form-btn">
+      <button type="button" [disabled]="!formKeywords.valid" (click)="serachKeywords(formKeywords.value)" class="login100-form-btn"> Search </button>
+    </div>
+
+  </form>
+
+  <form [formGroup]="formScientificField" >
+    <label>Scientific field: </label>
+    <br/>
+    <input  formControlName="field" type="text" class="form-control" name="scientificFieldKey" value="keywords" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="scientificFieldValue"  placeholder="Scientific Field">
+
+    <div class="container-login100-form-btn">
+      <button type="button" [disabled]="!formScientificField.valid" (click)="serachScientificField(formScientificField.value)" class="login100-form-btn"> Search </button>
+    </div>
+
+  </form>
+
+  <form [formGroup]="formContent" >
+    <label>Content: </label>
+    <br/>
+    <input  formControlName="field" type="text" class="form-control" name="contentKey" value="keywords" readonly hidden>
+    <input formControlName="value" type="text" class="form-control" name="contentValue"  placeholder="Content">
+
+    <div class="container-login100-form-btn">
+      <button type="button" [disabled]="!formContent.valid" (click)="serachContent(formContent.value)" class="login100-form-btn"> Search </button>
+    </div>
+
+  </form>
   <h4>Results: </h4>
 
   <mat-accordion>
     <mat-expansion-panel *ngFor="let sciPaper of allSciPaper">
-      <mat-expansion-panel-header>{{sciPaper.nameMagazine}}</mat-expansion-panel-header>
+      <mat-expansion-panel-header>{{sciPaper.nameMagazine}} {{sciPaper.title}}</mat-expansion-panel-header>
     </mat-expansion-panel>
   </mat-accordion>
 </div>

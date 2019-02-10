@@ -19,8 +19,8 @@ export class MagazineService {
   }
   ////NGROK http://dee1c4ff.ngrok.io
   sendTransaction(transaction){
-    // return this.httpClient.post('http://localhost:8181/api/transakcija/kreirajTransakciju', transaction);
-    return this.httpClient.post('http://43c043fc.ngrok.io/api/transakcija/kreirajTransakciju', transaction);
+     return this.httpClient.post('http://localhost:8181/api/transakcija/kreirajTransakciju', transaction);
+    //return this.httpClient.post('http://dee1c4ff.ngrok.io/api/transakcija/kreirajTransakciju', transaction);
   }
 
   allowUser(magazineId){

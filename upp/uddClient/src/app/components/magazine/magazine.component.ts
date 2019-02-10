@@ -26,11 +26,11 @@ export class MagazineComponent implements OnInit {
       this.magazines = data;
       this.userMags = [];
       console.log(data);
-        
+
       this.loggedUser = this.authService.getUserFromService();
       if(this.loggedUser != null){
         this.userLogged = true;
-           
+
         this.magazines.forEach((magazine) => {
           this.allowedUsers = magazine.allowedUsers;
           this.allowedUsers.forEach((user) => {
@@ -43,8 +43,8 @@ export class MagazineComponent implements OnInit {
       }
         else{
           this.userLogged = false;
-        }      
-    });    
+        }
+    });
   }
 
   buyAccess(magazine: any){
@@ -58,7 +58,7 @@ export class MagazineComponent implements OnInit {
           console.log(data);
           localStorage.setItem('magazine', magazine.id);
           this.magazineService.sendTransaction(data).subscribe((response:any) => {
-            console.log(response);                        
+            console.log(response);
             top.location.href = "http://localhost:4200/opcije/" + response.id;
           });
         });
