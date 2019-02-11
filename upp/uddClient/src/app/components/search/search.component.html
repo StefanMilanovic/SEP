@@ -1,88 +1,114 @@
 <app-header></app-header>
 
-<h3>Search </h3>
-
-<div class="wrap-login100">
+<div class="container">
+  <h3>Search </h3>
   <form [formGroup]="formTitleMagazine" >
-    <label>Magazin title: </label>
-    <br/>
-    <input  formControlName="field" type="text" class="form-control" name="magazineTitleKey" value="magazineTitle" readonly hidden>
-    <input formControlName="value" type="text" class="form-control" name="magazineTitleValue"  placeholder="Magazine title">
-
-    <div class="container-login100-form-btn">
-      <button type="button" [disabled]="!formTitleMagazine.valid" (click)="serachMagazineTitle(formTitleMagazine.value)" class="login100-form-btn"> Search </button>
+    <!-- <label>Magazin title: </label> -->
+    <!-- <br/> -->
+    <div class="example-container">
+      <mat-form-field>
+        <input  formControlName="field" type="text" name="magazineTitleKey" value="magazineTitle" readonly hidden>
+        <input matInput formControlName="value" type="text" name="magazineTitleValue"  placeholder="Magazine title">      
+      </mat-form-field>
     </div>
-
+    
+    <div class="container-login100-form-btn">
+      <button type="button" mat-stroked-button [disabled]="!formTitleMagazine.valid" (click)="serachMagazineTitle(formTitleMagazine.value)" class="login100-form-btn"> Search </button>
+    </div>
+    
   </form>
 
   <form [formGroup]="formTitle" >
-    <label>Science papaer title: </label>
-    <br/>
-    <input  formControlName="field" type="text" class="form-control" name="titleKey" value="title" readonly hidden>
-    <input formControlName="value" type="text" class="form-control" name="titleValue"  placeholder="Title">
-
-    <div class="container-login100-form-btn">
-      <button type="button" [disabled]="!formTitle.valid" (click)="serachTitle(formTitle.value)" class="login100-form-btn"> Search </button>
+    <!-- <label>Science papaer title: </label> -->
+    <!-- <br/> -->
+    <div class="example-container">
+      <mat-form-field>
+        <input  formControlName="field" type="text" name="titleKey" value="title" readonly hidden>
+        <input matInput formControlName="value" type="text" name="titleValue"  placeholder="Science paper title">      
+      </mat-form-field>   
     </div>
-
+    <div class="container-login100-form-btn">
+      <button type="button" mat-stroked-button [disabled]="!formTitle.valid" (click)="serachTitle(formTitle.value)" class="login100-form-btn"> Search </button>
+    </div>
   </form>
 
 
   <form [formGroup]="formAuthor" >
-  <label>Author: </label>
-  <br/>
-  <input  formControlName="field" type="text" class="form-control" name="authorKey" value="author" readonly hidden>
-  <input formControlName="value" type="text" class="form-control" name="authorValue"  placeholder="First name last name ">
-
+  <!-- <label>Author: </label>
+  <br/> -->
+    <div class="example-container">
+      <mat-form-field>
+        <input  formControlName="field" type="text" name="authorKey" value="author" readonly hidden>
+        <input matInput formControlName="value" type="text" name="authorValue"  placeholder="Author Name">
+      </mat-form-field>  
+    </div>
   <div class="container-login100-form-btn">
-    <button type="button" [disabled]="!formAuthor.valid" (click)="serachAuthor(formAuthor.value)" class="login100-form-btn"> Search </button>
+    <button type="button" mat-stroked-button [disabled]="!formAuthor.valid" (click)="serachAuthor(formAuthor.value)" class="login100-form-btn"> Search </button>
   </div>
-
 </form>
 
-  <form [formGroup]="formKeywords" >
-    <label>Keywords: </label>
-    <br/>
-    <input  formControlName="field" type="text" class="form-control" name="keywordsKey" value="keywords" readonly hidden>
-    <input formControlName="value" type="text" class="form-control" name="keywordsValue"  placeholder="(e.g. key,value,string )">
-
+<form [formGroup]="formKeywords" >
+    <!-- <label>Keywords: </label>
+    <br/> -->
+    <div class="example-container">
+      <mat-form-field>
+        <input  formControlName="field" type="text" class="form-control" name="keywordsKey" value="keywords" readonly hidden>
+        <input matInput formControlName="value" type="text" name="keywordsValue"  placeholder="Keywords">
+      </mat-form-field>
+    </div>    
     <div class="container-login100-form-btn">
-      <button type="button" [disabled]="!formKeywords.valid" (click)="serachKeywords(formKeywords.value)" class="login100-form-btn"> Search </button>
+      <button type="button" mat-stroked-button [disabled]="!formKeywords.valid" (click)="serachKeywords(formKeywords.value)" class="login100-form-btn"> Search </button>
     </div>
+</form>
 
-  </form>
+<form [formGroup]="formScientificField" >
+    <!-- <label>Scientific field: </label>
+    <br/> -->
+  <div class="example-container">
+    <mat-form-field>
+      <input  formControlName="field" type="text" class="form-control" name="scientificFieldKey" value="keywords" readonly hidden>
+      <input matInput formControlName="value" type="text" name="scientificFieldValue"  placeholder="Scientific Field">
+    </mat-form-field>
+  </div>
+   
+  <div class="container-login100-form-btn">
+    <button mat-stroked-button type="button" [disabled]="!formScientificField.valid" (click)="serachScientificField(formScientificField.value)" class="login100-form-btn"> Search </button>
+  </div>
+</form>
 
-  <form [formGroup]="formScientificField" >
-    <label>Scientific field: </label>
-    <br/>
-    <input  formControlName="field" type="text" class="form-control" name="scientificFieldKey" value="keywords" readonly hidden>
-    <input formControlName="value" type="text" class="form-control" name="scientificFieldValue"  placeholder="Scientific Field">
+<form [formGroup]="formContent" >
+    <!-- <label>Content: </label>
+    <br/> -->
+  <div class="example-container">
+    <mat-form-field>
+      <input  formControlName="field" type="text" class="form-control" name="contentKey" value="keywords" readonly hidden>
+      <textarea matInput formControlName="value" type="text" name="contentValue"  placeholder="Text"></textarea>
+    </mat-form-field>
+  </div>    
 
     <div class="container-login100-form-btn">
-      <button type="button" [disabled]="!formScientificField.valid" (click)="serachScientificField(formScientificField.value)" class="login100-form-btn"> Search </button>
-    </div>
-
-  </form>
-
-  <form [formGroup]="formContent" >
-    <label>Content: </label>
-    <br/>
-    <input  formControlName="field" type="text" class="form-control" name="contentKey" value="keywords" readonly hidden>
-    <input formControlName="value" type="text" class="form-control" name="contentValue"  placeholder="Content">
-
-    <div class="container-login100-form-btn">
-      <button type="button" [disabled]="!formContent.valid" (click)="serachContent(formContent.value)" class="login100-form-btn"> Search </button>
+      <button mat-stroked-button type="button" [disabled]="!formContent.valid" (click)="serachContent(formContent.value)" class="login100-form-btn"> Search </button>
     </div>
   </form>
 
   <br/>
-  <input type="radio" (change)="advancedSearchRadioChange($event)" name="query" value="and" id="andQuery" checked> And Search
+  <mat-radio-group>
+    <mat-radio-button (change)="advancedSearchRadioChange($event)" value="1">AND Search</mat-radio-button>
+    <mat-radio-button (change)="advancedSearchRadioChange($event)" value="2">OR Search</mat-radio-button>
+  </mat-radio-group>
+
+  <!-- <input type="radio" (change)="advancedSearchRadioChange($event)" name="query" value="and" id="andQuery" checked> And Search
   <input type="radio" (change)="advancedSearchRadioChange($event)" name="query" value="or" id="orQuery"> Or Search
-  <br/>
-  <button type="button" (click)="advacnedSearch()" class="login100-form-btn"> Search </button>
+  <br/> -->
+  <div class="container-login100-form-btn">
+    <button mat-stroked-button type="button" (click)="advacnedSearch()" class="login100-form-btn"> Search </button>
+  </div>
+  <br/><br/><br/>
   <h4>Results: </h4>
 
-  <mat-accordion>
+  <p *ngIf="noResults">No results</p>
+
+  <!-- <mat-accordion>
     <mat-expansion-panel *ngFor="let sciPaper of allSciPaper">
       <mat-expansion-panel-header>{{sciPaper.nameMagazine}}   {{sciPaper.title}}  </mat-expansion-panel-header>
       <mat-list>
@@ -91,6 +117,27 @@
         </mat-list-item>
       </mat-list>
     </mat-expansion-panel>
-  </mat-accordion>
+  </mat-accordion> -->
+
+  <div class=searchResult *ngFor="let sciPaper of allSciPaper">
+    <h5>{{sciPaper.title}}</h5>
+    <mat-list>
+        <mat-list-item><b>Magazine: </b> {{sciPaper.nameMagazine}}</mat-list-item>
+        <mat-list-item><b>Author: </b> {{sciPaper.author}}</mat-list-item>
+        <mat-list-item><b>Keywords: </b> {{sciPaper.keywords}}</mat-list-item>
+        <mat-list-item><b>Field: </b> {{sciPaper.scientificField}}</mat-list-item>
+        <mat-list-item><b>Highlight: </b></mat-list-item>
+       </mat-list>
+    <!-- <ul>
+      <li>Magazine: {{sciPaper.nameMagazine}}</li>
+      <li>Author: {{sciPaper.author}}</li>
+      <li>Keywords: {{sciPaper.keywords}}</li>
+      <li>Field: {{sciPaper.scientificField}}</li>
+      <li>Highlight: </li>
+    </ul> -->
+    <div class="highligh"[innerHTML]="sciPaper.highlight"></div>
+    <!-- <textarea matInput [innerHTML]="sciPaper.highlight"></textarea> -->
+  </div>
 </div>
 
+<!-- <textarea>{{sciPaper.highlight}}</textarea> -->

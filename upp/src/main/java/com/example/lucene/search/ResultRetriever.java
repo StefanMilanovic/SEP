@@ -88,8 +88,8 @@ public class ResultRetriever {
 		highlightBuilder.field("text");
 		highlightBuilder.field("scientificField");
 		highlightBuilder.fragmentSize(100);
-		//highlightBuilder.preTags("<spam style='color:red'><b>").postTags("</b></spam>");
-		highlightBuilder.fragmentSize(500);
+		highlightBuilder.preTags("<b>").postTags("</b>");
+		highlightBuilder.fragmentSize(100);
 		//highlightBuilder2.preTags("<input id=\"dugmePreuzmiRad\" type=\"button\" class=\"btn btn-success\" style=\"float:right\" value=\"Preuzmi rad\">");
 		searchSourceBuilder.highlight(highlightBuilder);
 

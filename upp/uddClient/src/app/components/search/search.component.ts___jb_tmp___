@@ -78,7 +78,7 @@ export class SearchComponent implements OnInit {
         console.log(retVal);
         console.log(this.magazines);
         this.allSciPaper = retVal;
-        this.noResults = false; 
+        this.noResults = false;
         // this.flag = false;
 
         // this.magazines.forEach((magazine) => {
@@ -91,7 +91,7 @@ export class SearchComponent implements OnInit {
         //       });
         //       if(!this.flag){
         //         this.searchMagazines.push(magazine);
-        //       }              
+        //       }
         //     }
         //   })
         // });
@@ -196,9 +196,9 @@ export class SearchComponent implements OnInit {
     //   console.log(this.queryType);
     // }
     // else {
-    //   this.queryType = "OR";      
+    //   this.queryType = "OR";
     //   console.log(this.queryType);
-    // }    
+    // }
 
     if(event.value == 1){
       this.queryType = "AND";
@@ -240,12 +240,9 @@ export class SearchComponent implements OnInit {
         this.noResults = true;
       }else {
         console.log(retVal);
-<<<<<<< HEAD
+
         this.allSciPaper = retVal;
-=======
-        this.allSciPaper = retVal;       
         this.noResults = false;
->>>>>>> 9b43107d7901f916279b989a20a4e44e175e8813
       }
     });
   }
@@ -257,8 +254,8 @@ angular.module('myapp', ['ngSanitize'])
     $scope.bar = "nas tekst ";
 });
 
-<div ng-controller="foo">    
-    <div ng-bind-html="bar"></div>    
+<div ng-controller="foo">
+    <div ng-bind-html="bar"></div>
 </div>
 
 */
