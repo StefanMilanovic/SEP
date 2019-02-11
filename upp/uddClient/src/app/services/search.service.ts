@@ -32,4 +32,7 @@ export class SearchService {
     return this.httpClient.post('http://localhost:8080/search/content', formContent);
   }
 
+  searchCombination(advancedQuery){
+    return this.httpClient.post('http://localhost:8080/search/combination', advancedQuery);
+  }
 }

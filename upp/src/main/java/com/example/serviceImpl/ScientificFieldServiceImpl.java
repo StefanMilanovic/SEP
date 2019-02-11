@@ -1,5 +1,7 @@
 package com.example.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class ScientificFieldServiceImpl implements ScientificFieldService{
 	@Override
 	public ScientificField findByName(String name) {
 		return this.sfRepository.findByName(name);
+	}
+
+	@Override
+	public List<ScientificField> findAll() {
+		return this.sfRepository.findAll();
 	}
 
 }

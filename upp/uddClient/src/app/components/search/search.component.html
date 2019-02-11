@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <h3>Search </h3>
 
 <div class="wrap-login100">
@@ -71,8 +73,13 @@
     <div class="container-login100-form-btn">
       <button type="button" [disabled]="!formContent.valid" (click)="serachContent(formContent.value)" class="login100-form-btn"> Search </button>
     </div>
-
   </form>
+
+  <br/>
+  <input type="radio" (change)="advancedSearchRadioChange($event)" name="query" value="and" id="andQuery" checked> And Search
+  <input type="radio" (change)="advancedSearchRadioChange($event)" name="query" value="or" id="orQuery"> Or Search
+  <br/>
+  <button type="button" (click)="advacnedSearch()" class="login100-form-btn"> Search </button>
   <h4>Results: </h4>
 
   <mat-accordion>

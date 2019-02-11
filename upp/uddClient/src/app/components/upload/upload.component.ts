@@ -3,13 +3,17 @@ import { Observable } from 'rxjs';
 import { UploadService } from 'src/app/services/upload.service';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { MagazineService } from 'src/app/services/magazine.service';
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
+  styleUrls: ['./upload.component.css','./utils.css']
 })
 export class UploadComponent implements OnInit {
+  
+  private magazines: any[];
+  private magazineId: string;
 
   showFile = false;
   fileUploads: Observable<string[]>;
@@ -27,11 +31,15 @@ export class UploadComponent implements OnInit {
     name: new FormControl('', Validators.compose ([Validators.required])),
     keywords: new FormControl('', Validators.compose ([Validators.required])),
     abbstract: new FormControl('', Validators.compose ([Validators.required])),
+    selectedMagazine: new FormControl('',Validators.compose ([Validators.required])),
   });
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: UploadService, private magazineService: MagazineService) { }
 
   ngOnInit() {
+    this.magazineService.getAllMagazines().subscribe((data: any) => {
+      this.magazines = data;
+    });
   }
 
   showFiles(enable: boolean) {
@@ -50,7 +58,17 @@ export class UploadComponent implements OnInit {
     this.progress.percentage = 0;
 
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, formUpload).subscribe(event => {
+    console.log(formUpload);
+
+    this.magazines.forEach((magazine) => {
+      if(magazine.name == formUpload.selectedMagazine){
+        console.log(magazine);
+        this.magazineId = magazine.id;
+        console.log(this.magazineId);
+      }
+    })
+
+    this.uploadService.pushFileToStorage(this.currentFileUpload, formUpload, this.magazineId).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {

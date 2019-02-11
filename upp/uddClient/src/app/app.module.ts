@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -30,6 +31,7 @@ import { SearchComponent } from './components/search/search.component';
 import { MagazineComponent } from './components/magazine/magazine.component';
 import { ResultComponent } from './components/result/result.component';
 import { PaperComponent } from './components/paper/paper.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 
@@ -44,6 +46,7 @@ import { PaperComponent } from './components/paper/paper.component';
     MagazineComponent,
     ResultComponent,
     PaperComponent,
+    HeaderComponent,
 
   ],
   imports: [
@@ -58,7 +61,8 @@ import { PaperComponent } from './components/paper/paper.component';
     BrowserAnimationsModule,
     MatExpansionModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
   ],
   providers: [UserService, AuthenticationService, AuthGuardService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],

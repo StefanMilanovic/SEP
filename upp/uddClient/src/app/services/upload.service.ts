@@ -15,7 +15,7 @@ export class UploadService {
     this.authenticationService = authenticationService;
   }
 
-  pushFileToStorage(file: File, formUpload): Observable<HttpEvent<{}>> {
+  pushFileToStorage(file: File, formUpload, magazineId): Observable<HttpEvent<{}>> {
     this.serverUser = this.authenticationService.getUserFromService();
     console.log("Ulogovani -> " + this.serverUser);
 
@@ -41,7 +41,7 @@ export class UploadService {
       headers: headers
     });
 */
-    const req = new HttpRequest('POST', 'http://localhost:8080/index/add/1', formdata, {
+    const req = new HttpRequest('POST', 'http://localhost:8080/index/add/' + magazineId, formdata, {
       reportProgress: true,
       responseType: 'text',
       headers: headers

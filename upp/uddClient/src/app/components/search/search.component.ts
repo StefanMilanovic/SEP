@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SearchService} from '../../services/search.service';
 import {Router} from '@angular/router';
+import {AdvancedQuery} from '../../entities/AdvancedQuery';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,6 +13,8 @@ export class SearchComponent implements OnInit {
 
 
   private allSciPaper: any[];
+  private advancedQuery = new AdvancedQuery();
+  private queryType = "AND";
 
   formTitleMagazine = new FormGroup({
     field: new FormControl('nameMagazine', Validators.compose ([Validators.required])),
@@ -139,6 +143,51 @@ export class SearchComponent implements OnInit {
         // window.location.href = 'http://localhost:4300/search';
       }
 
+    });
+  }
+
+  advancedSearchRadioChange(event){
+    if(event.target.id == "andQuery"){
+      this.queryType = "AND";
+      console.log(this.queryType);
+    }
+    else {
+      this.queryType = "OR";      
+      console.log(this.queryType);
+    }    
+  }
+
+  advacnedSearch(){
+    this.advancedQuery.field1 = this.formTitleMagazine.get('field').value;
+    this.advancedQuery.value1 = this.formTitleMagazine.get('value').value;
+
+    this.advancedQuery.field2 = this.formTitle.get('field').value;
+    this.advancedQuery.value2 = this.formTitle.get('value').value;
+
+    this.advancedQuery.field3 = this.formAuthor.get('field').value;
+    this.advancedQuery.value3 = this.formAuthor.get('value').value;
+
+    this.advancedQuery.field4 = this.formKeywords.get('field').value;
+    this.advancedQuery.value4 = this.formKeywords.get('value').value;
+
+    this.advancedQuery.field5 = this.formScientificField.get('field').value;
+    this.advancedQuery.value5 = this.formScientificField.get('value').value;
+
+    this.advancedQuery.field6 = this.formContent.get('field').value;
+    this.advancedQuery.value6 = this.formContent.get('value').value;
+
+    this.advancedQuery.operation = this.queryType;
+    // console.log(this.advancedQuery.field1);
+    // console.log(this.advancedQuery.value1); /search/combination
+
+    this.searchService.searchCombination(this.advancedQuery).subscribe((retVal: any) =>{
+      if(retVal == null){
+        console.log("Nema rezultata pretrage");
+        this.allSciPaper = null;
+      }else {
+        console.log(retVal);
+        this.allSciPaper = retVal;       
+      }
     });
   }
 }

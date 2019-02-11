@@ -29,12 +29,14 @@ public class SciencePaperController {
 	public ResponseEntity<byte[]>downloadPaper(@PathVariable String paperName){
 		SciencePaperDownload paper = sciencePaperService.findByName(paperName);
 		
-		if(paper != null){
-			return ResponseEntity.ok()
-					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + paper.getName() + "\"")
-					.body(paper.getPic());
-		}		
-		return ResponseEntity.status(404).body(null);		
+		String extension = paper.getMimetype().split("/")[1];
+		System.out.println("EKSTENZIJA JE :::::::::::::" + extension);
+		
+		
+		return ResponseEntity.ok()
+			.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + paper.getName() +"." + extension + "\"")
+			.body(paper.getPic());
+				
 	}
 
 }
