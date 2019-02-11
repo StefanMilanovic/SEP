@@ -152,9 +152,9 @@ export class SearchComponent implements OnInit {
       console.log(this.queryType);
     }
     else {
-      this.queryType = "OR";      
+      this.queryType = "OR";
       console.log(this.queryType);
-    }    
+    }
   }
 
   advacnedSearch(){
@@ -186,7 +186,7 @@ export class SearchComponent implements OnInit {
         this.allSciPaper = null;
       }else {
         console.log(retVal);
-        this.allSciPaper = retVal;       
+        this.allSciPaper = retVal;
       }
     });
   }
