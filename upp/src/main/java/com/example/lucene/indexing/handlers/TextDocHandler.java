@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
 
+import com.example.lucene.indexing.filters.CyrillicLatinConverter;
 import com.example.lucene.model.IndexUnit;
 import org.apache.lucene.document.DateTools;
 
@@ -43,8 +44,9 @@ public class TextDocHandler extends DocumentHandler {
 				}
 				fullText += " " + secondLine;
 			}
-			retVal.setText(fullText);
-			
+			//retVal.setText(fullText);
+			retVal.setText(CyrillicLatinConverter.cir2lat(fullText));
+
 			retVal.setFilename(file.getCanonicalPath());
 			
 			String modificationDate=DateTools.dateToString(new Date(file.lastModified()),DateTools.Resolution.DAY);

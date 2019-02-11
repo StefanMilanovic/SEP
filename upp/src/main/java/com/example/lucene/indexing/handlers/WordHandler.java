@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
 
+import com.example.lucene.indexing.filters.CyrillicLatinConverter;
 import com.example.lucene.model.IndexUnit;
 import org.apache.lucene.document.DateTools;
 import org.apache.poi.hpsf.SummaryInformation;
@@ -24,8 +25,9 @@ public class WordHandler extends DocumentHandler {
 			// pomocu WordExtractor objekta izvuci tekst
 			WordExtractor we = new WordExtractor(is);
 			String text = we.getText();
-			retVal.setText(text);
-			
+			//retVal.setText(text);
+			retVal.setText(CyrillicLatinConverter.cir2lat(text));
+
 			// pomocu SummaryInformation objekta izvuci ostale metapodatke
 			SummaryInformation si = we.getSummaryInformation();
 			String title = si.getTitle();

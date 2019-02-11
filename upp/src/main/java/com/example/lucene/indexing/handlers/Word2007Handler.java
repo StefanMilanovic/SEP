@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Date;
 
+import com.example.lucene.indexing.filters.CyrillicLatinConverter;
 import com.example.lucene.model.IndexUnit;
 import org.apache.lucene.document.DateTools;
 import org.apache.poi.POIXMLProperties;
@@ -22,7 +23,9 @@ public class Word2007Handler extends DocumentHandler {
 			XWPFWordExtractor we = new XWPFWordExtractor(wordDoc);
 
 			String text = we.getText();
-			retVal.setText(text);
+			//retVal.setText(text);
+			retVal.setText(CyrillicLatinConverter.cir2lat(text));
+
 
 			POIXMLProperties props = wordDoc.getProperties();
 
