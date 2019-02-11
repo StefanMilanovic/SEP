@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
+import com.example.lucene.indexing.filters.CyrillicLatinConverter;
 import com.example.lucene.model.IndexUnit;
 import org.apache.lucene.document.DateTools;
 import org.apache.pdfbox.io.RandomAccessFile;
@@ -22,7 +23,7 @@ public class PDFHandler extends DocumentHandler {
 			PDFParser parser = new PDFParser(new RandomAccessFile(file, "r"));
 			parser.parse();
 			String text = getText(parser);
-			retVal.setText(text);
+			retVal.setText(CyrillicLatinConverter.cir2lat(text));
 
 			// metadata extraction
 			PDDocument pdf = parser.getPDDocument();

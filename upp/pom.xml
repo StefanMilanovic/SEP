@@ -76,13 +76,6 @@
             <version>1.5.6.RELEASE</version>
         </dependency>
 
-        <!-- <dependency>
-            <groupId>org.elasticsearch</groupId>
-            <artifactId>elasticsearch</artifactId>
-            <version>5.6.9</version>
-            <scope>compile</scope>
-	    </dependency> -->
-
         <dependency>
             <groupId>com.sun.jna</groupId>
             <artifactId>jna</artifactId>

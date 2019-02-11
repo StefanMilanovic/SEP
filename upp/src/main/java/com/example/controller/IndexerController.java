@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.example.lucene.indexing.Indexer;
+import com.example.lucene.indexing.filters.CyrillicLatinConverter;
 import com.example.lucene.model.IndexUnit;
 import com.example.model.*;
 import com.example.service.MagazineService;
@@ -102,12 +103,12 @@ public class IndexerController {
 	        String fileName = saveUploadedFile(file);
 	        if(fileName != null){
 	        	IndexUnit indexUnit = indexer.getHandler(fileName).getIndexUnit(new File(fileName));
-	        	indexUnit.setNameMagazine(model.getScienceMagazine().getName());
-	        	indexUnit.setTitle(model.getName());
-	        	indexUnit.setAuthor(model.getAuthor().getFirstname() + " " + model.getAuthor().getLastname());
-	            indexUnit.setKeywords(model.getKeywords());
+	        	indexUnit.setNameMagazine(CyrillicLatinConverter.cir2lat(model.getScienceMagazine().getName()));
+	        	indexUnit.setTitle(CyrillicLatinConverter.cir2lat(model.getName()));
+	        	indexUnit.setAuthor(CyrillicLatinConverter.cir2lat(model.getAuthor().getFirstname()) + " " +CyrillicLatinConverter.cir2lat(model.getAuthor().getLastname()));
+	            indexUnit.setKeywords(CyrillicLatinConverter.cir2lat(model.getKeywords()));
 	            //indexUnit.setText(preuzmiSadrzajFajla(file));
-	            indexUnit.setScientificField(model.getScienceMagazine().getScientificField().getName());
+	            indexUnit.setScientificField(CyrillicLatinConverter.cir2lat(model.getScienceMagazine().getScientificField().getName()));
 	            indexer.add(indexUnit);
 	        }
 	    }
