@@ -4,6 +4,7 @@ import {SearchService} from '../../services/search.service';
 import {Router} from '@angular/router';
 import {AdvancedQuery} from '../../entities/AdvancedQuery';
 import { MagazineService } from 'src/app/services/magazine.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 
@@ -17,9 +18,14 @@ export class SearchComponent implements OnInit {
 
 
   private allSciPaper: any[];
+  
   private magazines: any[];
-  private searchMagazines = [];
-  private flag = false;
+  private userMagsName = [];
+  private allowedUsers: any[];  
+  private userMags = [];
+
+  private loggedUser: any;
+  private userLogged: boolean;
 
   private noResults = false;
 
@@ -55,13 +61,28 @@ export class SearchComponent implements OnInit {
     value: new FormControl('', Validators.compose ([Validators.required])),
   });
 
-  constructor(private router: Router, private searchService: SearchService, private magazineService: MagazineService) {
+  constructor(private router: Router, private searchService: SearchService, private magazineService: MagazineService, private authService: AuthenticationService) {
 
   }
 
   ngOnInit() {
     this.magazineService.getAllMagazines().subscribe((data: any) => {
       this.magazines = data;
+      this.userMags = [];
+
+      this.loggedUser = this.authService.getUserFromService();
+
+      this.magazines.forEach((magazine) => {
+        this.allowedUsers = magazine.allowedUsers;
+        this.allowedUsers.forEach((user) => {
+          if(this.loggedUser.id == user.id){            
+            this.userMags.push(magazine);
+            this.userMagsName.push(magazine.name);
+            console.log(this.userMags);
+            console.log(this.userMagsName);
+          }
+        });
+      });
     });
   }
 
@@ -78,6 +99,9 @@ export class SearchComponent implements OnInit {
         console.log(retVal);
         console.log(this.magazines);
         this.allSciPaper = retVal;
+<<<<<<< HEAD
+        this.noResults = false;         
+=======
         this.noResults = false;
         // this.flag = false;
 
@@ -97,6 +121,7 @@ export class SearchComponent implements OnInit {
         // });
 
        // window.location.href = 'http://localhost:4300/search';
+>>>>>>> c7aeaf3f86cd2044812b9b093b5a702031ba73b2
       }
 
     });
@@ -246,16 +271,22 @@ export class SearchComponent implements OnInit {
       }
     });
   }
+
+<<<<<<< HEAD
+  download(paper){
+    this.magazineService.downloadPaper(paper.title);
+  }
+
+  allowUser(magazineName){
+    this.magazineService.allowUser2(magazineName).subscribe( data => {
+      location.reload();
+    })
+  }
 }
-/*
-
-angular.module('myapp', ['ngSanitize'])
-.controller('foo', function($scope) {
-    $scope.bar = "nas tekst ";
-});
-
+=======
 <div ng-controller="foo">
     <div ng-bind-html="bar"></div>
 </div>
 
 */
+>>>>>>> c7aeaf3f86cd2044812b9b093b5a702031ba73b2

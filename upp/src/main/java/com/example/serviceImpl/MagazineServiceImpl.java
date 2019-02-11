@@ -30,4 +30,9 @@ public class MagazineServiceImpl implements MagazineService{
 		return this.magazineRepository.save(mag);
 	}
 
+	@Override
+	public Magazine findByName(String name) {
+		return this.magazineRepository.findByName(name);
+	}
+
 }

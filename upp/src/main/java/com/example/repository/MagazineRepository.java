@@ -7,4 +7,5 @@ import com.example.model.Magazine;
 public interface MagazineRepository extends JpaRepository<Magazine, Long>{
 
     Magazine findOne(Long id);
+    Magazine findByName(String name);
 }

@@ -8,4 +8,5 @@ public interface MagazineService {
 	List<Magazine> findAll();
 	Magazine findOne(Long id);
 	Magazine save(Magazine mag);
+	Magazine findByName(String name);
 }

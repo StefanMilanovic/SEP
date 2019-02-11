@@ -76,8 +76,6 @@
             <version>1.5.6.RELEASE</version>
         </dependency>
 
-        <!-- Serbian plugin -->
-
         <dependency>
             <groupId>com.sun.jna</groupId>
             <artifactId>jna</artifactId>

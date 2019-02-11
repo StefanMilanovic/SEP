@@ -23,5 +23,7 @@ export class HeaderComponent implements OnInit {
       this.userLogged = false;
     }
   }
-
+  clickLogout(){
+    this.authService.logOutUser();
+  }
 }
