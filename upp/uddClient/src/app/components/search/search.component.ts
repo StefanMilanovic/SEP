@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit {
   serachMagazineTitle(formTitleMagazine){
     console.log( " pocni pretragu formTitleMagazine za : " + formTitleMagazine.field + " : " + formTitleMagazine.value );
 
-    this.searchService.serachAutor(formTitleMagazine).subscribe( (retVal: any) => {
+    this.searchService.serachMagazineTitle(formTitleMagazine).subscribe( (retVal: any) => {
       if(retVal == null){
         console.log("Nema rezultata pretrage");
         this.allSciPaper = null;
