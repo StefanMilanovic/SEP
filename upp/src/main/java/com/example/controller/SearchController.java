@@ -40,10 +40,10 @@ public class SearchController {
 		//pretraga po nazivu casopisa
 		@PostMapping(value="/search/nameMagazine", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchNameMagazine(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
+			//String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
 			//org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
 
-			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), konvertovan);
+			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), zameniKarakter(simpleQuery.getValue()));
 
 			System.out.println(" \n  Kontroler nameMagazine");
 			//org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
@@ -57,9 +57,9 @@ public class SearchController {
 		//pretraga po naslovu
 		@PostMapping(value="/search/title", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchTitle(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
+			//String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
 			//org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
-			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), konvertovan);
+			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), zameniKarakter(simpleQuery.getValue()));
 
 			//org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
 			List<RequiredHighlight> rh = new ArrayList<RequiredHighlight>();
@@ -71,8 +71,8 @@ public class SearchController {
 		//pretraga po imenima i prezimenima autora
 		@PostMapping(value="/search/author", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchAuthor(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), konvertovan);
+			//String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), zameniKarakter(simpleQuery.getValue()));
 
 			//org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
 			List<RequiredHighlight> rh = new ArrayList<RequiredHighlight>();
@@ -84,8 +84,8 @@ public class SearchController {
 		//pretraga po kljucnim pojmovima
 		@PostMapping(value="/search/keywords", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchKeywords(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), konvertovan);
+			//String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), zameniKarakter(simpleQuery.getValue()));
 
 			//	org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
 			List<RequiredHighlight> rh = new ArrayList<RequiredHighlight>();
@@ -97,8 +97,8 @@ public class SearchController {
 		//pretraga po sadrzaju
 		@PostMapping(value="/search/content", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchContent(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), konvertovan);
+			//String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), zameniKarakter(simpleQuery.getValue()));
 
 			//org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
 			List<RequiredHighlight> rh = new ArrayList<RequiredHighlight>();
@@ -110,8 +110,8 @@ public class SearchController {
 		//pretraga po naucnoj oblasti
 		@PostMapping(value="/search/scientificField", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchScientificField(@RequestBody SimpleQuery simpleQuery) throws Exception {
-			String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), konvertovan);
+			//String konvertovan = CyrillicLatinConverter.cir2lat(simpleQuery.getValue().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query= QueryBuilder.buildQuery(SearchType.phrase, simpleQuery.getField(), zameniKarakter(simpleQuery.getValue()));
 
 			//org.elasticsearch.index.query.QueryBuilder query=QueryBuilders.matchQuery(simpleQuery.getField(), simpleQuery.getValue());
 			List<RequiredHighlight> rh = new ArrayList<RequiredHighlight>();
@@ -123,23 +123,23 @@ public class SearchController {
 		//pretraga po kombinaciji svih parametara pretrage
 		@PostMapping(value="/search/combination", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchCombination(@RequestBody AdvancedQuery advancedQuery) throws Exception {
-			String konvertovan1 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue1().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query1 = QueryBuilders.matchQuery(advancedQuery.getField1(), konvertovan1);
+			//String konvertovan1 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue1().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query1 = QueryBuilders.matchQuery(advancedQuery.getField1(), zameniKarakter(advancedQuery.getValue1()));
 			//org.elasticsearch.index.query.QueryBuilder query1 = QueryBuilder.buildQuery(SearchType.phrase, advancedQuery.getField1(), advancedQuery.getValue1());
-			String konvertovan2 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue2().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query2 = QueryBuilders.matchQuery(advancedQuery.getField2(), konvertovan2);
+			//String konvertovan2 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue2().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query2 = QueryBuilders.matchQuery(advancedQuery.getField2(), zameniKarakter(advancedQuery.getValue2()));
 			//org.elasticsearch.index.query.QueryBuilder query2 = QueryBuilder.buildQuery(SearchType.phrase, advancedQuery.getField2(), advancedQuery.getValue2());
-			String konvertovan3 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue3().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query3 = QueryBuilders.matchQuery(advancedQuery.getField3(), konvertovan3);
+		//	String konvertovan3 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue3().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query3 = QueryBuilders.matchQuery(advancedQuery.getField3(), zameniKarakter(advancedQuery.getValue3()));
 			//org.elasticsearch.index.query.QueryBuilder query3 = QueryBuilder.buildQuery(SearchType.phrase, advancedQuery.getField3(), advancedQuery.getValue3());
-			String konvertovan4 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue4().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query4 = QueryBuilders.matchQuery(advancedQuery.getField4(), konvertovan4);
+		//	String konvertovan4 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue4().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query4 = QueryBuilders.matchQuery(advancedQuery.getField4(), zameniKarakter(advancedQuery.getValue4()));
 			//org.elasticsearch.index.query.QueryBuilder query4 = QueryBuilder.buildQuery(SearchType.phrase, advancedQuery.getField4(), advancedQuery.getValue4());
-			String konvertovan5 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue5().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query5 = QueryBuilders.matchQuery(advancedQuery.getField5(), konvertovan5);
+		//	String konvertovan5 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue5().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query5 = QueryBuilders.matchQuery(advancedQuery.getField5(), zameniKarakter(advancedQuery.getValue5()));
 			//org.elasticsearch.index.query.QueryBuilder query5 = QueryBuilder.buildQuery(SearchType.phrase, advancedQuery.getField5(), advancedQuery.getValue5());
-			String konvertovan6 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue6().toLowerCase());
-			org.elasticsearch.index.query.QueryBuilder query6 = QueryBuilders.matchQuery(advancedQuery.getField6(), konvertovan6);
+		//	String konvertovan6 = CyrillicLatinConverter.cir2lat(advancedQuery.getValue6().toLowerCase());
+			org.elasticsearch.index.query.QueryBuilder query6 = QueryBuilders.matchQuery(advancedQuery.getField6(), zameniKarakter(advancedQuery.getValue6()));
 			//org.elasticsearch.index.query.QueryBuilder query6 = QueryBuilder.buildQuery(SearchType.phrase, advancedQuery.getField6(), advancedQuery.getValue6());
 
 			BoolQueryBuilder builder = QueryBuilders.boolQuery();
@@ -169,5 +169,25 @@ public class SearchController {
 			List<ResultData> results = resultRetriever.getResults(builder, rh);		
 			return new ResponseEntity<List<ResultData>>(results, HttpStatus.OK);
 		}
+	//konverzija
+	public static String zameniKarakter(String text) {
+		String text1 = text.toLowerCase();
+		String text2 = CyrillicLatinConverter.cir2lat(text1);
 
+		//latinica
+		String text3 = text2.replaceAll("đ", "dj");
+		String text4 = text3.replaceAll("č", "c");
+		String text5 = text4.replaceAll("ć", "c");
+		String text6 = text5.replaceAll("dž", "dz");
+		String text7 = text6.replaceAll("š", "s");
+		String text8 = text7.replaceAll("ž", "z");
+
+		//cirilica
+		String text9 = text8.replaceAll("ђ", "dj");
+		String text10 = text9.replaceAll("љ", "lj");
+		String text11 = text10.replaceAll("њ", "nj");
+		String text12 = text11.replaceAll("dj", "d");
+
+		return text12;
+	}
 }

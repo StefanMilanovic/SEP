@@ -103,12 +103,12 @@ public class IndexerController {
 	        String fileName = saveUploadedFile(file);
 	        if(fileName != null){
 	        	IndexUnit indexUnit = indexer.getHandler(fileName).getIndexUnit(new File(fileName));
-	        	indexUnit.setNameMagazine(CyrillicLatinConverter.cir2lat(model.getScienceMagazine().getName()));
-	        	indexUnit.setTitle(CyrillicLatinConverter.cir2lat(model.getName()));
-	        	indexUnit.setAuthor(CyrillicLatinConverter.cir2lat(model.getAuthor().getFirstname()) + " " +CyrillicLatinConverter.cir2lat(model.getAuthor().getLastname()));
-	            indexUnit.setKeywords(CyrillicLatinConverter.cir2lat(model.getKeywords()));
+	        	indexUnit.setNameMagazine(zameniKarakter(model.getScienceMagazine().getName()));
+	        	indexUnit.setTitle(zameniKarakter(model.getName()));
+	        	indexUnit.setAuthor(zameniKarakter(model.getAuthor().getFirstname()) + " " +zameniKarakter(model.getAuthor().getLastname()));
+	            indexUnit.setKeywords(zameniKarakter(model.getKeywords()));
 	            //indexUnit.setText(preuzmiSadrzajFajla(file));
-	            indexUnit.setScientificField(CyrillicLatinConverter.cir2lat(model.getScienceMagazine().getScientificField().getName()));
+	            indexUnit.setScientificField(zameniKarakter(model.getScienceMagazine().getScientificField().getName()));
 	            indexer.add(indexUnit);
 	        }
 	    }
@@ -123,6 +123,7 @@ public class IndexerController {
 		
 		try {
 			SciencePaperDownload newPaper = new SciencePaperDownload(sciencePaper.getName(), sciencePaper.getTextPDF()[0].getContentType(), sciencePaper.getTextPDF()[0].getBytes());
+			newPaper.setName(zameniKarakter(newPaper.getName()));
 			downloadService.save(newPaper);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -157,8 +158,15 @@ public class IndexerController {
 	    } catch (IOException e) {
 	    	return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	    }
-	    	  
+
+      //  CyrillicLatinConverter.cir2lat
+        newSciencePaper.setName(zameniKarakter(newSciencePaper.getName()));
+
+        newSciencePaper.setKeywords(zameniKarakter(newSciencePaper.getKeywords()));
+        newSciencePaper.setAbbstract(zameniKarakter(newSciencePaper.getAbbstract()));
+
         sciencePaperService.save(newSciencePaper);
+
 	    return new ResponseEntity<String>("Uspesan upload fajla! :)", HttpStatus.OK);
 	}
 	
@@ -172,5 +180,27 @@ public class IndexerController {
 		String text = "Indexing " + numIndexed + " files took " + (end - start) + " milliseconds";
 		return new ResponseEntity<String>(text, HttpStatus.OK);
 	}
+
+    //konverzija
+    public static String zameniKarakter(String text) {
+        String text1 = text.toLowerCase();
+        String text2 = CyrillicLatinConverter.cir2lat(text1);
+
+        //latinica
+        String text3 = text2.replaceAll("đ", "dj");
+        String text4 = text3.replaceAll("č", "c");
+        String text5 = text4.replaceAll("ć", "c");
+        String text6 = text5.replaceAll("dž", "dz");
+        String text7 = text6.replaceAll("š", "s");
+        String text8 = text7.replaceAll("ž", "z");
+
+        //cirilica
+        String text9 = text8.replaceAll("ђ", "dj");
+        String text10 = text9.replaceAll("љ", "lj");
+        String text11 = text10.replaceAll("њ", "nj");
+        String text12 = text11.replaceAll("dj", "d");
+
+        return text12;
+    }
 
 }

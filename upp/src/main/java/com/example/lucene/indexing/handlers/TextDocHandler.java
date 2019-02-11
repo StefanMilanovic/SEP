@@ -45,7 +45,7 @@ public class TextDocHandler extends DocumentHandler {
 				fullText += " " + secondLine;
 			}
 			//retVal.setText(fullText);
-			retVal.setText(CyrillicLatinConverter.cir2lat(fullText));
+			retVal.setText(zameniKarakter(fullText));
 
 			retVal.setFilename(file.getCanonicalPath());
 			
@@ -94,6 +94,28 @@ public class TextDocHandler extends DocumentHandler {
 				} catch (IOException e) {
 				}
 		}
+	}
+
+	//konverzija
+	public static String zameniKarakter(String text) {
+		String text1 = text.toLowerCase();
+		String text2 = CyrillicLatinConverter.cir2lat(text1);
+
+		//latinica
+		String text3 = text2.replaceAll("đ", "dj");
+		String text4 = text3.replaceAll("č", "c");
+		String text5 = text4.replaceAll("ć", "c");
+		String text6 = text5.replaceAll("dž", "dz");
+		String text7 = text6.replaceAll("š", "s");
+		String text8 = text7.replaceAll("ž", "z");
+
+		//cirilica
+		String text9 = text8.replaceAll("ђ", "dj");
+		String text10 = text9.replaceAll("љ", "lj");
+		String text11 = text10.replaceAll("њ", "nj");
+		String text12 = text11.replaceAll("dj", "d");
+
+		return text12;
 	}
 
 }
