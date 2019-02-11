@@ -9,6 +9,7 @@ export class SearchService {
   constructor(private httpClient: HttpClient) { }
 
   serachMagazineTitle(formTitleMagazine){
+
     return this.httpClient.post('http://localhost:8080/search/nameMagazine', formTitleMagazine);
   }
 
