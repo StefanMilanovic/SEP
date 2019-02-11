@@ -10,6 +10,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -32,6 +33,7 @@ import { MagazineComponent } from './components/magazine/magazine.component';
 import { ResultComponent } from './components/result/result.component';
 import { PaperComponent } from './components/paper/paper.component';
 import { HeaderComponent } from './components/header/header.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -63,6 +65,8 @@ import { HeaderComponent } from './components/header/header.component';
     MatButtonModule,
     MatListModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
   ],
   providers: [UserService, AuthenticationService, AuthGuardService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
