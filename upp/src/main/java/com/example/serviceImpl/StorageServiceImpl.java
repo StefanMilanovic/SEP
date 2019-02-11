@@ -1,10 +1,14 @@
 package com.example.serviceImpl;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +24,8 @@ import com.example.service.StorageService;
 public class StorageServiceImpl implements StorageService{
 	
 	Logger log = LoggerFactory.getLogger(this.getClass().getName());
-	private final Path rootLocation = Paths.get("science-papers");
+	private final Path rootLocation = Paths.get("files");
+	
 
 	@Override
 	public void store(MultipartFile file) {
@@ -35,7 +40,8 @@ public class StorageServiceImpl implements StorageService{
 	@Override
 	public Resource loadFile(String filename) {		
 		try {
-			Path file = rootLocation.resolve(filename);
+			System.out.println(rootLocation);
+			Path file = rootLocation.resolve(filename);					
 			Resource resource = new UrlResource(file.toUri());	
 			if(resource.exists() || resource.isReadable()) {
 				return resource;

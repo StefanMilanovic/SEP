@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: BankaProdavca
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: Aleksandar
+Implementation-Vendor-Id: BankaProdavca
+Build-Jdk: 1.8.0_191
+Implementation-URL: http://projects.spring.io/spring-boot/BankaProdavc
+ a/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

@@ -16,6 +16,7 @@ import com.example.lucene.indexing.Indexer;
 import com.example.lucene.model.IndexUnit;
 import com.example.model.*;
 import com.example.service.MagazineService;
+import com.example.service.SciencePaperDownloadService;
 import com.example.service.SciencePaperService;
 import com.example.service.ScientificFieldService;
 import com.example.service.UserService;
@@ -52,6 +53,9 @@ public class IndexerController {
 	
 	@Autowired
     UserService userService;
+	
+	@Autowired
+	SciencePaperDownloadService downloadService;
 
 	private static String DATA_DIR_PATH;
 	
@@ -114,29 +118,46 @@ public class IndexerController {
 	//public ResponseEntity<String> multiUploadFileModel(@ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
 	public ResponseEntity<String> multiUploadFileModel(@ModelAttribute("currentUser") CurrentUser currentUser, @ModelAttribute SciencePaper sciencePaper, @PathVariable Long id) {
 		//@ModelAttribute SciencePaper sciencePaper
+		//POCETAK ZORICEV KOD
+		
+		try {
+			SciencePaperDownload newPaper = new SciencePaperDownload(sciencePaper.getName(), sciencePaper.getTextPDF()[0].getContentType(), sciencePaper.getTextPDF()[0].getBytes());
+			downloadService.save(newPaper);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+				
+		//KRAJ ZORICEV KOD
 		System.out.println("\n\t\taaaa oblas");
 		User user = currentUser.getUser();
 		List<User> coAuthor = new ArrayList<User>();
-		Magazine magazine = magazineService.findOne(id);
+		
+		Magazine magazine = magazineService.findOne(id);		
 		//ID DODELITI NA OSNOVU COMBO BOX
-        sciencePaper.setScienceMagazine(magazine);
-        sciencePaper.setNameMagazine(sciencePaper.getScienceMagazine().getName());
-        sciencePaper.setNameScientifiField(sciencePaper.getScienceMagazine().getScientificField().getName());
-		System.out.println("\n\t\tnaucna oblast kojoj pripada rad: " + sciencePaper.getScienceMagazine().getScientificField().getName());
+		
+		SciencePaper newSciencePaper = new SciencePaper(sciencePaper.getName(), sciencePaper.getKeywords(), sciencePaper.getAbbstract(), sciencePaper.getScentificField(), sciencePaper.getTextPDF());
+        
+		newSciencePaper.setScienceMagazine(magazine);
+		newSciencePaper.setNameMagazine(newSciencePaper.getScienceMagazine().getName());
+		newSciencePaper.setNameScientifiField(newSciencePaper.getScienceMagazine().getScientificField().getName());
+		System.out.println("\n\t\tnaucna oblast kojoj pripada rad: " + newSciencePaper.getScienceMagazine().getScientificField().getName());
 
 
-        sciencePaper.setAuthor(user);
+		newSciencePaper.setAuthor(user);
 
-        sciencePaper.setCoAuthor(new ArrayList<User>());
-		sciencePaper.setScentificField(sciencePaper.getScienceMagazine().getScientificField());
+		newSciencePaper.setCoAuthor(new ArrayList<User>());
+		newSciencePaper.setScentificField(newSciencePaper.getScienceMagazine().getScientificField());
 
 	    try {
-	    	indexUploadedFile(sciencePaper);
+	    	indexUploadedFile(newSciencePaper);
+	    	newSciencePaper.setPic(newSciencePaper.getTextPDF()[0].getBytes());
 	    } catch (IOException e) {
 	    	return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 	    }
-
-        sciencePaperService.save(sciencePaper);
+	    	  
+        sciencePaperService.save(newSciencePaper);
 	    return new ResponseEntity<String>("Uspesan upload fajla! :)", HttpStatus.OK);
 	}
 	
