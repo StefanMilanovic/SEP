@@ -72,7 +72,26 @@ public class MagazineController {
 		userService.register(loggedUser);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
-	}	
-	
+	}
+
+	@RequestMapping(
+			value="/allowUser2",
+			method = RequestMethod.POST	,
+			produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	public ResponseEntity<?> allowUser2(@ModelAttribute("currentUser") CurrentUser currentUser, @RequestBody String magName){
+
+		Magazine mag = magazineService.findByName(magName);
+		User loggedUser = currentUser.getUser();
+
+		mag.getAllowedUsers().add(loggedUser);
+		loggedUser.getAllowedMagazines().add(mag);
+
+		magazineService.save(mag);
+		userService.register(loggedUser);
+
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
 
 }

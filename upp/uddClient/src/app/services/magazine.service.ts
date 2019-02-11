@@ -27,8 +27,13 @@ export class MagazineService {
     return this.httpClient.post('http://localhost:8080/magazine/allowUser', magazineId);
   }
 
-  downloadPaper(paper){
+  allowUser2(magazineName) {
+    console.log(magazineName);
+    return this.httpClient.post('http://localhost:8080/magazine/allowUser2', magazineName);
+  }
+
+  downloadPaper(name){
     //return this.httpClient.get('http://localhost:8080/paper/download/' + paper.name);
-    window.location.href="http://localhost:8080/paper/download/" + paper.name;
+    window.location.href="http://localhost:8080/paper/download/" + name;
   }  
 }

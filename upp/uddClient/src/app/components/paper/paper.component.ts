@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MagazineService } from 'src/app/services/magazine.service';
 
 @Component({
   selector: 'app-paper',
@@ -9,11 +10,15 @@ export class PaperComponent implements OnInit {
 
   private paper: any;
 
-  constructor() { }
+  constructor(private magazineService: MagazineService) { }
 
   ngOnInit() {
     this.paper = JSON.parse(localStorage.getItem('paper'));
     console.log(this.paper);
+  }
+
+  download(paperName){
+    this.magazineService.downloadPaper(paperName);
   }
 
 }

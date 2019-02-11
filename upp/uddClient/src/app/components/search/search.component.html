@@ -97,9 +97,6 @@
     <mat-radio-button (change)="advancedSearchRadioChange($event)" value="2">OR Search</mat-radio-button>
   </mat-radio-group>
 
-  <!-- <input type="radio" (change)="advancedSearchRadioChange($event)" name="query" value="and" id="andQuery" checked> And Search
-  <input type="radio" (change)="advancedSearchRadioChange($event)" name="query" value="or" id="orQuery"> Or Search
-  <br/> -->
   <div class="container-login100-form-btn">
     <button mat-stroked-button type="button" (click)="advacnedSearch()" class="login100-form-btn"> Search </button>
   </div>
@@ -108,18 +105,8 @@
 
   <p *ngIf="noResults">No results</p>
 
-  <!-- <mat-accordion>
-    <mat-expansion-panel *ngFor="let sciPaper of allSciPaper">
-      <mat-expansion-panel-header>{{sciPaper.nameMagazine}}   {{sciPaper.title}}  </mat-expansion-panel-header>
-      <mat-list>
-        <mat-list-item>
-          {{sciPaper.highlight}}
-        </mat-list-item>
-      </mat-list>
-    </mat-expansion-panel>
-  </mat-accordion> -->
-
   <div class=searchResult *ngFor="let sciPaper of allSciPaper">
+    <hr>
     <h5>{{sciPaper.title}}</h5>
     <mat-list>
         <mat-list-item><b>Magazine: </b> {{sciPaper.nameMagazine}}</mat-list-item>
@@ -127,16 +114,18 @@
         <mat-list-item><b>Keywords: </b> {{sciPaper.keywords}}</mat-list-item>
         <mat-list-item><b>Field: </b> {{sciPaper.scientificField}}</mat-list-item>
         <mat-list-item><b>Highlight: </b></mat-list-item>
-       </mat-list>
-    <!-- <ul>
-      <li>Magazine: {{sciPaper.nameMagazine}}</li>
-      <li>Author: {{sciPaper.author}}</li>
-      <li>Keywords: {{sciPaper.keywords}}</li>
-      <li>Field: {{sciPaper.scientificField}}</li>
-      <li>Highlight: </li>
-    </ul> -->
+    </mat-list>
+   
     <div class="highligh"[innerHTML]="sciPaper.highlight"></div>
-    <!-- <textarea matInput [innerHTML]="sciPaper.highlight"></textarea> -->
+    <br/>
+
+    <div class="container-login100-form-btn">
+        <button *ngIf="!userMagsName.includes(sciPaper.nameMagazine)"(click)="allowUser(sciPaper.nameMagazine)" mat-stroked-button type="button" class="login100-form-btn">Unlock Access</button>
+    </div>
+
+    <div class="container-login100-form-btn">
+        <button *ngIf="userMagsName.includes(sciPaper.nameMagazine)" (click)="download(sciPaper)" mat-stroked-button type="button" class="login100-form-btn"> Download </button>
+    </div>
   </div>
 </div>
 
