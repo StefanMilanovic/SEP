@@ -1,0 +1,37 @@
+
+
+<div class="magazines">
+  <div>
+    <div *ngFor="let magazine of magazines">
+        <div>Naziv casopisa:{{magazine.name}}</div>
+
+        <div >
+            <div *ngFor="let paper of magazine.scientificPapers">
+                <a href="/paper" (click)='redirectPaper(paper)'> Naslov rada: {{paper  .name}}</a>
+              <br/>
+
+              <label>Ime: {{paper.author.firstname}} </label>
+
+              <label>Prezime: {{paper.author.lastname}} </label>
+
+
+              <button *ngIf="userLogged && userMags.includes(magazine.id)" style="float: right;" (click)="download(paper)" mat-raised-button color="primary">Preuzmi</button>
+              <hr>
+            </div>
+
+          <br/>
+            <button *ngIf="magazine.price!=0 && !userMags.includes(magazine.id)" mat-raised-button color="primary" (click) = "buyAccess(magazine)">Kupi</button>
+            <button *ngIf="magazine.price==0 && !userMags.includes(magazine.id)" mat-raised-button color="primary" (click) = "buyAccess(magazine)">Otkljucaj</button>
+            <p *ngIf="magazine.price!=0 && !userMags.includes(magazine.id)" style="margin-top:10px;">Cena: {{magazine.price}}</p>
+            <p *ngIf="magazine.price==0 && !userMags.includes(magazine.id)"  style="margin-top:10px;">Cena: Besplatno</p>
+        </div>
+      <br/>
+      <hr/>
+    </div>
+  </div>
+</div>
+
+
+
+
+

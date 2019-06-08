@@ -6,8 +6,10 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
+@Transactional
 public class User {
 	
 	@Id
@@ -37,8 +39,15 @@ public class User {
     
     @Column(nullable = false)
     private String role;
-    
-    @JsonIgnore
+
+	@OneToMany(mappedBy = "scienceMagazine", cascade = CascadeType.ALL)
+	private List<SciencePaper> scientificPapers = new ArrayList<SciencePaper>();
+
+	@OneToMany(mappedBy = "editor", cascade = CascadeType.ALL)
+	private List<SciencePaper> ListEditor = new ArrayList<SciencePaper>();
+
+
+	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(
 			name = "user_scientificFieldList",
@@ -55,8 +64,29 @@ public class User {
 	joinColumns = @JoinColumn(name = "user_id"),
 	inverseJoinColumns = @JoinColumn(name = "mag_id")
 		)
+
     @JsonIgnore
     private List<Magazine> allowedMagazines = new ArrayList<Magazine>();
+
+    @Transient
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // BACA ERROR PRI STARTUP
+	@JsonIgnore
+	//@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<Comment>();
+
+	@Transient
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	}, fetch =FetchType.EAGER)
+	@JoinTable(name = "user_sciencePaper",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "siciencePaper_id")
+	)
+
+	@JsonIgnore
+	private List<SciencePaper> listSciencePaperForReviwer = new ArrayList<SciencePaper>();
+
 
 	public User(){}
 
@@ -70,8 +100,14 @@ public class User {
 		this.password = password;
 		this.role = role;
 	}
-	
-	
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 
 	public List<Magazine> getAllowedMagazines() {
 		return allowedMagazines;

@@ -99,29 +99,7 @@ export class SearchComponent implements OnInit {
         console.log(retVal);
         console.log(this.magazines);
         this.allSciPaper = retVal;
-<<<<<<< HEAD
         this.noResults = false;         
-=======
-        this.noResults = false;
-        // this.flag = false;
-
-        // this.magazines.forEach((magazine) => {
-        //   this.allSciPaper.forEach((paper) => {
-        //     if(magazine.name == paper.nameMagazine){
-        //       this.searchMagazines.forEach((mag) =>{
-        //         if(mag.name == magazine.name){
-        //           this.flag = true;
-        //         }
-        //       });
-        //       if(!this.flag){
-        //         this.searchMagazines.push(magazine);
-        //       }
-        //     }
-        //   })
-        // });
-
-       // window.location.href = 'http://localhost:4300/search';
->>>>>>> c7aeaf3f86cd2044812b9b093b5a702031ba73b2
       }
 
     });
@@ -257,6 +235,8 @@ export class SearchComponent implements OnInit {
     this.advancedQuery.operation = this.queryType;
     // console.log(this.advancedQuery.field1);
     // console.log(this.advancedQuery.value1); /search/combination
+    console.log("------------------SEARCH QUERY----------------");
+    console.log(this.advancedQuery);
 
     this.searchService.searchCombination(this.advancedQuery).subscribe((retVal: any) =>{
       if(retVal.length == 0){
@@ -272,7 +252,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
   download(paper){
     this.magazineService.downloadPaper(paper.title);
   }
@@ -283,10 +262,3 @@ export class SearchComponent implements OnInit {
     })
   }
 }
-=======
-<div ng-controller="foo">
-    <div ng-bind-html="bar"></div>
-</div>
-
-*/
->>>>>>> c7aeaf3f86cd2044812b9b093b5a702031ba73b2

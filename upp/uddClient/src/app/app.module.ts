@@ -34,6 +34,7 @@ import { ResultComponent } from './components/result/result.component';
 import { PaperComponent } from './components/paper/paper.component';
 import { HeaderComponent } from './components/header/header.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
@@ -49,6 +50,7 @@ import {MatRadioModule} from '@angular/material/radio';
     ResultComponent,
     PaperComponent,
     HeaderComponent,
+    UserProfileComponent,
 
   ],
   imports: [

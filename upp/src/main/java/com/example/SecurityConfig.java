@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.service.CurrentUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
@@ -18,24 +19,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
-    private UserDetailsService userDetailsService;
+    private CurrentUserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests()
-//                .antMatchers("/login").permitAll()// / ili /public/billo sta ne prolazi autent. i moze bilo ko            
+//                .antMatchers("/login").permitAll()// / ili /public/billo sta ne prolazi autent. i moze bilo ko
 //                .anyRequest().fullyAuthenticated();
         http.cors().and().csrf().disable();
         http.headers().frameOptions().disable();
         http.httpBasic();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!USAO SAM U SPRING SECURITY CONFIG!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("SPRING SECURITY CONFIG 1..");
     }
-    
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 	    web.ignoring().antMatchers("/magazine/getAllMagazines");
+	    //web.ignoring().antMatchers("/user/login");
+        web.ignoring().antMatchers("/user/register");
 //	    web.ignoring().antMatchers("/magazine/createKoncentratorData");
-	    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!USAO SAM U SPRING SECURITY CONFIG!!!!!!!!!!!!!!!!!!!!!!!!");	    
+	    System.out.println("SPRING SECURITY CONFIG 2...");
 	}
 
     @Override

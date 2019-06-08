@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -24,7 +25,7 @@ import com.example.service.StorageService;
 public class StorageServiceImpl implements StorageService{
 	
 	Logger log = LoggerFactory.getLogger(this.getClass().getName());
-	private final Path rootLocation = Paths.get("files");
+	public static final Path rootLocation = Paths.get("files");
 	
 
 	@Override
@@ -56,6 +57,15 @@ public class StorageServiceImpl implements StorageService{
 	@Override
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(rootLocation.toFile());
+	}
+
+	@Override
+	public void delete(String filename) {
+		try{
+			Files.deleteIfExists(rootLocation.resolve(filename));
+		}catch (IOException e){
+			System.out.println(e);
+		}
 	}
 
 	@Override

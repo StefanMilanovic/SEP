@@ -41,7 +41,7 @@ export class UploadService {
       headers: headers
     });
 */
-    const req = new HttpRequest('POST', 'http://localhost:8080/index/add/' + magazineId, formdata, {
+    const req = new HttpRequest('POST', 'http://localhost:8080/paper/postUpload/' + magazineId, formdata, {
       reportProgress: true,
       responseType: 'text',
       headers: headers
@@ -56,6 +56,6 @@ export class UploadService {
   }
 
   getFiles(): Observable<any> {
-    return this.http.get('http://localhost:8080/upload/getallfiles');
+    return this.http.get('http://localhost:8080/paper/getallfiles');
   }
 }

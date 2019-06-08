@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UploadService } from 'src/app/services/upload.service';
+import { UploadService } from '../../services/upload.service';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { MagazineService } from 'src/app/services/magazine.service';
@@ -57,8 +57,7 @@ export class UploadComponent implements OnInit {
   upload(formUpload) {
     this.progress.percentage = 0;
 
-    this.currentFileUpload = this.selectedFiles.item(0);
-    console.log(formUpload);
+    this.currentFileUpload = this.selectedFiles.item(0);    
 
     this.magazines.forEach((magazine) => {
       if(magazine.name == formUpload.selectedMagazine){

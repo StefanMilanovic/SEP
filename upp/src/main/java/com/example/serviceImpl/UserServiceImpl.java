@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.service.UserService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
@@ -30,5 +32,10 @@ public class UserServiceImpl implements UserService{
 	public Optional<User> findByUsername(String username) {
 		return this.userRepository.findByUsername(username);
 	}
+
+//	@Override
+//	public User save(User user) {
+//		return this.userRepository.save(user);
+//	}
 
 }

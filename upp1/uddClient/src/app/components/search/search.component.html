@@ -1,0 +1,156 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="container-left">
+      <form [formGroup]="formTitleMagazine" >
+    <!-- <label>Magazin title: </label> -->
+    <!-- <br/> -->
+    <div class="example-container">
+
+
+      <mat-form-field>
+        <mat-label>Naslov casopisa</mat-label>
+
+        <input  formControlName="field" type="text" name="magazineTitleKey" value="magazineTitle" readonly hidden>
+        <input matInput formControlName="value" type="text" name="magazineTitleValue"  placeholder="unesi naziv casopisa">
+        <mat-hint>(npr. "Nauka")</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="container-login100-form-btn">
+      <button type="button" mat-raised-button [disabled]="!formTitleMagazine.valid" (click)="serachMagazineTitle(formTitleMagazine.value)"  color="primary"> Pretrazi </button>
+    </div>
+
+  </form>
+  <br/>
+    <form [formGroup]="formTitle" >
+      <!-- <label>Science papaer title: </label> -->
+      <!-- <br/> -->
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Naslov naucnog rada</mat-label>
+          <input  formControlName="field" type="text" name="titleKey" value="title" readonly hidden>
+          <input matInput formControlName="value" type="text" name="titleValue"  placeholder="unesi naslov naucnog rada">
+          <mat-hint>(npr. "Podsistem za likvidaturu")</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="container-login100-form-btn">
+        <button type="button" mat-raised-button [disabled]="!formTitle.valid" (click)="serachTitle(formTitle.value)" color="primary"> Pretrazi </button>
+      </div>
+    </form>
+    <br/>
+
+    <form [formGroup]="formAuthor" >
+      <!-- <label>Author: </label>
+      <br/> -->
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Autor</mat-label>
+          <input  formControlName="field" type="text" name="authorKey" value="author" readonly hidden>
+          <input matInput formControlName="value" type="text" name="authorValue"  placeholder="unesi ime ili prezime auotora">
+          <mat-hint>(npr. "Stefan Milanovic")</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="container-login100-form-btn">
+        <button type="button" mat-raised-button [disabled]="!formAuthor.valid" (click)="serachAuthor(formAuthor.value)"  color="primary"> Pretrazi </button>
+      </div>
+    </form>
+  </div>
+  <div class="container-center">
+  </div>
+  <div class="container-right">
+    <form [formGroup]="formKeywords" >
+        <!-- <label>Keywords: </label>
+        <br/> -->
+        <div class="example-container">
+          <mat-form-field>
+            <mat-label>Kljucne reci</mat-label>
+            <input  formControlName="field" type="text" class="form-control" name="keywordsKey" value="keywords" readonly hidden>
+            <input matInput formControlName="value" type="text" name="keywordsValue"  placeholder="unesi kljucne reci">
+            <mat-hint>(npr. "likvidatura, knjigovodstvo, racunovodstvo")</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="container-login100-form-btn">
+          <button type="button" mat-raised-button color="primary" [disabled]="!formKeywords.valid" (click)="serachKeywords(formKeywords.value)"> Pretrazi </button>
+        </div>
+    </form>
+    <br/>
+    <form [formGroup]="formScientificField" >
+        <!-- <label>Scientific field: </label>
+        <br/> -->
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Naucna Oblast</mat-label>
+          <input  formControlName="field" type="text" class="form-control" name="scientificFieldKey" value="keywords" readonly hidden>
+          <input matInput formControlName="value" type="text" name="scientificFieldValue"  placeholder="unesi naucnu oblast">
+          <mat-hint>(npr. "Ekonomija")</mat-hint>
+
+        </mat-form-field>
+      </div>
+
+      <div class="container-login100-form-btn">
+        <button mat-raised-button type="button" [disabled]="!formScientificField.valid" (click)="serachScientificField(formScientificField.value)"  color="primary"> Pretrazi </button>
+      </div>
+    </form>
+
+    <form [formGroup]="formContent" >
+        <!-- <label>Content: </label>
+        <br/> -->
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Tekst</mat-label>
+          <input  formControlName="field" type="text" class="form-control" name="contentKey" value="keywords" readonly hidden>
+          <textarea matInput formControlName="value" type="text" name="contentValue"  placeholder="unesi tekst iz dokumenta"></textarea>
+          <mat-hint>(npr. "knjigovodstvo je oblast racunovodstva")</mat-hint>
+
+        </mat-form-field>
+      </div>
+
+        <div class="container-login100-form-btn">
+          <button mat-raised-button type="button" [disabled]="!formContent.valid" (click)="serachContent(formContent.value)"  color="primary"> Pretrazi </button>
+        </div>
+      </form>
+   </div>
+</div>
+  <div class="container-down">
+        <br/>
+        <mat-radio-group>
+          <mat-radio-button (change)="advancedSearchRadioChange($event)" value="1">AND</mat-radio-button>
+          <mat-radio-button (change)="advancedSearchRadioChange($event)" value="2">OR</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="container-login100-form-btn">
+          <button mat-raised-button type="button" (click)="advacnedSearch()"  color="primary"> Pretrazi </button>
+        </div>
+
+    <br/>
+    <br/>
+    <hr/>
+    <p *ngIf="noResults">Nema rezultata</p>
+
+    <div class=searchResult *ngFor="let sciPaper of allSciPaper">
+      <hr>
+      <h5>{{sciPaper.title}}</h5>
+      <mat-list>
+          <mat-list-item><b>Casopis naziv: </b> {{sciPaper.nameMagazine}}</mat-list-item>
+          <mat-list-item><b>Autor: </b> {{sciPaper.author}}</mat-list-item>
+          <mat-list-item><b>Kljucne reci: </b> {{sciPaper.keywords}}</mat-list-item>
+          <mat-list-item><b>Naucne oblasti: </b> {{sciPaper.scientificField}}</mat-list-item>
+          <mat-list-item><b>Sazetak: </b></mat-list-item>
+      </mat-list>
+
+      <div class="highligh"[innerHTML]="sciPaper.highlight"></div>
+      <br/>
+
+      <!--<div class="container-login100-form-btn">-->
+         <!--<button *ngIf="!userMagsName.includes(sciPaper.nameMagazine)"(click)="allowUser(sciPaper.nameMagazine)" mat-raised-button type="button"  color="primary">Otkljucaj</button>-->
+      <!--</div>-->
+
+      <div class="container-login100-form-btn">
+          <button *ngIf="userMagsName.includes(sciPaper.nameMagazine)" (click)="download(sciPaper)" mat-raised-button type="button"  color="primary"> Preuzmi </button>
+      </div>
+    </div>
+  </div>
+
+
+<!-- <textarea>{{sciPaper.highlight}}</textarea> -->

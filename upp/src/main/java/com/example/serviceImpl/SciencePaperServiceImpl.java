@@ -28,10 +28,25 @@ public class SciencePaperServiceImpl implements SciencePaperService{
 
     @Override
     public List<SciencePaper> save(List<SciencePaper> sciencePapers) {
-        return sciencePaperRepository.save(sciencePapers);
+        return sciencePaperRepository.saveAll(sciencePapers);
     }
     @Override
     public SciencePaper save(SciencePaper sciencePaper) {
         return sciencePaperRepository.save(sciencePaper);
+    }
+
+    @Override
+    public List<SciencePaper> findByApproved(Boolean approved) {
+        return sciencePaperRepository.findByApproved(approved);
+    }
+
+    @Override
+    public void delete(Long id) {
+        this.sciencePaperRepository.deleteById(id);
+    }
+
+    @Override
+    public SciencePaper findById(Long id) {
+        return this.sciencePaperRepository.findById(id).get();
     }
 }

@@ -9,7 +9,7 @@ public interface SciencePaperService {
     SciencePaper findByName(String name);
     List<SciencePaper> save(List<SciencePaper> sciencePapers);
     SciencePaper save(SciencePaper sciencePaper);
-
-
-
+    List<SciencePaper> findByApproved(Boolean approved);
+    void delete(Long id);
+    SciencePaper findById(Long id);
 }

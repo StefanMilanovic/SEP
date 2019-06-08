@@ -1,0 +1,56 @@
+.container{
+
+  padding: 90px;
+  display: flex;
+
+  width:100%;
+  text-align:center;
+}
+.container-left{
+  float: left;
+  width:50%;
+}
+
+.container-center{
+  display: inline-block;
+  margin:0 auto;
+  width:10px;
+}
+
+.container-right{
+  float : right;
+  width:50%;
+}
+
+.container-down{
+  float: bottom;
+  width:100%;
+  text-align:center;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .example-container > * {
+    width: 100%;
+  }
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+
+  }
+
+  .searchResult{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .highligh{
+    /* width:70%; */
+  }
+
+  .mat-raised-button{
+    width: 100%;
+  }

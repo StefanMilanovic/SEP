@@ -1,0 +1,29 @@
+
+  * {
+      margin: 30px;
+      padding: 0px;
+      box-sizing: border-box;
+  }
+
+  body, html {
+
+      height: 70%;
+      font-family: Arial;
+  }
+
+.magazines{
+    width:50%;
+
+    color: black;
+}
+
+h1{
+
+    font-family: Arial;
+}
+
+h2{
+    margin-left:10px;
+    font-family: Arial;
+}
+

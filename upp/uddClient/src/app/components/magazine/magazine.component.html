@@ -8,8 +8,10 @@
 
         <mat-list>
             <mat-list-item *ngFor="let paper of magazine.scientificPapers">
-                <a mat-line href="/paper" (click)='redirectPaper(paper)'>{{paper  .name}}</a>                
-                <button *ngIf="userLogged && userMags.includes(magazine.id)" style="float: right;" (click)="download(paper)" mat-stroked-button>Download</button>
+                <div *ngIf="paper.approved">
+                    <a mat-line href="/paper" (click)='redirectPaper(paper)'>{{paper  .name}}</a>                
+                    <button *ngIf="userLogged && userMags.includes(magazine.id)" style="float: right;" (click)="download(paper)" mat-stroked-button>Download</button>
+                </div>
             </mat-list-item>
             <br/>
             <button *ngIf="magazine.price!=0 && !userMags.includes(magazine.id)" mat-stroked-button (click) = "buyAccess(magazine)">Buy Access</button>

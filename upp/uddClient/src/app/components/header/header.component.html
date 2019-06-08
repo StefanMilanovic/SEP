@@ -11,6 +11,11 @@
           <span class="glyphicon glyphicon-log-in"></span>Loged as: {{loggedUser.username}}</a>
       </li>
 
+      <li class="nav-item" *ngIf="userLogged">
+        <a class="nav-link" href="/user-profile">
+        <span class="glyphicon glyphicon-log-in"></span>Profile</a>
+      </li>
+
       <li class="nav-item" *ngIf="!userLogged" >
           <a class="nav-link" href="/login">
           <span class="glyphicon glyphicon-log-in"></span>Login</a>

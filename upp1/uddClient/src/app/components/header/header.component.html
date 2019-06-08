@@ -1,0 +1,61 @@
+
+
+  <ul>
+
+
+      <li>
+        <a href="#">Opcije
+        </a>
+        <ul>
+
+
+          <li *ngIf="userLogged">
+            <a href="/search">
+              Pretrazi</a>
+          </li>
+          <li *ngIf="userLogged">
+            <a  href="/upload">
+              Dodaj </a>
+          </li>
+
+
+        </ul>
+
+      </li>
+    <li>
+      <a href="#">Profil
+      </a>
+      <ul>
+        <li  *ngIf="userLogged" >
+          <a >
+            {{loggedUser.username}}</a>
+        </li>
+
+        <li *ngIf="!userLogged" >
+          <a href="/login">
+            Uloguj se</a>
+        </li>
+
+        <li  *ngIf="userLogged">
+          <a href="" (click)='clickLogout()'>
+            Izloguj se</a>
+        </li>
+
+        <li *ngIf="!userLogged">
+          <a  href="/register">
+            Registruj se</a>
+        </li>
+      </ul>
+    </li>
+
+
+    <li>
+      <a href="#">Naucna Centrala
+      </a>
+    </li>
+
+
+
+
+
+  </ul>

@@ -183,6 +183,8 @@ public class IndexerController {
 
     //konverzija
     public static String zameniKarakter(String text) {
+
+
         String text1 = text.toLowerCase();
         String text2 = CyrillicLatinConverter.cir2lat(text1);
 
@@ -202,5 +204,28 @@ public class IndexerController {
 
         return text12;
     }
+
+    /*
+    //uklanjanje stop reci
+		private String ukloniStopReci(String text) {
+			//stop reci u srpskom jeziku
+			//"i", "a", "ili", "ali", "pa", "te", "da", "u", "po", "na"
+
+			String init = text.toLowerCase();
+
+			String text1 = init.replaceAll(" i ", "  ");
+			String text2 = text1.replaceAll(" a ", "  ");
+			String text3 = text2.replaceAll(" ili ", "  ");
+			String text4 = text3.replaceAll(" ali ", "  ");
+			String text5 = text4.replaceAll(" pa ", "  ");
+			String text6 = text5.replaceAll(" te ", "  ");
+			String text7 = text6.replaceAll(" da ", "  ");
+			String text8 = text7.replaceAll(" u ", "  ");
+			String text9 = text8.replaceAll(" po ", "  ");
+			String text10 = text9.replaceAll(" na ", "  ");
+
+			return text10;
+		}
+    */
 
 }

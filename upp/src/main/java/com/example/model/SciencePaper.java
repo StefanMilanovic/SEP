@@ -2,12 +2,10 @@ package com.example.model;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,10 +20,17 @@ public class SciencePaper {
 	@JsonView(View.FileInfo.class)
 	private String name;
 
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne()
 	@JoinColumn(name = "autor_id")
 	private User author;
-	
+
+	@ManyToOne()
+	@JoinColumn(name = "editor_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+	@JsonIdentityReference(alwaysAsId = true)
+	private User editor;//urednik
+
+
 	@Lob
 	@Transient
 	@Column(name="pic")
@@ -40,6 +45,11 @@ public class SciencePaper {
 	)
 	private List<User> coAuthor;
 
+	@Column(name="co_authors")
+	private String co_authors;
+
+	@Column(nullable = false)
+	private Boolean approved;
 
 	@Column(nullable = false)
 	private String keywords;
@@ -61,6 +71,20 @@ public class SciencePaper {
 	@Lob
 	private MultipartFile[] textPDF;
 
+	@Column(nullable = false)
+	private String locationOnDrive;
+
+	@Column(nullable = false)
+	private String status;
+
+	//@OneToMany(mappedBy = "sciencePaper", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // BACA ERROR PRI STARTUP
+	@JsonIgnore
+	@OneToMany(mappedBy = "sciencePaper", cascade = CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<Comment>();
+
+	@Transient
+	@ManyToMany(fetch =FetchType.EAGER, mappedBy = "listSciencePaperForReviwer")
+	private List<User> reviwers = new ArrayList<>();
 
 
 	private String nameMagazine;
@@ -76,7 +100,48 @@ public class SciencePaper {
 		this.abbstract = abbstract;
 		this.scientificField = scientificField;
 		this.textPDF = textPDF;
+		this.approved = false;
+		this.status = "editor";
+	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public String getCo_authors() {
+		return co_authors;
+	}
+
+	public void setCo_authors(String co_authors) {
+		this.co_authors = co_authors;
+	}
+
+	public Boolean getApproved() {
+		return approved;
+	}
+
+	public void setApproved(Boolean approved) {
+		this.approved = approved;
+	}
+
+	public String getLocationOnDrive() {
+		return locationOnDrive;
+	}
+
+	public void setLocationOnDrive(String locationOnDrive) {
+		this.locationOnDrive = locationOnDrive;
 	}
 
 	public Long getId() {
@@ -182,6 +247,13 @@ public class SciencePaper {
 	public void setPic(byte[] pic) {
 		this.pic = pic;
 	}
-	
-	
+
+	public User getEditor() {
+		return editor;
+	}
+
+	public void setEditor(User editor) {
+		this.editor = editor;
+	}
+
 }

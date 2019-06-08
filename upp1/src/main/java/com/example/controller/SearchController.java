@@ -9,6 +9,7 @@ import com.example.lucene.model.*;
 import com.example.lucene.search.QueryBuilder;
 import com.example.lucene.search.ResultRetriever;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -119,7 +120,25 @@ public class SearchController {
 			List<ResultData> results = resultRetriever.getResults(query, rh);
 			return new ResponseEntity<List<ResultData>>(results, HttpStatus.OK);
 		}
-		
+
+	@PostMapping(value="/search/moreLikeThis", consumes="application/json")
+	public ResponseEntity<List<ResultData>> moreLikeThis(@RequestBody SimpleQuery simpleQuery) {
+		String tekstRada = simpleQuery.getValue();
+		List<ResultData> results = new ArrayList<ResultData>();
+
+		//tekst koji se trazi u ostalim radovima
+		String searchArray[] = { tekstRada };
+		String [] array = {"AA","BB","CC" };
+		//text iz IndexUnit-a
+		String fields[] = { "text" };
+
+		MoreLikeThisQueryBuilder.Item[] items = { new MoreLikeThisQueryBuilder.Item("digitallibrary", "book", "filename") };
+		MoreLikeThisQueryBuilder qb = QueryBuilders.moreLikeThisQuery( );
+
+		return new ResponseEntity<List<ResultData>>(results, HttpStatus.OK);
+	}
+
+
 		//pretraga po kombinaciji svih parametara pretrage
 		@PostMapping(value="/search/combination", consumes="application/json")
 		public ResponseEntity<List<ResultData>> searchCombination(@RequestBody AdvancedQuery advancedQuery) throws Exception {

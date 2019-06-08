@@ -29,24 +29,12 @@ public class ScientificField {
 	@JsonIgnore
 	@OneToMany(mappedBy = "scientificField", cascade = CascadeType.ALL)
 	private List<SciencePaper> sciencePapers = new ArrayList<SciencePaper>();
-	/*
-	@JsonIgnore
-	@ManyToMany(mappedBy = "scientificFields")
-    private List<Magazine> posts = new ArrayList<>();
-	
-	public ScientificField(String name) {
-		super();
-		this.name = name;
-	}*/
 
 	@OneToMany(mappedBy = "scientificField", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private Set<Magazine> magazines = new HashSet<Magazine>();
 
-
 	public ScientificField(){}
-	
-	
 
 	public List<SciencePaper> getSciencePapers() {
 		return sciencePapers;
@@ -55,15 +43,7 @@ public class ScientificField {
 	public void setSciencePapers(List<SciencePaper> sciencePapers) {
 		this.sciencePapers = sciencePapers;
 	}
-/*
-	public List<Magazine> getPosts() {
-		return posts;
-	}
 
-	public void setPosts(List<Magazine> posts) {
-		this.posts = posts;
-	}
-*/
 	public Long getId() {
 		return id;
 	}

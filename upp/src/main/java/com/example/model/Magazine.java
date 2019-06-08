@@ -3,17 +3,7 @@ package com.example.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;	
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -35,6 +25,9 @@ public class Magazine {
 	@OneToMany(mappedBy = "scienceMagazine", cascade = CascadeType.ALL)
 	private List<SciencePaper> scientificPapers = new ArrayList<SciencePaper>();
 
+	@ManyToOne()
+	@JoinColumn(name = "editor_id")
+	private User editor;//urednik
 
 
 	/*@ManyToMany(cascade = {
@@ -131,5 +124,13 @@ public class Magazine {
 
 	public void setScientificField(ScientificField scientificField) {
 		this.scientificField = scientificField;
+	}
+
+	public User getEditor() {
+		return editor;
+	}
+
+	public void setEditor(User editor) {
+		this.editor = editor;
 	}
 }

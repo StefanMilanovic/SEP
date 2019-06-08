@@ -1,0 +1,45 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Paper Name</th>
+        <th>Author</th>
+        <th>Co-authors</th>
+        <th>Keywords</th>
+        <th>Scientific field</th>
+        <th>Download</th>
+        <th>Rework</th>
+        <th>Add reviewers</th>
+        <th>Discard</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paper of sciencePapers">
+        <td>{{paper.name}}</td>
+        <td>{{paper.author.firstname}} {{paper.author.lastname}}</td>
+        <td>{{paper.co_authors}}</td>
+        <td>{{paper.keywords}}</td>
+        <td>{{paper.nameScientifiField}}</td>
+        <td><button (click)="download(paper)">Download</button></td>
+        <td><button (click)="openReworkCommentPopUp(paper)">Rework</button></td>
+        <td><button>Review</button></td>
+        <td><button (click)="deletePaper(paper)">Discard</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pop-up-style" *ngIf="showPopUpComment">
+    <div class="pop-up-inner">
+      <div class="pop-up-top">
+          <h5>Enter comment for author</h5>
+          <button (click)="togglePopUpVisibility()" class="x-button">X</button>
+      </div>
+      <div>
+        <textarea [(ngModel)]="commentValue"></textarea>
+      </div>
+      <div>
+        <button (click)="togglePopUpVisibility()">Cancel</button>
+        <button (click)="sendComment()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
