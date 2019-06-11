@@ -25,7 +25,16 @@ public class Comment {
     private SciencePaper sciencePaper;
 
     @Column
+    private Boolean expired;
+
+    @Column
     private String content;
+
+    @Column
+    Boolean finished;
+
+    @Column
+    String recommendation;
 
     public Comment () {}
 
@@ -33,6 +42,25 @@ public class Comment {
         this.user = user;
         this.sciencePaper = sciencePaper;
         this.content = content;
+        this.expired = false;
+        this.finished = false;
+        this.recommendation = "";
+    }
+
+    public Boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(Boolean finished) {
+        this.finished = finished;
+    }
+
+    public String getRecommendation() {
+        return recommendation;
+    }
+
+    public void setRecommendation(String recommendation) {
+        this.recommendation = recommendation;
     }
 
     public String getContent() {
@@ -65,5 +93,13 @@ public class Comment {
 
     public void setSciencePaper(SciencePaper sciencePaper) {
         this.sciencePaper = sciencePaper;
+    }
+
+    public Boolean getExpired() {
+        return expired;
+    }
+
+    public void setExpired(Boolean expired) {
+        this.expired = expired;
     }
 }

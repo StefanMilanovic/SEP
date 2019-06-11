@@ -5,16 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class ScientificField {
@@ -33,6 +29,17 @@ public class ScientificField {
 	@OneToMany(mappedBy = "scientificField", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private Set<Magazine> magazines = new HashSet<Magazine>();
+
+	@ManyToMany(mappedBy = "listScientificField")
+	private List<User> secEditor = new ArrayList<>();
+
+	public List<User> getSecEditor() {
+		return secEditor;
+	}
+
+	public void setSecEditor(List<User> secEditor) {
+		this.secEditor = secEditor;
+	}
 
 	public ScientificField(){}
 

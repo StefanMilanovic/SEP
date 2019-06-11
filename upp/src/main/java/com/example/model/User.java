@@ -46,15 +46,13 @@ public class User {
 	@OneToMany(mappedBy = "editor", cascade = CascadeType.ALL)
 	private List<SciencePaper> ListEditor = new ArrayList<SciencePaper>();
 
-
-	@JsonIgnore
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(
-			name = "user_scientificFieldList",
-			joinColumns = { @JoinColumn(name = "editor_id") },
-			inverseJoinColumns = { @JoinColumn(name = "scientificFieldList_id") }
-	)
-	private List<ScientificField> scientificFieldList = new ArrayList<ScientificField>();
+//	@ManyToMany(cascade = { CascadeType.ALL })
+//	@JoinTable(
+//			name = "user_scientificFieldList",
+//			joinColumns = { @JoinColumn(name = "editor_id") },
+//			inverseJoinColumns = { @JoinColumn(name = "scientificFieldList_id") }
+//	)
+//	private List<ScientificField> scientificFieldList = new ArrayList<ScientificField>();
 
     @ManyToMany(cascade = {
 	        CascadeType.PERSIST,
@@ -69,9 +67,8 @@ public class User {
     private List<Magazine> allowedMagazines = new ArrayList<Magazine>();
 
     @Transient
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // BACA ERROR PRI STARTUP
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
-	//@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<Comment>();
 
 	@Transient
@@ -83,10 +80,23 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "siciencePaper_id")
 	)
-
 	@JsonIgnore
 	private List<SciencePaper> listSciencePaperForReviwer = new ArrayList<SciencePaper>();
 
+	@JsonIgnore
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE,
+	})
+	@JoinTable(name = "user_scientificField",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "scientificField_id")
+	)
+	private List<ScientificField> listScientificField= new ArrayList<ScientificField>();
+
+	@ManyToOne
+	@JsonIgnore
+	private Magazine reviewerMagazine;
 
 	public User(){}
 
@@ -99,6 +109,14 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+	}
+
+	public Magazine getReviewerMagazine() {
+		return reviewerMagazine;
+	}
+
+	public void setReviewerMagazine(Magazine reviewerMagazine) {
+		this.reviewerMagazine = reviewerMagazine;
 	}
 
 	public List<Comment> getComments() {
@@ -190,11 +208,11 @@ public class User {
 		this.role = role;
 	}
 
-	public List<ScientificField> getScientificFieldList() {
-		return scientificFieldList;
+	public List<ScientificField> getListScientificField() {
+		return listScientificField;
 	}
 
-	public void setScientificFieldList(List<ScientificField> scientificFieldList) {
-		this.scientificFieldList = scientificFieldList;
+	public void setListScientificField(List<ScientificField> listScientificField) {
+		this.listScientificField = listScientificField;
 	}
 }

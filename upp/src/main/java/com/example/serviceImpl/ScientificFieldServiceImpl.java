@@ -25,4 +25,7 @@ public class ScientificFieldServiceImpl implements ScientificFieldService{
 		return this.sfRepository.findAll();
 	}
 
+	@Override
+	public ScientificField findById(Long id) {return this.sfRepository.findById(id).get(); }
+
 }

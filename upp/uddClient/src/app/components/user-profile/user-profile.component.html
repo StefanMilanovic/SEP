@@ -1,4 +1,6 @@
-<div>
+<app-header></app-header>
+
+<div *ngIf="loggedUser.role=='EDITOR'">
   <table>
     <thead>
       <tr>
@@ -9,12 +11,12 @@
         <th>Scientific field</th>
         <th>Download</th>
         <th>Rework</th>
-        <th>Add reviewers</th>
+        <th>Approve</th>
         <th>Discard</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let paper of sciencePapers">
+      <tr *ngFor="let paper of sciencePapersMainEditor">
         <td>{{paper.name}}</td>
         <td>{{paper.author.firstname}} {{paper.author.lastname}}</td>
         <td>{{paper.co_authors}}</td>
@@ -22,7 +24,7 @@
         <td>{{paper.nameScientifiField}}</td>
         <td><button (click)="download(paper)">Download</button></td>
         <td><button (click)="openReworkCommentPopUp(paper)">Rework</button></td>
-        <td><button>Review</button></td>
+        <td><button (click)="approve(paper)">Approve</button></td>
         <td><button (click)="deletePaper(paper)">Discard</button></td>
       </tr>
     </tbody>
@@ -39,6 +41,145 @@
       <div>
         <button (click)="togglePopUpVisibility()">Cancel</button>
         <button (click)="sendComment()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedUser.role=='USER'">
+  <div>
+    <div *ngFor="let paper of sciencePapersUser">
+      <h3>Paper name: {{paper.name}}</h3>
+      <p>Abstract: {{paper.abbstract}}</p>
+      <p>Messages:</p>
+      <div *ngFor="let message of paper.comments">
+        <p>{{message.content}}</p>
+      </div>
+      <div class="upload-btn-wrapper" style="margin-top:30px;">
+          <button class="btn">Upload</button>
+          <input type="file" (change)="selectFile($event)" name="myfile" />
+      </div>
+      <div>
+        <button (click)="uploadPaper(paper)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedUser.role=='SECEDITOR'">
+  <h2>Unreviewed Science Papers</h2>
+  <div *ngFor="let paper of secondEditorSiencePapers">
+    <div *ngIf="paper.status == 'sec_editor_rev'">
+      <h3>Name: {{paper.name}}</h3>
+      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
+      <p>Abstract: {{paper.abbstract}}</p>
+      <p>Keywords: {{paper.keywords}}</p>
+      <button (click)="download(paper)">Download</button>
+      <button (click)="openChoseReviewersPopUp(paper)">Choose Reviewers</button>
+    </div>
+  </div>
+  <br/>
+  <h2>Reviewed Science Papers</h2>
+  <div *ngFor="let paper of secondEditorSiencePapers">
+    <div *ngIf="paper.status == 'sec_editor_decide'">
+      <h3>Name: {{paper.name}}</h3>
+      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
+      <p>Abstract: {{paper.abbstract}}</p>
+      <p>Keywords: {{paper.keywords}}</p>
+      <button (click)="download(paper)">Download</button>
+      <button (click)="editorDecision(paper,'big')">Big mistake</button>
+      <button (click)="editorDecision(paper,'small')">Small mistake</button>
+      <button (click)="editorDecision(paper,'approve')">Approve</button>
+      <button (click)="editorDecision(paper,'discard')">Discard</button>
+      <p>Comment:</p>
+      <div *ngFor="let com of paper.comments">
+        <p>Content: {{com.content}}</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Science paper with small mistake:</h2>
+  <div *ngFor="let paper of secondEditorSiencePapers">
+    <div *ngIf="paper.status == 'small_mistake_resolve'">
+      <h3>Name: {{paper.name}}</h3>
+      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
+      <p>Abstract: {{paper.abbstract}}</p>
+      <p>Keywords: {{paper.keywords}}</p>
+      <button (click)="download(paper)">Download</button>
+      <button (click)="editorDecisionSmallMistake(paper,'small')">Small mistake</button>
+      <button (click)="editorDecisionSmallMistake(paper,'approve')">Approve</button>
+      <button (click)="editorDecisionSmallMistake(paper,'discard')">Discard</button>
+      <p>Comment:</p>
+      <div *ngFor="let com of paper.comments">
+        <p>Content: {{com.content}}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="pop-up-style" *ngIf="showPopUpComment">
+    <div class="pop-up-inner">
+      <div class="pop-up-top">
+        <h4>Choose reviewers</h4>
+        <button (click)="togglePopUpVisibility()" class="x-button">X</button>
+      </div>
+      <div>
+        <select [(ngModel)]="optionReviewer">
+          <option *ngFor="let reviewer of reviewers">
+            {{reviewer.username}}
+          </option>
+        </select>
+        <button (click)="addReviewer()">Add</button>
+      </div>
+      <div>
+        <h5>Selected reviewers:</h5>
+        <div *ngFor="let reviewer of selectedReviewers">
+          <label>{{reviewer.username}}</label>
+          <button (click)="removeReviewer(reviewer)">x</button>
+        </div>
+      </div>
+      <div>
+        <button (click)="togglePopUpVisibility()">Cancel</button>
+        <button (click)="confirmReviewers()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loggedUser.role=='REVIEWER'">
+  <h2>Unreviewed Science Papers</h2>
+  <div *ngFor="let paper of reviewerSciencePapers">
+    <div *ngIf="paper.status == 'reviewers_looking'">
+      <h3>Name: {{paper.name}}</h3>
+      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
+      <p>Abstract: {{paper.abbstract}}</p>
+      <p>Keywords: {{paper.keywords}}</p>
+      <button (click)="download(paper)">Download</button>
+      <button (click)="openAddReviewersPopUp(paper)">Add Review</button>
+    </div>
+  </div>
+
+  <div class="pop-up-style" *ngIf="showPopUpComment">
+    <div class="pop-up-inner">
+      <div class="pop-up-top">
+        <h5>Enter comment for author</h5>
+        <button (click)="togglePopUpVisibility()" class="x-button">X</button>
+      </div>
+      <div>
+        <textarea [(ngModel)]="commentValue"></textarea>
+      </div>
+      <div>
+        <label>Choose recomendation</label>
+        <select [(ngModel)]="reviewOption">
+          <option>Accept</option>
+          <option>Accept with small changes</option>
+          <option>Accept with larger changes</option>
+          <option>Reject</option>
+        </select>
+      </div>
+      <div>
+        <button (click)="togglePopUpVisibility()">Cancel</button>
+        <button (click)="sendReview()">Send</button>
       </div>
     </div>
   </div>

@@ -1,18 +1,23 @@
 #EDITORS #password e
 insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('1','Novi Sad','marica50@ptt.yu','Zoric','Marica','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','EDITOR','maricaZoric');
 insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('2','Novi Sad','a@a.com','Lupic','Aleksandar','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','EDITOR','alexLupic');
-insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('2','Novi Sad','ee','Lupic','Aleksandar','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','EDITOR','alexLupic');
+insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('10','Novi Sad','ee','Lupic','Aleksandar','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','EDITOR','alexLupic2');
 
 #AUTHORS
 insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('3','Novi Sad','e@e.com','Vojvodic','Elenora','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','USER','elenora95');
-insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('11','Novi Sad','e','Vojvodic','Elenora','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','USER','elenora95');
+insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('11','Novi Sad','e','Vojvodic','Elenora','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','USER','elenora951');
+
+#SECEDITORS
+insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('12','Novi Sad','seditor1@editor.com','Asad','Jana','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','SECEDITOR','jana_as');
+insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('13','Novi Sad','seditor2@editor.com','Rocevic','Miroslav','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','SECEDITOR','ronule123');
+
+
 
 #REVIEWERS
-insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('4','Novi Sad','r1@r.com','Miskov','Milos','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','miskec');
-insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('5','Novi Sad','r2@r.com','Milutin','Nikola','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','nikolaMilutin');
-insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('6','Novi Sad','r3@r.com','Golocorbin','Stanko','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','stankoGol');
-insert into user(id, city, email, lastname, firstname, password, country, role, username) values ('7','Novi Sad','r4@r.com','Cubric','Jovica','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','eLeMiRaC');
-
+insert into user(id, city, email, lastname, firstname, password, country, role, username, reviewer_magazine_id) values ('4','Novi Sad','r1@r.com','Miskov','Milos','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','miskec', '1');
+insert into user(id, city, email, lastname, firstname, password, country, role, username, reviewer_magazine_id) values ('5','Novi Sad','r2@r.com','Milutin','Nikola','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','nikolaMilutin', '1');
+insert into user(id, city, email, lastname, firstname, password, country, role, username, reviewer_magazine_id) values ('6','Novi Sad','r3@r.com','Golocorbin','Stanko','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','stankoGol','2');
+insert into user(id, city, email, lastname, firstname, password, country, role, username, reviewer_magazine_id) values ('7','Novi Sad','r4@r.com','Cubric','Jovica','$2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay','Srbija','REVIEWER','eLeMiRaC', '2');
 
 # $2y$12$QiNu1WMxQxzn.xzce8FKCOu8LXaaQB.wZVNW/uxrrs1tg9QpJ9Oaa
 # $2a$10$BQRyiN/k2eUCQWxPL3htkesrDAVw/11wuxFG4zv5Evp/0l9jMU2ay
@@ -27,6 +32,10 @@ insert into scientific_field(id, name) values ('7', 'Chemistry');
 insert into scientific_field(id, name) values ('8', 'Biology');
 insert into scientific_field(id, name) values ('9', 'Geography');
 insert into scientific_field(id, name) values ('10', 'Medicine');
+
+#--USER SCIENTIFIC FIELD
+insert into user_scientific_field(user_id, scientific_field_id) values (12, 1);
+insert into user_scientific_field(user_id, scientific_field_id) values (13, 2);
 
 #--MAGAZINES
 insert into magazine(id, issn, name, scientific_fields_id, price, editor_id) values ('1','1234-4321','Engineering Monthly', '1', '0.00','1');

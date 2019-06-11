@@ -12,7 +12,7 @@ import java.util.HashMap;
 @Transactional
 public class CheckTopicSciencePaperService implements JavaDelegate {
 	//DiscardSciencePaperService
-
+//EditorFinalDecision
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		@SuppressWarnings("unchecked")

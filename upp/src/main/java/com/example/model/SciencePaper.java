@@ -78,14 +78,13 @@ public class SciencePaper {
 	private String status;
 
 	//@OneToMany(mappedBy = "sciencePaper", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // BACA ERROR PRI STARTUP
-	@JsonIgnore
+	//@JsonIgnore
 	@OneToMany(mappedBy = "sciencePaper", cascade = CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<Comment>();
 
 	@Transient
 	@ManyToMany(fetch =FetchType.EAGER, mappedBy = "listSciencePaperForReviwer")
 	private List<User> reviwers = new ArrayList<>();
-
 
 	private String nameMagazine;
 
