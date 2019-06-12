@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fnsnn0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.3">
-  <bpmn:process id="pay" isExecutable="true">
+  <bpmn:process id="placanje" isExecutable="true">
     <bpmn:exclusiveGateway id="ExclusiveGateway_0qw09ca">
       <bpmn:incoming>SequenceFlow_08xifxf</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0vwu33x</bpmn:outgoing>
@@ -37,7 +37,7 @@
     </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="pay">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="placanje">
       <bpmndi:BPMNShape id="ExclusiveGateway_0qw09ca_di" bpmnElement="ExclusiveGateway_0qw09ca" isMarkerVisible="true">
         <dc:Bounds x="424" y="219" width="50" height="50" />
         <bpmndi:BPMNLabel>

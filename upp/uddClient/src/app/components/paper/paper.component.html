@@ -1,12 +1,12 @@
 <app-header></app-header>
 <h3>{{paper.name}}</h3>
 <mat-list>
-        <mat-list-item><b>Magazine: </b> {{paper.nameMagazine}}</mat-list-item>
-        <mat-list-item><b>Author: </b> {{paper.author.firstname}} {{paper.author.lastname}}</mat-list-item>
-        <mat-list-item><b>Keywords: </b> {{paper.keywords}}</mat-list-item>
-        <mat-list-item><b>Field: </b> {{paper.scentificField.name}}</mat-list-item>    
-        <mat-list-item><b>Abstract:</b> </mat-list-item>        
+        <mat-list-item><b>Casopis: </b> {{paper.nameMagazine}}</mat-list-item>
+        <mat-list-item><b>Autor: </b> {{paper.author.firstname}} {{paper.author.lastname}}</mat-list-item>
+        <mat-list-item><b>Kljucni pojmovi: </b> {{paper.keywords}}</mat-list-item>
+        <mat-list-item><b>Oblast: </b> {{paper.scentificField.name}}</mat-list-item>
+        <mat-list-item><b>Apstrakt:</b> </mat-list-item>
 </mat-list>
 <p style="margin-left:10px;">{{paper.abbstract}}</p>
-   
-<button mat-stroked-button (click)="download(paper.name)">Download</button> 
+
+<button mat-stroked-button (click)="download(paper.name)">Preuzmi</button>
