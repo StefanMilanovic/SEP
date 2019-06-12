@@ -1,0 +1,14 @@
+html {
+
+}
+
+body {
+  /* The image used */
+  background: url("backg1.jpg");
+
+  /* Full height */
+
+  background-size: 100% 100%;
+  background-repeat: repeat-x, repeat-y;
+
+}

@@ -1,39 +1,35 @@
-<div class="limiter">
-  <div class="container-login100">
-    <div class="wrap-login100">
-      <form [formGroup]="form" class="login100-form validate-form p-l-55 p-r-55 p-t-178">
-        <span class="login100-form-title">
-          Sign In
-        </span>
 
-        <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-          <input class="input100" type="email" formControlName="email" name="email" placeholder="Email">
-          <span class="focus-input100"></span>
+  <div >
+    <div>
+      <form [formGroup]="form">
+        <br/>
+        <br/>
+        <div   style="text-align:center;" >
+          <input class="text-center"  type="email" formControlName="email" name="email" placeholder="Mail">
+          <span ></span>
+        </div>
+        <br/>
+        <br/>
+        <div  style="text-align:center;" >
+          <input class="text-center"  type="password" formControlName="password" name="password" placeholder="Lozinka">
+          <span></span>
+        </div>
+        <br/>
+        <br/>
+        <div>
+          <p *ngIf="loginError" id="error">Greska!</p>
         </div>
 
-        <div class="wrap-input100 validate-input" data-validate = "Please enter password">
-          <input class="input100" type="password" formControlName="password" name="password" placeholder="Password">
-          <span class="focus-input100"></span>
+        <div  style="text-align:center;" >
+          <button class="btn btn-success btn-lg" type="button" [disabled]="!form.valid" (click)="login()">Uloguj se</button>
         </div>
 
-        <div class="text-center p-t-13 p-b-23">
-          <p *ngIf="loginError" id="error">Wrong email/password</p>       
-        </div>
-
-        <div class="container-login100-form-btn">
-          <button type="button" [disabled]="!form.valid" (click)="login()" class="login100-form-btn"> Log In </button>
-        </div>
-
-        <div class="flex-col-c p-t-170 p-b-40">
-          <span class="txt1 p-b-9">
-            Don’t have an account?
-          </span>
-
-          <a href="/register" class="txt3">
-            Sign up now
+        <div style="text-align:center;" >
+          <a  href="/register" >
+            Registruj se
           </a>
         </div>
       </form>
     </div>
   </div>
-</div>
+

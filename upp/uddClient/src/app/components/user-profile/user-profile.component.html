@@ -1,46 +1,43 @@
 <app-header></app-header>
 
 <div *ngIf="loggedUser.role=='EDITOR'">
+  <br/>
+  <br/>
   <table>
     <thead>
       <tr>
-        <th>Paper Name</th>
-        <th>Author</th>
-        <th>Co-authors</th>
-        <th>Keywords</th>
-        <th>Scientific field</th>
-        <th>Download</th>
-        <th>Rework</th>
-        <th>Approve</th>
-        <th>Discard</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let paper of sciencePapersMainEditor">
         <td>{{paper.name}}</td>
-        <td>{{paper.author.firstname}} {{paper.author.lastname}}</td>
-        <td>{{paper.co_authors}}</td>
-        <td>{{paper.keywords}}</td>
-        <td>{{paper.nameScientifiField}}</td>
-        <td><button (click)="download(paper)">Download</button></td>
-        <td><button (click)="openReworkCommentPopUp(paper)">Rework</button></td>
-        <td><button (click)="approve(paper)">Approve</button></td>
-        <td><button (click)="deletePaper(paper)">Discard</button></td>
+        <td>{{paper.author.firstname}}</td>
+
+        <td><button class="btn btn-sm btn-info" (click)="download(paper)">Preuzmi</button></td>
+        <td><button class="btn btn-sm btn-warning"  (click)="openReworkCommentPopUp(paper)">Doradi</button></td>
+        <td><button class="btn btn-sm btn-primary" (click)="approve(paper)">Odobri</button></td>
+        <td><button class="btn btn-sm btn-danger" (click)="deletePaper(paper)">Odbij</button></td>
       </tr>
     </tbody>
   </table>
   <div class="pop-up-style" *ngIf="showPopUpComment">
     <div class="pop-up-inner">
       <div class="pop-up-top">
-          <h5>Enter comment for author</h5>
-          <button (click)="togglePopUpVisibility()" class="x-button">X</button>
+          <h5>Komentar</h5>
+          <button (click)="togglePopUpVisibility()" class="x-button">x</button>
       </div>
       <div>
         <textarea [(ngModel)]="commentValue"></textarea>
       </div>
       <div>
-        <button (click)="togglePopUpVisibility()">Cancel</button>
-        <button (click)="sendComment()">Send</button>
+        <button (click)="togglePopUpVisibility()">Odustani</button>
+        <button (click)="sendComment()">Potvrdi</button>
       </div>
     </div>
   </div>
@@ -49,69 +46,65 @@
 <div *ngIf="loggedUser.role=='USER'">
   <div>
     <div *ngFor="let paper of sciencePapersUser">
-      <h3>Paper name: {{paper.name}}</h3>
-      <p>Abstract: {{paper.abbstract}}</p>
-      <p>Messages:</p>
+      <h3>Rad: {{paper.name}}</h3>
+
+      <p>Komentari:</p>
       <div *ngFor="let message of paper.comments">
         <p>{{message.content}}</p>
       </div>
-      <div class="upload-btn-wrapper" style="margin-top:30px;">
-          <button class="btn">Upload</button>
-          <input type="file" (change)="selectFile($event)" name="myfile" />
+      <div >
+          <input  class="btn btn-sm btn-secundary" type="file" (change)="selectFile($event)" name="myfile" />
       </div>
       <div>
-        <button (click)="uploadPaper(paper)">Submit</button>
+        <button class="btn btn-sm btn-primary" (click)="uploadPaper(paper)">Potvrdi</button>
       </div>
     </div>
   </div>
 </div>
 
 <div *ngIf="loggedUser.role=='SECEDITOR'">
-  <h2>Unreviewed Science Papers</h2>
+  <h2>Odradi recenziju rada</h2>
   <div *ngFor="let paper of secondEditorSiencePapers">
     <div *ngIf="paper.status == 'sec_editor_rev'">
-      <h3>Name: {{paper.name}}</h3>
-      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
-      <p>Abstract: {{paper.abbstract}}</p>
-      <p>Keywords: {{paper.keywords}}</p>
-      <button (click)="download(paper)">Download</button>
-      <button (click)="openChoseReviewersPopUp(paper)">Choose Reviewers</button>
+      <h3>Rad {{paper.name}}</h3>
+      <p>Autor: {{paper.author.firstname}}</p>
+
+      <button  class="btn btn-sm btn-info" (click)="download(paper)">Preuzmi</button>
+      <button  class="btn btn-sm btn-info" (click)="openChoseReviewersPopUp(paper)">Dodaj recenzente</button>
     </div>
   </div>
   <br/>
-  <h2>Reviewed Science Papers</h2>
+  <h2>Radovi sa zavrsenom recenzijom</h2>
   <div *ngFor="let paper of secondEditorSiencePapers">
     <div *ngIf="paper.status == 'sec_editor_decide'">
-      <h3>Name: {{paper.name}}</h3>
-      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
-      <p>Abstract: {{paper.abbstract}}</p>
-      <p>Keywords: {{paper.keywords}}</p>
-      <button (click)="download(paper)">Download</button>
-      <button (click)="editorDecision(paper,'big')">Big mistake</button>
-      <button (click)="editorDecision(paper,'small')">Small mistake</button>
-      <button (click)="editorDecision(paper,'approve')">Approve</button>
-      <button (click)="editorDecision(paper,'discard')">Discard</button>
-      <p>Comment:</p>
+      <h3>Rad: {{paper.name}}</h3>
+      <p>Autor: {{paper.author.firstname}}</p>
+
+      <button class="btn btn-sm btn-info" (click)="download(paper)">Preuzmi</button>
+      <button class="btn btn-sm btn-warning" (click)="editorDecision(paper,'big')">Velika dorada</button>
+      <button class="btn btn-sm btn-warning" (click)="editorDecision(paper,'small')">Mala dorada </button>
+      <button class="btn btn-sm btn-primary" (click)="editorDecision(paper,'approve')">Odobri</button>
+      <button class="btn btn-sm btn-danger" (click)="editorDecision(paper,'discard')">Odbij</button>
+      <p>Komentari:</p>
       <div *ngFor="let com of paper.comments">
-        <p>Content: {{com.content}}</p>
+        <p> {{com.content}}</p>
       </div>
     </div>
   </div>
 
-  <h2>Science paper with small mistake:</h2>
+  <h2>Radovi koji su zahtevali malu doradu:</h2>
   <div *ngFor="let paper of secondEditorSiencePapers">
     <div *ngIf="paper.status == 'small_mistake_resolve'">
-      <h3>Name: {{paper.name}}</h3>
-      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
-      <p>Abstract: {{paper.abbstract}}</p>
-      <p>Keywords: {{paper.keywords}}</p>
-      <button (click)="download(paper)">Download</button>
-      <button (click)="editorDecisionSmallMistake(paper,'small')">Small mistake</button>
-      <button (click)="editorDecisionSmallMistake(paper,'approve')">Approve</button>
-      <button (click)="editorDecisionSmallMistake(paper,'discard')">Discard</button>
-      <p>Comment:</p>
+      <h3>Rad: {{paper.name}}</h3>
+      <p>Autor: {{paper.author.firstname}}</p>
+
+      <button class="btn btn-sm btn-info" (click)="download(paper)">Preuzmi</button>
+      <button class="btn btn-sm btn-warning" (click)="editorDecisionSmallMistake(paper,'small')">Ponovi malu doradu</button>
+      <button class="btn btn-sm btn-primary" (click)="editorDecisionSmallMistake(paper,'approve')">Odobri</button>
+      <button class="btn btn-sm btn-danger" (click)="editorDecisionSmallMistake(paper,'discard')">Odbij</button>
+      <p>Komentari:</p>
       <div *ngFor="let com of paper.comments">
-        <p>Content: {{com.content}}</p>
+        <p> {{com.content}}</p>
       </div>
     </div>
   </div>
@@ -120,8 +113,8 @@
   <div class="pop-up-style" *ngIf="showPopUpComment">
     <div class="pop-up-inner">
       <div class="pop-up-top">
-        <h4>Choose reviewers</h4>
-        <button (click)="togglePopUpVisibility()" class="x-button">X</button>
+        <h4>Recenzenti</h4>
+        <button (click)="togglePopUpVisibility()" class="x-button">x</button>
       </div>
       <div>
         <select [(ngModel)]="optionReviewer">
@@ -129,57 +122,56 @@
             {{reviewer.username}}
           </option>
         </select>
-        <button (click)="addReviewer()">Add</button>
+        <button (click)="addReviewer()">Dodaj recenzenta</button>
       </div>
       <div>
-        <h5>Selected reviewers:</h5>
+        <h5>Odabrani:</h5>
         <div *ngFor="let reviewer of selectedReviewers">
           <label>{{reviewer.username}}</label>
           <button (click)="removeReviewer(reviewer)">x</button>
         </div>
       </div>
       <div>
-        <button (click)="togglePopUpVisibility()">Cancel</button>
-        <button (click)="confirmReviewers()">Confirm</button>
+        <button (click)="togglePopUpVisibility()">Odustani</button>
+        <button (click)="confirmReviewers()">Potvrdi</button>
       </div>
     </div>
   </div>
 </div>
 
 <div *ngIf="loggedUser.role=='REVIEWER'">
-  <h2>Unreviewed Science Papers</h2>
+  <h2>Radovi koji cekaju recenziju:</h2>
   <div *ngFor="let paper of reviewerSciencePapers">
     <div *ngIf="paper.status == 'reviewers_looking'">
-      <h3>Name: {{paper.name}}</h3>
-      <p>Author: {{paper.author.firstname}} {{paper.author.lastname}}</p>
-      <p>Abstract: {{paper.abbstract}}</p>
-      <p>Keywords: {{paper.keywords}}</p>
-      <button (click)="download(paper)">Download</button>
-      <button (click)="openAddReviewersPopUp(paper)">Add Review</button>
+      <h3>Rad: {{paper.name}}</h3>
+      <p>Autor: {{paper.author.firstname}} </p>
+
+      <button  class="btn btn-sm btn-info" (click)="download(paper)">Preuzmi</button>
+      <button  class="btn btn-sm btn-info" (click)="openAddReviewersPopUp(paper)">Napisi recenziju</button>
     </div>
   </div>
 
   <div class="pop-up-style" *ngIf="showPopUpComment">
     <div class="pop-up-inner">
       <div class="pop-up-top">
-        <h5>Enter comment for author</h5>
+        <h5>Komentar</h5>
         <button (click)="togglePopUpVisibility()" class="x-button">X</button>
       </div>
       <div>
         <textarea [(ngModel)]="commentValue"></textarea>
       </div>
       <div>
-        <label>Choose recomendation</label>
+        <label>Za urednika:</label>
         <select [(ngModel)]="reviewOption">
-          <option>Accept</option>
-          <option>Accept with small changes</option>
-          <option>Accept with larger changes</option>
-          <option>Reject</option>
+          <option>Prihvati</option>
+          <option>Mala dorada</option>
+          <option>Velika dorada</option>
+          <option>Odbij</option>
         </select>
       </div>
       <div>
-        <button (click)="togglePopUpVisibility()">Cancel</button>
-        <button (click)="sendReview()">Send</button>
+        <button (click)="togglePopUpVisibility()">Odustani</button>
+        <button (click)="sendReview()">Potvrdi</button>
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@
     background: rgba(255, 255, 255, 0.6);
     position: absolute;
     z-index: 99;
-    color:black; 
+    color:black;
 }
 
 .pop-up-style:p{
@@ -19,7 +19,7 @@
     background: white;
     padding: 50px;
     color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: inline-block;
     position: fixed;
     top: 25%;
@@ -62,15 +62,15 @@ overflow: hidden;
 display: inline-block;
 }
 
-.btn {
-border: 2px solid gray;
-color: gray;
-background-color: white;
-padding: 4px 10px;
-border-radius: 8px;
-font-size: 15px;
-font-weight: bold;
-}
+/*.btn {*/
+/*border: 2px solid gray;*/
+/*color: gray;*/
+/*background-color: white;*/
+/*padding: 4px 10px;*/
+/*border-radius: 8px;*/
+/*font-size: 15px;*/
+/*font-weight: bold;*/
+/*}*/
 
 .upload-btn-wrapper input[type=file] {
 font-size: 15px;

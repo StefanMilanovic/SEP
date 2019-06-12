@@ -8,10 +8,10 @@ import { MagazineService } from 'src/app/services/magazine.service';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css','./utils.css']
+  styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-  
+
   private magazines: any[];
   private magazineId: string;
 
@@ -57,7 +57,7 @@ export class UploadComponent implements OnInit {
   upload(formUpload) {
     this.progress.percentage = 0;
 
-    this.currentFileUpload = this.selectedFiles.item(0);    
+    this.currentFileUpload = this.selectedFiles.item(0);
 
     this.magazines.forEach((magazine) => {
       if(magazine.name == formUpload.selectedMagazine){
@@ -74,7 +74,7 @@ export class UploadComponent implements OnInit {
         console.log('File is completely uploaded!');
       }
     });
-    
+
     this.selectedFiles = undefined;
   }
 

@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./login.component.css', './utils.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   private logUser: LogUser = new LogUser();
   private loginError = false;
   private form: FormGroup;
@@ -46,17 +46,17 @@ export class LoginComponent implements OnInit {
       }
       else{
         this.loginError = true;
-      }      
+      }
     }, error => {
       this.error = "Bad credentials";
-      console.log(error);      
+      console.log(error);
     });
-    
+
   }
 }
 
 
-/* 
+/*
 this.userService.logUser(this.logUser).subscribe(data =>{
       console.log(data);
       if(data == null){
